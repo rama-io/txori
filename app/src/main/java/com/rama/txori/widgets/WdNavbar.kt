@@ -19,8 +19,8 @@ class WdNavbar @JvmOverloads constructor(
     private val stopwatchBtn: FrameLayout
     private val timerBtn: FrameLayout
     private val aboutBtn: FrameLayout
-    private val selectedColor = resources.getColor(R.color.button_selected_color)
-    private val inactiveColor = resources.getColor(R.color.button_primary_color)
+    private val selectedColor = resources.getColor(R.color.button_1_selected)
+    private val inactiveColor = resources.getColor(R.color.button_1)
 
     var onNavigate: ((Page) -> Unit)? = null
 

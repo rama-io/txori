@@ -176,9 +176,9 @@ class HomeFragment : Fragment(), WorkoutManager.Listener {
     }
 
     override fun onGroupFinished(sessionId: Long) {
-        taskNameView.text = "Done!"
-        timerView.text = "00:00"
-        nextTaskView.text = "---"
+        taskNameView.text = getString(R.string.home_done)
+        timerView.text = getString(R.string.home_timer_zero)
+        nextTaskView.text = getString(R.string.home_next_placeholder)
         adapter.setActiveItemIndex(-1)
         adapter.setGroupPlayingState(sessionId, false)
         playPauseIcon.setImageResource(R.drawable.icon_play)
@@ -187,9 +187,9 @@ class HomeFragment : Fragment(), WorkoutManager.Listener {
     }
 
     override fun onGroupReset(sessionId: Long) {
-        taskNameView.text = "Kaixo!"
-        timerView.text = "00:00"
-        nextTaskView.text = "---"
+        taskNameView.text = getString(R.string.home_greeting)
+        timerView.text = getString(R.string.home_timer_zero)
+        nextTaskView.text = getString(R.string.home_next_placeholder)
         adapter.setActiveItemIndex(-1)
         adapter.setGroupPlayingState(sessionId, false)
         playPauseIcon.setImageResource(R.drawable.icon_play)
@@ -214,7 +214,7 @@ class HomeFragment : Fragment(), WorkoutManager.Listener {
             item is SessionItem.Row && item.sessionId == sessionId
         }
         val nextRow = nextIndex?.let { items[it] as? SessionItem.Row }
-        nextTaskView.text = if (nextRow != null) "Next: ${nextRow.task.label}" else "---"
+        nextTaskView.text = if (nextRow != null) getString(R.string.home_next_task_prefix, nextRow.task.label) else getString(R.string.home_next_placeholder)
     }
 
     private fun updateTimerDisplay(ms: Long) {
@@ -230,11 +230,11 @@ class HomeFragment : Fragment(), WorkoutManager.Listener {
         val input = dialogView.findViewById<EditText>(R.id.edit_text)
 
         dialogView.findViewById<WdButton>(R.id.yes_button).apply {
-            setText("Create")
+            setText(getString(R.string.dialog_create_group))
             setOnClickListener {
                 val name = input.text.toString().trim()
                 if (name.isEmpty()) {
-                    input.error = "Name cannot be empty"; return@setOnClickListener
+                    input.error = getString(R.string.error_name_empty); return@setOnClickListener
                 }
                 val newId = dbHelper.createSession(db, name)
                 items.add(SessionItem.Header(newId, name, emptyList()))

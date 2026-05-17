@@ -18,7 +18,8 @@
             android:layout_height="wrap_content"
             android:layout_marginEnd="2dp"
             android:background="@color/bg_1"
-            android:padding="12sp">
+            android:padding="12sp"
+            android:contentDescription="@string/cd_lock_icon">
 
             <ImageView
                 android:id="@+id/lock_icon"
@@ -26,6 +27,7 @@
                 android:layout_height="24sp"
                 android:layout_gravity="center"
                 android:src="@drawable/icon_lock_open_solid"
+                android:contentDescription="@string/cd_lock_icon"
                 android:textSize="16sp" />
         </FrameLayout>
     </LinearLayout>

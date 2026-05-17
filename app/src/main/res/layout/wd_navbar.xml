@@ -16,14 +16,16 @@
             android:layout_height="wrap_content"
             android:layout_marginEnd="2dp"
             android:layout_weight="1"
-            android:background="@color/button_primary_color"
-            android:padding="12sp">
+            android:background="@color/button_1"
+            android:padding="12sp"
+            android:contentDescription="@string/cd_home_nav">
 
             <ImageView
                 android:layout_width="24sp"
                 android:layout_height="24sp"
                 android:layout_gravity="center"
                 android:src="@drawable/icon_bullet_list_solid"
+                android:contentDescription="@string/cd_home_nav"
                 android:textSize="16sp" />
         </FrameLayout>
 
@@ -33,14 +35,16 @@
             android:layout_height="wrap_content"
             android:layout_marginEnd="2dp"
             android:layout_weight="1"
-            android:background="@color/button_primary_color"
-            android:padding="12sp">
+            android:background="@color/button_1"
+            android:padding="12sp"
+            android:contentDescription="@string/cd_stopwatch_nav">
 
             <ImageView
                 android:layout_width="24sp"
                 android:layout_height="24sp"
                 android:layout_gravity="center"
                 android:src="@drawable/icon_stopwatch"
+                android:contentDescription="@string/cd_stopwatch_nav"
                 android:textSize="16sp" />
         </FrameLayout>
 
@@ -50,14 +54,16 @@
             android:layout_height="wrap_content"
             android:layout_marginEnd="2dp"
             android:layout_weight="1"
-            android:background="@color/button_primary_color"
-            android:padding="12sp">
+            android:background="@color/button_1"
+            android:padding="12sp"
+            android:contentDescription="@string/cd_timer_nav">
 
             <ImageView
                 android:layout_width="24sp"
                 android:layout_height="24sp"
                 android:layout_gravity="center"
                 android:src="@drawable/icon_timer_solid"
+                android:contentDescription="@string/cd_timer_nav"
                 android:textSize="16sp" />
         </FrameLayout>
 
@@ -66,14 +72,16 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:background="@color/button_primary_color"
-            android:padding="12sp">
+            android:background="@color/button_1"
+            android:padding="12sp"
+            android:contentDescription="@string/cd_about_nav">
 
             <ImageView
                 android:layout_width="24sp"
                 android:layout_height="24sp"
                 android:layout_gravity="center"
                 android:src="@drawable/icon_info_circle_solid"
+                android:contentDescription="@string/cd_about_nav"
                 android:textSize="16sp" />
         </FrameLayout>
     </LinearLayout>

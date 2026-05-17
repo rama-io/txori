@@ -30,11 +30,82 @@
     <string name="font_jersey_label" translatable="false">Jersey 25</string>
     <string name="font_quicksand_label" translatable="false">Quicksand</string>
 
-    <!-- Dialog -->
+    <!-- Dialog (shared) -->
     <string name="save">Save</string>
     <string name="cancel">Cancel</string>
+    <string name="error_name_empty">Name cannot be empty</string>
+    <string name="error_label_empty">Label cannot be empty</string>
 
     <!-- Dialog :: Delete Group -->
     <string name="delete_group_title">Are you sure you want to delete this group?\nThis action cannot be undone.</string>
     <string name="delete_group">Delete group</string>
+
+    <!-- Dialog :: Session (Group) Edit -->
+    <string name="dialog_add_group_title">Add new group</string>
+    <string name="dialog_group_name_hint">Group name</string>
+    <string name="dialog_edit_group_title">Edit Group</string>
+    <string name="dialog_create_group">Create</string>
+    <string name="dialog_save_group">Save</string>
+    <string name="dialog_delete_group">Delete Group</string>
+
+    <!-- Dialog :: Task Edit / Add -->
+    <string name="dialog_edit_task_title">Edit task</string>
+    <string name="dialog_add_task_title">Add new task</string>
+    <string name="dialog_task_label_hint">Label</string>
+    <string name="dialog_task_new_hint">New Task</string>
+    <string name="dialog_task_duration_label">Duration (seconds)</string>
+    <string name="dialog_create_task">Create Task</string>
+    <string name="dialog_update_task">Update task</string>
+    <string name="dialog_delete_task">Delete task</string>
+
+    <!-- Dialog :: Delete Task -->
+    <string name="dialog_delete_task_confirm">Are you sure you want to delete this task?</string>
+
+    <!-- Home screen -->
+    <string name="home_greeting">Kaixo!</string>
+    <string name="home_done">Done!</string>
+    <string name="home_timer_zero">00:00</string>
+    <string name="home_next_placeholder">---</string>
+    <string name="home_next_task_prefix">Next: %1$s</string>
+    <string name="add_group">+ Add Group</string>
+    <string name="switch_to_edit_mode">Switch to Edit Mode</string>
+    <string name="switch_to_work_mode">Switch to Work Mode</string>
+
+    <!-- Stopwatch screen -->
+    <string name="stopwatch_start">Start stopwatch</string>
+    <string name="stopwatch_pause">Pause stopwatch</string>
+    <string name="stopwatch_reset">Reset Stopwatch</string>
+    <string name="stopwatch_counter_default">0</string>
+
+    <!-- Timer screen -->
+    <string name="timer_save">Save timer</string>
+    <string name="timer_start">Start timer</string>
+    <string name="timer_pause">Pause timer</string>
+    <string name="timer_reset">Reset timer</string>
+    <string name="timer_switch_edit">Switch to Edit Mode</string>
+    <string name="timer_switch_work">Switch to work mode</string>
+    <string name="timer_default">00:00:00</string>
+
+    <!-- Lock -->
+    <string name="screen_stay_awake">Screen will stay awake</string>
+    <string name="screen_can_turn_off">Screen can turn off</string>
+
+    <!-- Content descriptions (accessibility / image translations) -->
+    <string name="cd_lock_icon">Lock screen</string>
+    <string name="cd_home_nav">Home</string>
+    <string name="cd_stopwatch_nav">Stopwatch</string>
+    <string name="cd_timer_nav">Timer</string>
+    <string name="cd_about_nav">About</string>
+    <string name="cd_play_pause">Play or pause</string>
+    <string name="cd_repeat_task">Repeat task</string>
+    <string name="cd_increase_duration">Add 30 seconds</string>
+    <string name="cd_skip_task">Skip task</string>
+    <string name="cd_reset_group">Reset group</string>
+    <string name="cd_start_group">Start group</string>
+    <string name="cd_edit_session">Edit group</string>
+    <string name="cd_add_task">Add task</string>
+    <string name="cd_edit_task">Edit task</string>
+    <string name="cd_ascend">Move up</string>
+    <string name="cd_descend">Move down</string>
+    <string name="cd_app_icon">App icon</string>
 </resources>

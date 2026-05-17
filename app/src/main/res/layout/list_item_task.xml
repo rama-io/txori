@@ -33,38 +33,42 @@
                 android:id="@+id/edit_task_button"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:padding="12sp">
+                android:padding="12sp"
+                android:contentDescription="@string/cd_edit_task">
 
                 <ImageView
                     android:layout_width="18sp"
                     android:layout_height="18sp"
-                    android:src="@drawable/icon_edit" />
+                    android:src="@drawable/icon_edit"
+                    android:contentDescription="@string/cd_edit_task" />
             </FrameLayout>
 
             <FrameLayout
                 android:id="@+id/ascend_button"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:padding="12sp">
+                android:padding="12sp"
+                android:contentDescription="@string/cd_ascend">
 
                 <ImageView
                     android:layout_width="24sp"
                     android:layout_height="24sp"
                     android:src="@drawable/icon_chevron_up_solid"
-                    android:contentDescription="Ascend" />
+                    android:contentDescription="@string/cd_ascend" />
             </FrameLayout>
 
             <FrameLayout
                 android:id="@+id/descend_button"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:padding="12sp">
+                android:padding="12sp"
+                android:contentDescription="@string/cd_descend">
 
                 <ImageView
                     android:layout_width="24sp"
                     android:layout_height="24sp"
                     android:src="@drawable/icon_chevron_down_solid"
-                    android:contentDescription="Descend" />
+                    android:contentDescription="@string/cd_descend" />
             </FrameLayout>
 
             <TextView

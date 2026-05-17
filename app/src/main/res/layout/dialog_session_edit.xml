@@ -14,7 +14,7 @@
         android:layout_marginBottom="16sp"
         android:textSize="32sp"
         android:textColor="@color/foreground"
-        android:text="Add new group"
+        android:text="@string/dialog_add_group_title"
         android:gravity="center"
         android:textStyle="bold" />
 
@@ -26,7 +26,7 @@
         android:singleLine="true"
         android:textSize="16sp"
         android:padding="16sp"
-        android:text="Group name"
+        android:hint="@string/dialog_group_name_hint"
         android:layout_marginBottom="8sp"
         android:background="@color/input" />
 
@@ -35,7 +35,7 @@
         android:layout_width="match_parent"
         android:layout_marginBottom="8sp"
         android:layout_height="wrap_content"
-        android:background="@color/button_secondary_color"
+        android:background="@color/button_2"
         android:text="@string/save" />
 
     <com.rama.txori.widgets.WdButton
@@ -50,6 +50,6 @@
         android:id="@+id/no_button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/button_primary_color"
+        android:background="@color/button_1"
         android:text="@string/cancel" />
 </LinearLayout>

@@ -14,7 +14,7 @@
         android:background="@color/bg_1"
         android:gravity="center"
         android:text=""
-        android:hint="00:00:00" />
+        android:hint="@string/timer_default" />
 
     <LinearLayout
         android:id="@+id/edit_view"
@@ -50,34 +50,34 @@
             android:id="@+id/add_timer"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Save timer"
+            android:text="@string/timer_save"
             android:visibility="gone"
             android:layout_marginBottom="8sp"
-            android:background="@color/button_secondary_color" />
+            android:background="@color/button_2" />
 
         <com.rama.txori.widgets.WdButton
             android:id="@+id/start_timer"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Start timer"
+            android:text="@string/timer_start"
             android:layout_marginBottom="8sp"
-            android:background="@color/button_secondary_color" />
+            android:background="@color/button_2" />
 
         <com.rama.txori.widgets.WdButton
             android:id="@+id/reset_timer"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Reset timer"
+            android:text="@string/timer_reset"
             android:layout_marginBottom="8sp"
-            android:background="@color/button_secondary_color" />
+            android:background="@color/button_2" />
 
         <com.rama.txori.widgets.WdButton
             android:id="@+id/edit_mode"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Switch to Edit Mode"
+            android:text="@string/timer_switch_edit"
             android:layout_marginBottom="8sp"
-            android:background="@color/button_secondary_color" />
+            android:background="@color/button_2" />
 
     </LinearLayout>
 </LinearLayout>

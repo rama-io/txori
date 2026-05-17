@@ -383,17 +383,17 @@ class SessionAdapter(
         val dialog = AlertDialog.Builder(context).setView(dialogView).create()
 
         val title = dialogView.findViewById<TextView>(R.id.modal_title)
-        title.text = "Edit Group"
+        title.text = context.getString(R.string.dialog_edit_group_title)
 
         val input = dialogView.findViewById<EditText>(R.id.edit_text)
         input.setText(header.name)
 
         dialogView.findViewById<WdButton>(R.id.yes_button).apply {
-            setText("Save")
+            setText(context.getString(R.string.dialog_save_group))
             setOnClickListener {
                 val newName = input.text.toString().trim()
                 if (newName.isEmpty()) {
-                    input.error = "Name cannot be empty"
+                    input.error = context.getString(R.string.error_name_empty)
                     return@setOnClickListener
                 }
                 val values = ContentValues().apply { put("name", newName) }
@@ -414,7 +414,7 @@ class SessionAdapter(
 
         dialogView.findViewById<WdButton>(R.id.delete_group_button).apply {
             visibility = View.VISIBLE
-            setText("Delete Group")
+            setText(context.getString(R.string.dialog_delete_group))
             setOnClickListener {
                 dbHelper.deleteSession(db, header.sessionId)
 
@@ -441,8 +441,8 @@ class SessionAdapter(
         FontManager.applyToView(context, dialogView)
         val dialog = AlertDialog.Builder(context).setView(dialogView).create()
 
-        dialogView.findViewById<TextView>(R.id.modal_title).setText("Add new task")
-        dialogView.findViewById<WdButton>(R.id.add_button).setText("Create Task")
+        dialogView.findViewById<TextView>(R.id.modal_title).setText(context.getString(R.string.dialog_add_task_title))
+        dialogView.findViewById<WdButton>(R.id.add_button).setText(context.getString(R.string.dialog_create_task))
 
         val labelInput = dialogView.findViewById<EditText>(R.id.label)
         val durationInput = dialogView.findViewById<EditText>(R.id.duration)
@@ -455,7 +455,7 @@ class SessionAdapter(
             val duration = durationInput.text.toString().toIntOrNull() ?: 60
 
             if (label.isEmpty()) {
-                labelInput.error = "Label cannot be empty"
+                labelInput.error = context.getString(R.string.error_label_empty)
                 return@setOnClickListener
             }
 
@@ -508,7 +508,7 @@ class SessionAdapter(
             val newDuration = durationInput.text.toString().toIntOrNull() ?: row.task.duration
 
             if (newLabel.isEmpty()) {
-                labelInput.error = "Label cannot be empty"
+                labelInput.error = context.getString(R.string.error_label_empty)
                 return@setOnClickListener
             }
 

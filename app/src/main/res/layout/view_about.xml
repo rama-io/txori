@@ -24,6 +24,7 @@
                 android:layout_width="120dp"
                 android:layout_height="120dp"
                 android:src="@drawable/txori_icon_outline"
+                android:contentDescription="@string/cd_app_icon"
                 android:layout_marginBottom="16sp" />
 
             <TextView

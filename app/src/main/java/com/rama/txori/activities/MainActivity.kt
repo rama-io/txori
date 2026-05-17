@@ -57,7 +57,7 @@ class MainActivity : CsActivity() {
 
             Toast.makeText(
                 this,
-                if (isScreenLocked) "Screen will stay awake" else "Screen can turn off",
+                if (isScreenLocked) getString(R.string.screen_stay_awake) else getString(R.string.screen_can_turn_off),
                 Toast.LENGTH_SHORT
             ).show()
         }

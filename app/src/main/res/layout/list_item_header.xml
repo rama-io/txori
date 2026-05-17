@@ -10,38 +10,42 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:padding="12sp"
-        android:paddingStart="22sp">
+        android:paddingStart="22sp"
+        android:contentDescription="@string/cd_edit_session">
 
         <ImageView
             android:layout_width="18sp"
             android:layout_height="18sp"
-            android:src="@drawable/icon_edit" />
+            android:src="@drawable/icon_edit"
+            android:contentDescription="@string/cd_edit_session" />
     </FrameLayout>
 
     <FrameLayout
         android:id="@+id/ascend_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:padding="12sp">
+        android:padding="12sp"
+        android:contentDescription="@string/cd_ascend">
 
         <ImageView
             android:layout_width="24sp"
             android:layout_height="24sp"
             android:src="@drawable/icon_chevron_up_solid"
-            android:contentDescription="Ascend" />
+            android:contentDescription="@string/cd_ascend" />
     </FrameLayout>
 
     <FrameLayout
         android:id="@+id/descend_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:padding="12sp">
+        android:padding="12sp"
+        android:contentDescription="@string/cd_descend">
 
         <ImageView
             android:layout_width="24sp"
             android:layout_height="24sp"
             android:src="@drawable/icon_chevron_down_solid"
-            android:contentDescription="Descend" />
+            android:contentDescription="@string/cd_descend" />
     </FrameLayout>
 
     <TextView
@@ -59,37 +63,43 @@
         android:id="@+id/add_task"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:padding="12sp">
+        android:padding="12sp"
+        android:contentDescription="@string/cd_add_task">
 
         <ImageView
             android:layout_width="18sp"
             android:layout_height="18sp"
-            android:src="@drawable/icon_plus_solid" />
+            android:src="@drawable/icon_plus_solid"
+            android:contentDescription="@string/cd_add_task" />
     </FrameLayout>
 
     <FrameLayout
         android:id="@+id/reset_group"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:padding="12sp">
+        android:padding="12sp"
+        android:contentDescription="@string/cd_reset_group">
 
         <ImageView
             android:layout_width="18sp"
             android:layout_height="18sp"
-            android:src="@drawable/icon_refresh" />
+            android:src="@drawable/icon_refresh"
+            android:contentDescription="@string/cd_reset_group" />
     </FrameLayout>
 
     <FrameLayout
         android:id="@+id/start_group"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:padding="12sp">
+        android:padding="12sp"
+        android:contentDescription="@string/cd_start_group">
 
         <ImageView
             android:id="@+id/start_group_icon"
             android:layout_width="18sp"
             android:layout_height="18sp"
-            android:src="@drawable/icon_play" />
+            android:src="@drawable/icon_play"
+            android:contentDescription="@string/cd_start_group" />
     </FrameLayout>
 
 </LinearLayout>

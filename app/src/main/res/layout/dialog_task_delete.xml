@@ -13,7 +13,7 @@
         android:layout_marginBottom="16sp"
         android:textSize="18sp"
         android:textColor="@color/foreground"
-        android:text="Are you sure you want to delete this task?"
+        android:text="@string/dialog_delete_task_confirm"
         android:gravity="center"
         android:textStyle="bold" />
 
@@ -23,12 +23,12 @@
         android:layout_marginBottom="8sp"
         android:layout_height="wrap_content"
         android:background="@color/danger"
-        android:text="Delete task" />
+        android:text="@string/dialog_delete_task" />
 
     <com.rama.txori.widgets.WdButton
         android:id="@+id/cancel_button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/button_primary_color"
+        android:background="@color/button_1"
         android:text="@string/cancel" />
 </LinearLayout>

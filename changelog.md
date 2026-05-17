@@ -1,5 +1,9 @@
 # Changelog
 
+## 6
+
+- Adding settings
+
 ## 5
 
 - Fixing crash when creating a new group in android 6

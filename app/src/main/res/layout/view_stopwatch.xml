@@ -11,7 +11,7 @@
         android:textSize="72sp"
         android:gravity="center"
         android:layout_weight="1"
-        android:text="0" />
+        android:text="@string/stopwatch_counter_default" />
 
     <LinearLayout
         android:orientation="vertical"
@@ -22,17 +22,17 @@
             android:id="@+id/start_stopwatch"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Start stopwatch"
+            android:text="@string/stopwatch_start"
             android:layout_marginBottom="8sp"
-            android:background="@color/button_secondary_color" />
+            android:background="@color/button_2" />
 
         <com.rama.txori.widgets.WdButton
             android:id="@+id/reset_counter"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Reset Stopwatch"
+            android:text="@string/stopwatch_reset"
             android:layout_marginBottom="8sp"
-            android:background="@color/button_secondary_color" />
+            android:background="@color/button_2" />
 
     </LinearLayout>
 </LinearLayout>

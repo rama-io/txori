@@ -13,7 +13,6 @@ import com.rama.txori.R
 import com.rama.txori.SessionItem
 import com.rama.txori.Task
 import com.rama.txori.managers.FontManager
-import com.rama.txori.widgets.WdButton
 
 class SessionAdapter(
     private val context: Context,
@@ -388,7 +387,7 @@ class SessionAdapter(
         val input = dialogView.findViewById<EditText>(R.id.edit_text)
         input.setText(header.name)
 
-        dialogView.findViewById<WdButton>(R.id.yes_button).apply {
+        dialogView.findViewById<Button>(R.id.yes_button).apply {
             setText(context.getString(R.string.dialog_save_group))
             setOnClickListener {
                 val newName = input.text.toString().trim()
@@ -412,7 +411,7 @@ class SessionAdapter(
             }
         }
 
-        dialogView.findViewById<WdButton>(R.id.delete_group_button).apply {
+        dialogView.findViewById<Button>(R.id.delete_group_button).apply {
             visibility = View.VISIBLE
             setText(context.getString(R.string.dialog_delete_group))
             setOnClickListener {
@@ -430,7 +429,7 @@ class SessionAdapter(
             }
         }
 
-        dialogView.findViewById<WdButton>(R.id.no_button).setOnClickListener { dialog.dismiss() }
+        dialogView.findViewById<Button>(R.id.no_button).setOnClickListener { dialog.dismiss() }
         dialog.show()
     }
 
@@ -441,16 +440,18 @@ class SessionAdapter(
         FontManager.applyToView(context, dialogView)
         val dialog = AlertDialog.Builder(context).setView(dialogView).create()
 
-        dialogView.findViewById<TextView>(R.id.modal_title).setText(context.getString(R.string.dialog_add_task_title))
-        dialogView.findViewById<WdButton>(R.id.add_button).setText(context.getString(R.string.dialog_create_task))
+        dialogView.findViewById<TextView>(R.id.modal_title)
+            .setText(context.getString(R.string.dialog_add_task_title))
+        dialogView.findViewById<Button>(R.id.add_button)
+            .setText(context.getString(R.string.dialog_create_task))
 
         val labelInput = dialogView.findViewById<EditText>(R.id.label)
         val durationInput = dialogView.findViewById<EditText>(R.id.duration)
         durationInput.setText("60")
 
-        dialogView.findViewById<WdButton>(R.id.delete_button).visibility = View.GONE
+        dialogView.findViewById<Button>(R.id.delete_button).visibility = View.GONE
 
-        dialogView.findViewById<WdButton>(R.id.add_button).setOnClickListener {
+        dialogView.findViewById<Button>(R.id.add_button).setOnClickListener {
             val label = labelInput.text.toString().trim()
             val duration = durationInput.text.toString().toIntOrNull() ?: 60
 
@@ -476,7 +477,7 @@ class SessionAdapter(
             dialog.dismiss()
         }
 
-        dialogView.findViewById<WdButton>(R.id.cancel_button)
+        dialogView.findViewById<Button>(R.id.cancel_button)
             .setOnClickListener { dialog.dismiss() }
 
         dialog.show()
@@ -495,7 +496,7 @@ class SessionAdapter(
         labelInput.setText(row.task.label)
         durationInput.setText(row.task.duration.toString())
 
-        dialogView.findViewById<WdButton>(R.id.delete_button).setOnClickListener {
+        dialogView.findViewById<Button>(R.id.delete_button).setOnClickListener {
             dbHelper.removeStepFromSession(db, row.task.stepId)
             items.removeAt(position)
             notifyDataSetChanged()
@@ -503,7 +504,7 @@ class SessionAdapter(
             dialog.dismiss()
         }
 
-        dialogView.findViewById<WdButton>(R.id.add_button).setOnClickListener {
+        dialogView.findViewById<Button>(R.id.add_button).setOnClickListener {
             val newLabel = labelInput.text.toString().trim()
             val newDuration = durationInput.text.toString().toIntOrNull() ?: row.task.duration
 
@@ -527,7 +528,7 @@ class SessionAdapter(
             dialog.dismiss()
         }
 
-        dialogView.findViewById<WdButton>(R.id.cancel_button)
+        dialogView.findViewById<Button>(R.id.cancel_button)
             .setOnClickListener { dialog.dismiss() }
 
         dialog.show()

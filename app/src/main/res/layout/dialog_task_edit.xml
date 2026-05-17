@@ -1,81 +1,51 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="16sp"
-    android:orientation="vertical"
     android:background="@color/bg_1"
-    android:focusableInTouchMode="true">
+    android:focusableInTouchMode="true"
+    style="@style/VerticalListDivided">
 
     <TextView
         android:id="@+id/modal_title"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="16sp"
-        android:textSize="32sp"
-        android:textColor="@color/foreground"
         android:text="@string/dialog_edit_task_title"
-        android:gravity="center" />
+        style="@style/H2_center" />
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="8sp"
         android:textSize="16sp"
         android:textColor="@color/foreground"
         android:text="@string/dialog_task_label_hint" />
 
     <EditText
         android:id="@+id/label"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:maxLines="1"
-        android:singleLine="true"
-        android:textSize="16sp"
-        android:padding="16sp"
         android:hint="@string/dialog_task_new_hint"
-        android:layout_marginBottom="8sp"
-        android:background="@color/input" />
+        style="@style/EditText" />
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="8sp"
         android:textSize="16sp"
         android:textColor="@color/foreground"
         android:text="@string/dialog_task_duration_label" />
 
     <EditText
         android:id="@+id/duration"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:maxLines="1"
-        android:singleLine="true"
-        android:textSize="16sp"
-        android:padding="16sp"
-        android:layout_marginBottom="8sp"
-        android:background="@color/input" />
+        style="@style/EditText" />
 
-    <com.rama.txori.widgets.WdButton
+    <Button
         android:id="@+id/delete_button"
-        android:layout_width="match_parent"
-        android:layout_marginBottom="8sp"
-        android:layout_height="wrap_content"
-        android:background="@color/danger"
-        android:text="@string/dialog_delete_task" />
+        android:text="@string/dialog_delete_task"
+        style="@style/BTN_danger" />
 
-    <com.rama.txori.widgets.WdButton
+    <Button
         android:id="@+id/add_button"
-        android:layout_width="match_parent"
-        android:layout_marginBottom="8sp"
-        android:layout_height="wrap_content"
-        android:background="@color/button_2"
-        android:text="@string/dialog_update_task" />
+        android:text="@string/dialog_update_task"
+        style="@style/BTN2" />
 
-    <com.rama.txori.widgets.WdButton
+    <Button
         android:id="@+id/cancel_button"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/button_1"
-        android:text="@string/cancel" />
+        android:text="@string/cancel"
+        style="@style/BTN1" />
 </LinearLayout>

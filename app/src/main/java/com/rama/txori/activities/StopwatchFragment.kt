@@ -8,14 +8,14 @@ import android.os.SystemClock
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import com.rama.txori.R
-import com.rama.txori.widgets.WdButton
 
 class StopwatchFragment : Fragment() {
 
-    private lateinit var counterView: android.widget.TextView
-    private lateinit var counterStartButton: WdButton
-    private lateinit var counterResetButton: WdButton
+    private lateinit var counterView: Button
+    private lateinit var counterStartButton: Button
+    private lateinit var counterResetButton: Button
 
     private val handler = Handler(Looper.getMainLooper())
     private var isRunning = false
@@ -49,7 +49,7 @@ class StopwatchFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        counterView = view.findViewById(R.id.counter)
+        counterView = view.findViewById(R.id.counter_btn)
         counterStartButton = view.findViewById(R.id.start_stopwatch)
         counterResetButton = view.findViewById(R.id.reset_counter)
 

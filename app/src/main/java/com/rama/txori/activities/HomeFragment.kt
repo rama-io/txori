@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageView
 import android.widget.LinearLayout
@@ -18,7 +19,6 @@ import com.rama.txori.adapters.SessionAdapter
 import com.rama.txori.managers.FontManager
 import com.rama.txori.managers.SoundManager
 import com.rama.txori.managers.WorkoutManager
-import com.rama.txori.widgets.WdButton
 
 class HomeFragment : Fragment(), WorkoutManager.Listener {
 
@@ -31,7 +31,7 @@ class HomeFragment : Fragment(), WorkoutManager.Listener {
     private lateinit var timerView: TextView
     private lateinit var nextTaskView: TextView
     private lateinit var globalControllers: LinearLayout
-    private lateinit var editButton: WdButton
+    private lateinit var editButton: Button
     private lateinit var playPauseIcon: ImageView
 
     private val items: MutableList<SessionItem> = mutableListOf()
@@ -93,8 +93,8 @@ class HomeFragment : Fragment(), WorkoutManager.Listener {
         view.findViewById<View>(R.id.start_task).setOnClickListener { workout.togglePlayPause() }
         view.findViewById<View>(R.id.skip_task).setOnClickListener { workout.skipTask() }
 
-        val addGroupButton = view.findViewById<WdButton>(R.id.add_group_button)
-        val workButton = view.findViewById<WdButton>(R.id.work_button)
+        val addGroupButton = view.findViewById<Button>(R.id.add_group_button)
+        val workButton = view.findViewById<Button>(R.id.work_button)
         val timeContainer = view.findViewById<View>(R.id.time_container)
 
         addGroupButton.setOnClickListener { showAddGroupDialog() }
@@ -214,7 +214,10 @@ class HomeFragment : Fragment(), WorkoutManager.Listener {
             item is SessionItem.Row && item.sessionId == sessionId
         }
         val nextRow = nextIndex?.let { items[it] as? SessionItem.Row }
-        nextTaskView.text = if (nextRow != null) getString(R.string.home_next_task_prefix, nextRow.task.label) else getString(R.string.home_next_placeholder)
+        nextTaskView.text = if (nextRow != null) getString(
+            R.string.home_next_task_prefix,
+            nextRow.task.label
+        ) else getString(R.string.home_next_placeholder)
     }
 
     private fun updateTimerDisplay(ms: Long) {
@@ -229,7 +232,7 @@ class HomeFragment : Fragment(), WorkoutManager.Listener {
         val dialog = AlertDialog.Builder(activity).setView(dialogView).create()
         val input = dialogView.findViewById<EditText>(R.id.edit_text)
 
-        dialogView.findViewById<WdButton>(R.id.yes_button).apply {
+        dialogView.findViewById<Button>(R.id.yes_button).apply {
             setText(getString(R.string.dialog_create_group))
             setOnClickListener {
                 val name = input.text.toString().trim()
@@ -244,8 +247,8 @@ class HomeFragment : Fragment(), WorkoutManager.Listener {
                 dialog.dismiss()
             }
         }
-        dialogView.findViewById<WdButton>(R.id.delete_group_button).visibility = View.GONE
-        dialogView.findViewById<WdButton>(R.id.no_button).setOnClickListener { dialog.dismiss() }
+        dialogView.findViewById<Button>(R.id.delete_group_button).visibility = View.GONE
+        dialogView.findViewById<Button>(R.id.no_button).setOnClickListener { dialog.dismiss() }
         dialog.show()
     }
 

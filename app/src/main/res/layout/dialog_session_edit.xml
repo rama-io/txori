@@ -1,55 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="16sp"
-    android:orientation="vertical"
     android:background="@color/bg_1"
-    android:focusableInTouchMode="true">
+    android:focusableInTouchMode="true"
+    style="@style/VerticalListDivided">
 
     <TextView
         android:id="@+id/modal_title"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="16sp"
-        android:textSize="32sp"
-        android:textColor="@color/foreground"
         android:text="@string/dialog_add_group_title"
-        android:gravity="center"
-        android:textStyle="bold" />
+        style="@style/H2_center" />
 
     <EditText
         android:id="@+id/edit_text"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:maxLines="1"
-        android:singleLine="true"
-        android:textSize="16sp"
-        android:padding="16sp"
         android:hint="@string/dialog_group_name_hint"
-        android:layout_marginBottom="8sp"
-        android:background="@color/input" />
+        style="@style/EditText" />
 
-    <com.rama.txori.widgets.WdButton
+    <Button
         android:id="@+id/yes_button"
-        android:layout_width="match_parent"
-        android:layout_marginBottom="8sp"
-        android:layout_height="wrap_content"
-        android:background="@color/button_2"
-        android:text="@string/save" />
+        android:text="@string/save"
+        style="@style/BTN2" />
 
-    <com.rama.txori.widgets.WdButton
+    <Button
         android:id="@+id/delete_group_button"
-        android:layout_width="match_parent"
-        android:layout_marginBottom="8sp"
-        android:layout_height="wrap_content"
-        android:background="@color/danger"
-        android:text="@string/delete_group" />
+        android:text="@string/delete_group"
+        style="@style/BTN_danger" />
 
-    <com.rama.txori.widgets.WdButton
+    <Button
         android:id="@+id/no_button"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/button_1"
-        android:text="@string/cancel" />
+        android:text="@string/cancel"
+        style="@style/BTN1" />
 </LinearLayout>

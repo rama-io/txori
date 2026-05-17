@@ -1,31 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
-    android:layout_width="match_parent"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_height="match_parent"
-    android:gravity="center_horizontal">
+    android:background="@color/bg_1"
+    style="@style/VerticalListDivided">
 
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:fillViewport="true"
+        android:gravity="start"
         android:layout_weight="1"
-        android:layout_marginBottom="8sp"
-        android:background="@color/bg_1">
+        android:orientation="vertical">
 
         <LinearLayout
-            android:orientation="vertical"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center_horizontal">
+            android:gravity="center_horizontal"
+            style="@style/VerticalListDivided">
 
             <ImageView
                 android:layout_width="120dp"
                 android:layout_height="120dp"
                 android:src="@drawable/txori_icon_outline"
-                android:contentDescription="@string/cd_app_icon"
-                android:layout_marginBottom="16sp" />
+                android:layout_gravity="center" />
 
             <TextView
                 android:id="@+id/name_version"
@@ -37,146 +32,270 @@
                 android:textColor="@color/foreground" />
 
             <TextView
-                android:text="@string/app_description"
+                android:text="@string/app_desc"
                 android:textSize="16sp"
+                android:layout_gravity="center"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="16sp"
                 android:textAlignment="center"
                 android:textColor="@color/foreground" />
 
-            <LinearLayout
+            <TextView
+                android:text="@string/h2_app"
+                style="@style/H2" />
+
+            <com.rama.txori.widgets.WdLabel
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:gravity="start"
-                android:orientation="vertical">
+                android:icon="@drawable/icon_user"
+                android:text="@string/app_creator" />
 
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="8sp"
-                    android:textSize="18sp"
-                    android:textColor="@color/foreground"
-                    android:text="@string/app_header"
-                    android:textStyle="bold" />
+            <com.rama.txori.widgets.WdLabel
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:icon="@drawable/icon_seedlings"
+                android:text="@string/app_name" />
 
-                <com.rama.txori.widgets.WdLabel
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:icon="@drawable/icon_user"
-                    android:text="@string/app_creator" />
+            <com.rama.txori.widgets.WdLabel
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:icon="@drawable/icon_github"
+                android:text="@string/product_mako_url" />
 
-                <com.rama.txori.widgets.WdLabel
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:icon="@drawable/icon_seedlings"
-                    android:text="@string/app_name" />
+            <com.rama.txori.widgets.WdLabel
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:icon="@drawable/icon_octagon_check_solid"
+                android:text="@string/app_ads_desc" />
 
-                <com.rama.txori.widgets.WdLabel
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:icon="@drawable/icon_github"
-                    android:text="@string/main_project_url" />
+            <com.rama.txori.widgets.WdLabel
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:icon="@drawable/icon_octagon_check_solid"
+                android:text="@string/app_background_tasks_desc" />
 
-                <com.rama.txori.widgets.WdLabel
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:icon="@drawable/icon_octagon_check_solid"
-                    android:text="@string/icon_ads_desc" />
+            <com.rama.txori.widgets.WdLabel
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:icon="@drawable/icon_octagon_check_solid"
+                android:text="@string/app_trackers_desc" />
 
-                <com.rama.txori.widgets.WdLabel
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:icon="@drawable/icon_octagon_check_solid"
-                    android:text="@string/icon_block_desc" />
+            <com.rama.txori.widgets.WdLabel
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:icon="@drawable/icon_octagon_check_solid"
+                android:text="@string/app_offline_desc" />
 
-                <com.rama.txori.widgets.WdLabel
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:icon="@drawable/icon_octagon_check_solid"
-                    android:text="@string/icon_location_desc" />
+            <com.rama.txori.widgets.WdLabel
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:icon="@drawable/icon_octagon_check_solid"
+                android:text="@string/license_gpl3" />
 
-                <com.rama.txori.widgets.WdLabel
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:icon="@drawable/icon_octagon_check_solid"
-                    android:text="@string/icon_offline_desc" />
+            <TextView
+                android:text="@string/h2_contributors"
+                style="@style/H2" />
 
-                <com.rama.txori.widgets.WdLabel
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:icon="@drawable/icon_octagon_check_solid"
-                    android:text="@string/gpl3_desc" />
+            <com.rama.txori.widgets.WdLabel
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:icon="@drawable/icon_user"
+                android:text="@string/contributor_isotjs" />
 
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="8sp"
-                    android:textSize="18sp"
-                    android:textColor="@color/foreground"
-                    android:text="@string/icons_header"
-                    android:textStyle="bold" />
+            <com.rama.txori.widgets.WdLabel
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:icon="@drawable/icon_github"
+                android:text="@string/contributor_isotjs_url" />
 
-                <com.rama.txori.widgets.WdLabel
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:icon="@drawable/icon_user"
-                    android:text="@string/hackernoon_creator" />
+            <View style="@style/Separator" />
 
-                <com.rama.txori.widgets.WdLabel
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:icon="@drawable/icon_seedlings"
-                    android:text="@string/hackernoon_product" />
+            <com.rama.txori.widgets.WdLabel
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:icon="@drawable/icon_user"
+                android:text="@string/contributor_etwasmitbaum" />
 
-                <com.rama.txori.widgets.WdLabel
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:icon="@drawable/icon_github"
-                    android:text="@string/hackernoon_url" />
+            <com.rama.txori.widgets.WdLabel
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:icon="@drawable/icon_github"
+                android:text="@string/contributor_etwasmitbaum_url" />
 
-                <com.rama.txori.widgets.WdLabel
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:icon="@drawable/icon_octagon_check_solid"
-                    android:text="@string/cc_4_desc" />
+            <TextView
+                android:text="@string/h2_icons"
+                style="@style/H2" />
 
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="8sp"
-                    android:textSize="18sp"
-                    android:textColor="@color/foreground"
-                    android:text="@string/fonts_header"
-                    android:textStyle="bold" />
+            <com.rama.txori.widgets.WdLabel
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:icon="@drawable/icon_user"
+                android:text="@string/product_hackernoon_creator" />
 
-                <com.rama.txori.widgets.WdLabel
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:icon="@drawable/icon_user"
-                    android:text="@string/jersey_creator" />
+            <com.rama.txori.widgets.WdLabel
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:icon="@drawable/icon_seedlings"
+                android:text="@string/product_hackernoon_name" />
 
-                <com.rama.txori.widgets.WdLabel
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:icon="@drawable/icon_seedlings"
-                    android:text="@string/font_jersey_label" />
+            <com.rama.txori.widgets.WdLabel
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:icon="@drawable/icon_github"
+                android:text="@string/product_hackernoon_url" />
 
-                <com.rama.txori.widgets.WdLabel
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:icon="@drawable/icon_github"
-                    android:text="@string/jersey_url" />
+            <com.rama.txori.widgets.WdLabel
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:icon="@drawable/icon_octagon_check_solid"
+                android:text="@string/license_cc_4" />
 
-                <com.rama.txori.widgets.WdLabel
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:icon="@drawable/icon_octagon_check_solid"
-                    android:text="@string/ofl_1_1_desc" />
+            <TextView
+                android:text="@string/h2_fonts"
+                style="@style/H2" />
 
-            </LinearLayout>
+            <com.rama.txori.widgets.WdLabel
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:icon="@drawable/icon_user"
+                android:text="@string/product_jersey_creator" />
+
+            <com.rama.txori.widgets.WdLabel
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:icon="@drawable/icon_seedlings"
+                android:text="@string/product_jersey_name" />
+
+            <com.rama.txori.widgets.WdLabel
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:icon="@drawable/icon_github"
+                android:text="@string/product_jersey_url" />
+
+            <com.rama.txori.widgets.WdLabel
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:icon="@drawable/icon_octagon_check_solid"
+                android:text="@string/license_ofl_1_1" />
+
+            <TextView
+                android:text="@string/h2_themes"
+                style="@style/H2" />
+
+            <com.rama.txori.widgets.WdLabel
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:icon="@drawable/icon_user"
+                android:text="@string/product_dracula_creator" />
+
+            <com.rama.txori.widgets.WdLabel
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:icon="@drawable/icon_seedlings"
+                android:text="@string/product_dracula_name" />
+
+            <com.rama.txori.widgets.WdLabel
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:icon="@drawable/icon_github"
+                android:text="@string/product_dracula_url" />
+
+            <com.rama.txori.widgets.WdLabel
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:icon="@drawable/icon_octagon_check_solid"
+                android:text="@string/license_mit" />
+
+            <View style="@style/Separator" />
+
+            <com.rama.txori.widgets.WdLabel
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:icon="@drawable/icon_user"
+                android:text="@string/product_catppuccin_creator" />
+
+            <com.rama.txori.widgets.WdLabel
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:icon="@drawable/icon_seedlings"
+                android:text="@string/product_catppuccin_name" />
+
+            <com.rama.txori.widgets.WdLabel
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:icon="@drawable/icon_github"
+                android:text="@string/product_catppuccin_url" />
+
+            <com.rama.txori.widgets.WdLabel
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:icon="@drawable/icon_octagon_check_solid"
+                android:text="@string/license_mit" />
+
+            <View style="@style/Separator" />
+
+            <com.rama.txori.widgets.WdLabel
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:icon="@drawable/icon_user"
+                android:text="@string/product_tokyo_creator" />
+
+            <com.rama.txori.widgets.WdLabel
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:icon="@drawable/icon_seedlings"
+                android:text="@string/product_tokyo_name" />
+
+            <com.rama.txori.widgets.WdLabel
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:icon="@drawable/icon_github"
+                android:text="@string/product_tokyo_url" />
+
+            <com.rama.txori.widgets.WdLabel
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:icon="@drawable/icon_octagon_check_solid"
+                android:text="@string/license_mit" />
+
+            <View style="@style/Separator" />
+
+            <com.rama.txori.widgets.WdLabel
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:icon="@drawable/icon_user"
+                android:text="@string/product_melange_creator" />
+
+            <com.rama.txori.widgets.WdLabel
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:icon="@drawable/icon_seedlings"
+                android:text="@string/product_melange_name" />
+
+            <com.rama.txori.widgets.WdLabel
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:icon="@drawable/icon_github"
+                android:text="@string/product_melange_url" />
+
+            <com.rama.txori.widgets.WdLabel
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:icon="@drawable/icon_octagon_check_solid"
+                android:text="@string/license_mit" />
 
         </LinearLayout>
     </ScrollView>
 
+    <View style="@style/Separator" />
+
+    <Button
+        android:id="@+id/discord_button"
+        android:text="@string/btn_join_discord"
+        style="@style/BTN2" />
+
+    <Button
+        android:id="@+id/close_button"
+        android:text="@string/btn_go_back"
+        style="@style/BTN1" />
 </LinearLayout>

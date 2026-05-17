@@ -1,38 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    style="@style/VerticalList">
 
-    <TextView
-        android:id="@+id/counter"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textSize="72sp"
-        android:gravity="center"
+    <Button
+        android:id="@+id/counter_btn"
         android:layout_weight="1"
-        android:text="@string/stopwatch_counter_default" />
+        android:layout_height="0dp"
+        android:text="@string/stopwatch_counter_default"
+        android:background="@android:color/transparent"
+        style="@style/H1_center" />
 
-    <LinearLayout
-        android:orientation="vertical"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+    <LinearLayout style="@style/VerticalListDivided">
 
-        <com.rama.txori.widgets.WdButton
+        <Button
             android:id="@+id/start_stopwatch"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
             android:text="@string/stopwatch_start"
-            android:layout_marginBottom="8sp"
-            android:background="@color/button_2" />
+            style="@style/BTN2" />
 
-        <com.rama.txori.widgets.WdButton
+        <Button
             android:id="@+id/reset_counter"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
             android:text="@string/stopwatch_reset"
-            android:layout_marginBottom="8sp"
-            android:background="@color/button_2" />
+            style="@style/BTN2" />
 
     </LinearLayout>
 </LinearLayout>

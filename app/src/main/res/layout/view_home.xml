@@ -1,157 +1,108 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/root"
-    android:orientation="vertical"
-    android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/bg_1">
+    android:background="@color/bg_1"
+    style="@style/VerticalListDivided">
 
     <LinearLayout
         android:id="@+id/time_container"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
         android:paddingTop="32sp"
         android:paddingBottom="32sp"
-        android:gravity="center"
-        android:layout_marginBottom="16sp"
-        android:orientation="vertical">
+        style="@style/VerticalList">
 
         <TextView
             android:id="@+id/current_task_name"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="32sp"
-            android:layout_gravity="center"
             android:textColor="@color/foreground"
-            android:text="@string/home_greeting" />
+            android:text="@string/home_greeting"
+            style="@style/H2_center" />
 
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="72sp"
-            android:layout_gravity="center"
-            android:textColor="@color/foreground"
             android:id="@+id/current_task_timer"
-            android:text="@string/home_timer_zero" />
+            android:text="@string/home_timer_zero"
+            style="@style/H1_center" />
 
         <TextView
             android:id="@+id/next_task_name"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="32sp"
-            android:layout_marginBottom="8sp"
-            android:layout_gravity="center"
             android:textColor="@color/disabled"
-            android:text="@string/home_next_placeholder" />
+            android:text="@string/home_next_placeholder"
+            style="@style/H2_center" />
 
         <LinearLayout
             android:id="@+id/controllers"
             android:visibility="gone"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_marginTop="8sp"
             android:gravity="center"
-            android:orientation="horizontal"
-            android:showDividers="middle">
+            style="@style/HorizontalListDivided">
 
             <FrameLayout
                 android:id="@+id/repeat_task"
-                android:background="@color/bg_3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="8sp"
-                android:padding="12sp"
-                android:contentDescription="@string/cd_repeat_task">
+                android:contentDescription="@string/cd_repeat_task"
+                style="@style/BTN3">
 
                 <ImageView
-                    android:layout_width="24sp"
-                    android:layout_height="24sp"
                     android:src="@drawable/icon_refresh"
-                    android:contentDescription="@string/cd_repeat_task" />
+                    android:contentDescription="@string/cd_repeat_task"
+                    style="@style/Icon24" />
             </FrameLayout>
 
             <FrameLayout
                 android:id="@+id/increase_duration"
-                android:background="@color/bg_3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="8sp"
-                android:padding="12sp"
-                android:contentDescription="@string/cd_increase_duration">
+                android:contentDescription="@string/cd_increase_duration"
+                style="@style/BTN3">
 
                 <ImageView
-                    android:layout_width="24sp"
-                    android:layout_height="24sp"
                     android:src="@drawable/icon_30_timer"
-                    android:contentDescription="@string/cd_increase_duration" />
+                    android:contentDescription="@string/cd_increase_duration"
+                    style="@style/Icon24" />
             </FrameLayout>
 
             <FrameLayout
                 android:id="@+id/start_task"
-                android:background="@color/bg_3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="8sp"
-                android:padding="12sp"
-                android:contentDescription="@string/cd_play_pause">
+                android:contentDescription="@string/cd_play_pause"
+                style="@style/BTN3">
 
                 <ImageView
                     android:id="@+id/play_pause_icon"
-                    android:layout_width="24sp"
-                    android:layout_height="24sp"
                     android:src="@drawable/icon_play"
-                    android:contentDescription="@string/cd_play_pause" />
+                    android:contentDescription="@string/cd_play_pause"
+                    style="@style/Icon24" />
             </FrameLayout>
 
             <FrameLayout
                 android:id="@+id/skip_task"
-                android:background="@color/bg_3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:padding="12sp"
-                android:contentDescription="@string/cd_skip_task">
+                android:contentDescription="@string/cd_skip_task"
+                style="@style/BTN3">
 
                 <ImageView
-                    android:layout_width="24sp"
-                    android:layout_height="24sp"
                     android:src="@drawable/icon_next"
-                    android:contentDescription="@string/cd_skip_task" />
+                    android:contentDescription="@string/cd_skip_task"
+                    style="@style/Icon24" />
             </FrameLayout>
         </LinearLayout>
     </LinearLayout>
 
     <ListView
         android:id="@+id/task_list"
-        android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:divider="@android:color/transparent"
-        android:dividerHeight="8sp"
-        android:layout_marginBottom="8sp"
-        android:layout_weight="1" />
+        android:layout_weight="1"
+        style="@style/VerticalListDivided" />
 
-    <com.rama.txori.widgets.WdButton
+    <Button
         android:id="@+id/add_group_button"
         android:visibility="gone"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="8sp"
-        android:background="@color/button_2"
-        android:text="@string/add_group" />
+        android:text="@string/add_group"
+        style="@style/BTN2" />
 
-    <com.rama.txori.widgets.WdButton
+    <Button
         android:id="@+id/edit_button"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="8sp"
-        android:background="@color/button_2"
-        android:text="@string/switch_to_edit_mode" />
+        android:text="@string/switch_to_edit_mode"
+        style="@style/BTN2" />
 
-    <com.rama.txori.widgets.WdButton
+    <Button
         android:id="@+id/work_button"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="8sp"
         android:visibility="gone"
-        android:background="@color/button_2"
-        android:text="@string/switch_to_work_mode" />
+        android:text="@string/switch_to_work_mode"
+        style="@style/BTN2" />
 
 </LinearLayout>

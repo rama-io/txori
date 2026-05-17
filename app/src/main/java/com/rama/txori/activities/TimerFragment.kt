@@ -10,21 +10,20 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
+import android.widget.Button
 import android.widget.EditText
-import android.widget.LinearLayout
-import android.widget.TextView
+import android.widget.FrameLayout
 import com.rama.txori.R
-import com.rama.txori.widgets.WdButton
 
 class TimerFragment : Fragment() {
 
-    private lateinit var timerButton: TextView
-    private lateinit var editView: LinearLayout
+    private lateinit var timerButton: Button
+    private lateinit var editView: FrameLayout
     private lateinit var timerInput: EditText
-    private lateinit var addTimer: WdButton
-    private lateinit var startButton: WdButton
-    private lateinit var resetButton: WdButton
-    private lateinit var editModeButton: WdButton
+    private lateinit var addTimer: Button
+    private lateinit var startButton: Button
+    private lateinit var resetButton: Button
+    private lateinit var editModeButton: Button
 
     private var isRunning = false
     private var initialMs = 0L
@@ -75,7 +74,7 @@ class TimerFragment : Fragment() {
 
         timerButton = view.findViewById(R.id.timer_button)
         editView = view.findViewById(R.id.edit_view)
-        timerInput = view.findViewById(R.id.timer)
+        timerInput = view.findViewById(R.id.timer_input)
         addTimer = view.findViewById(R.id.add_timer)
         startButton = view.findViewById(R.id.start_timer)
         resetButton = view.findViewById(R.id.reset_timer)

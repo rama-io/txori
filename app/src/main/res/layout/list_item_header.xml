@@ -1,9 +1,6 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/app_row_header"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="horizontal"
-    android:gravity="center">
+    style="@style/HorizontalListDivided">
 
     <FrameLayout
         android:id="@+id/edit_session_button"
@@ -14,10 +11,9 @@
         android:contentDescription="@string/cd_edit_session">
 
         <ImageView
-            android:layout_width="18sp"
-            android:layout_height="18sp"
             android:src="@drawable/icon_edit"
-            android:contentDescription="@string/cd_edit_session" />
+            android:contentDescription="@string/cd_edit_session"
+            style="@style/Icon18" />
     </FrameLayout>
 
     <FrameLayout
@@ -28,10 +24,9 @@
         android:contentDescription="@string/cd_ascend">
 
         <ImageView
-            android:layout_width="24sp"
-            android:layout_height="24sp"
             android:src="@drawable/icon_chevron_up_solid"
-            android:contentDescription="@string/cd_ascend" />
+            android:contentDescription="@string/cd_ascend"
+            style="@style/Icon18" />
     </FrameLayout>
 
     <FrameLayout
@@ -42,10 +37,9 @@
         android:contentDescription="@string/cd_descend">
 
         <ImageView
-            android:layout_width="24sp"
-            android:layout_height="24sp"
             android:src="@drawable/icon_chevron_down_solid"
-            android:contentDescription="@string/cd_descend" />
+            android:contentDescription="@string/cd_descend"
+            style="@style/Icon18" />
     </FrameLayout>
 
     <TextView
@@ -67,10 +61,9 @@
         android:contentDescription="@string/cd_add_task">
 
         <ImageView
-            android:layout_width="18sp"
-            android:layout_height="18sp"
             android:src="@drawable/icon_plus_solid"
-            android:contentDescription="@string/cd_add_task" />
+            android:contentDescription="@string/cd_add_task"
+            style="@style/Icon18" />
     </FrameLayout>
 
     <FrameLayout
@@ -81,10 +74,9 @@
         android:contentDescription="@string/cd_reset_group">
 
         <ImageView
-            android:layout_width="18sp"
-            android:layout_height="18sp"
             android:src="@drawable/icon_refresh"
-            android:contentDescription="@string/cd_reset_group" />
+            android:contentDescription="@string/cd_reset_group"
+            style="@style/Icon18" />
     </FrameLayout>
 
     <FrameLayout
@@ -99,7 +91,8 @@
             android:layout_width="18sp"
             android:layout_height="18sp"
             android:src="@drawable/icon_play"
-            android:contentDescription="@string/cd_start_group" />
+            android:contentDescription="@string/cd_start_group"
+            style="@style/Icon18" />
     </FrameLayout>
 
 </LinearLayout>

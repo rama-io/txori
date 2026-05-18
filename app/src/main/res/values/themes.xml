@@ -71,6 +71,12 @@
         <item name="android:gravity">center</item>
     </style>
 
+    <style name="H3" parent="BlockFlow">
+        <item name="android:textColor">@color/foreground</item>
+        <item name="android:textSize">18sp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
     <style name="Disclaimer" parent="BlockFlow">
         <item name="android:textColor">@color/foreground</item>
         <item name="android:textSize">18sp</item>

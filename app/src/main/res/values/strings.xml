@@ -307,5 +307,6 @@
     <string name="easter_eggs_counter">%d more...</string>
     <string name="hint_timer">HHMMSS</string>
     <string name="alttext_open_settings">Open Settings</string>
+    <string name="radio_theme_mako">Mako</string>
 </resources>
 

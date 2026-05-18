@@ -25,6 +25,7 @@ abstract class CsActivity : Activity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        prefs.initPrefs()
         lastKnownAppLanguage = prefs.getAppLanguage()
         lastKnownTheme = prefs.getTheme()
 

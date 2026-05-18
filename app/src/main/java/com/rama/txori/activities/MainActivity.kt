@@ -46,7 +46,7 @@ class MainActivity : CsActivity() {
         }
 
         val openSettingsBtn = findViewById<FrameLayout>(R.id.open_settings)
-        openSettingsBtn.setOnLongClickListener {
+        openSettingsBtn.setOnClickListener {
             startActivity(Intent(this, SettingsActivity::class.java))
             true
         }

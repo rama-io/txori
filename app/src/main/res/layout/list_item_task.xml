@@ -28,12 +28,11 @@
                 android:id="@+id/edit_task_button"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:padding="12sp"
-                android:contentDescription="@string/cd_edit_task">
+                android:padding="12sp">
 
                 <ImageView
                     android:src="@drawable/icon_edit"
-                    android:contentDescription="@string/cd_edit_task"
+                    android:contentDescription="@string/altdescr_edit_task"
                     style="@style/Icon18" />
             </FrameLayout>
 
@@ -41,12 +40,11 @@
                 android:id="@+id/ascend_button"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:padding="12sp"
-                android:contentDescription="@string/cd_ascend">
+                android:padding="12sp">
 
                 <ImageView
                     android:src="@drawable/icon_chevron_up_solid"
-                    android:contentDescription="@string/cd_ascend"
+                    android:contentDescription="@string/altdescr_ascend"
                     style="@style/Icon18" />
             </FrameLayout>
 
@@ -54,12 +52,11 @@
                 android:id="@+id/descend_button"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:padding="12sp"
-                android:contentDescription="@string/cd_descend">
+                android:padding="12sp">
 
                 <ImageView
                     android:src="@drawable/icon_chevron_down_solid"
-                    android:contentDescription="@string/cd_descend"
+                    android:contentDescription="@string/altdescr_descend"
                     style="@style/Icon18" />
             </FrameLayout>
 

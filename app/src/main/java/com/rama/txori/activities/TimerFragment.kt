@@ -39,7 +39,7 @@ class TimerFragment : Fragment() {
             val elapsed = SystemClock.elapsedRealtime() - startTime
             val msLeft = remainingMs - elapsed
             if (msLeft <= 0) {
-                timerButton.text = getString(R.string.timer_default)
+                timerButton.text = getString(R.string.h1_timer_default)
                 isRunning = false
                 remainingMs = 0L
                 updateButtons()
@@ -80,7 +80,7 @@ class TimerFragment : Fragment() {
         resetButton = view.findViewById(R.id.reset_timer)
         editModeButton = view.findViewById(R.id.edit_mode)
 
-        timerButton.text = getString(R.string.timer_default)
+        timerButton.text = getString(R.string.h1_timer_default)
 
         editModeButton.setOnClickListener { setEditMode(!isEditMode) }
         timerButton.setOnClickListener { toggleTimer() }
@@ -108,7 +108,7 @@ class TimerFragment : Fragment() {
 
     private fun toggleTimer() {
         if (isRunning) pauseTimer() else startTimer()
-        startButton.setText(if (isRunning) getString(R.string.timer_pause) else getString(R.string.timer_start))
+        startButton.setText(if (isRunning) getString(R.string.btn_timer_pause) else getString(R.string.btn_timer_start))
     }
 
     private fun updateButtons() {
@@ -121,13 +121,13 @@ class TimerFragment : Fragment() {
             if (hasTimer && !isEditMode && hasTimerActive) View.VISIBLE else View.GONE
         resetButton.visibility =
             if (hasTimer && !isEditMode) View.VISIBLE else View.GONE
-        startButton.setText(if (isRunning) getString(R.string.timer_pause) else getString(R.string.timer_start))
+        startButton.setText(if (isRunning) getString(R.string.btn_timer_pause) else getString(R.string.btn_timer_start))
         startButton.isEnabled = canStart || isRunning
     }
 
     private fun updateEditModeUI() {
         if (isEditMode) {
-            editModeButton.setText(getString(R.string.timer_switch_work))
+            editModeButton.setText(getString(R.string.btn_switch_to_work_mode))
             timerButton.visibility = View.GONE
             editView.visibility = View.VISIBLE
             addTimer.visibility = View.VISIBLE
@@ -139,7 +139,7 @@ class TimerFragment : Fragment() {
             timerInput.requestFocus()
             showKeyboard()
         } else {
-            editModeButton.setText(getString(R.string.timer_switch_edit))
+            editModeButton.setText(getString(R.string.btn_switch_to_edit_mode))
             editView.visibility = View.GONE
             addTimer.visibility = View.GONE
             timerButton.visibility = View.VISIBLE

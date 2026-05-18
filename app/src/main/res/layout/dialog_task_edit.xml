@@ -8,7 +8,7 @@
 
     <TextView
         android:id="@+id/modal_title"
-        android:text="@string/dialog_edit_task_title"
+        android:text="@string/h2_edit_task"
         style="@style/H2_center" />
 
     <TextView
@@ -16,11 +16,11 @@
         android:layout_height="wrap_content"
         android:textSize="16sp"
         android:textColor="@color/foreground"
-        android:text="@string/dialog_task_label_hint" />
+        android:text="@string/hint_task_label" />
 
     <EditText
         android:id="@+id/label"
-        android:hint="@string/dialog_task_new_hint"
+        android:hint="@string/hint_new_task"
         style="@style/EditText" />
 
     <TextView
@@ -28,7 +28,7 @@
         android:layout_height="wrap_content"
         android:textSize="16sp"
         android:textColor="@color/foreground"
-        android:text="@string/dialog_task_duration_label" />
+        android:text="@string/label_task_duration" />
 
     <EditText
         android:id="@+id/duration"
@@ -36,16 +36,16 @@
 
     <Button
         android:id="@+id/delete_button"
-        android:text="@string/dialog_delete_task"
+        android:text="@string/btn_delete_task"
         style="@style/BTN_danger" />
 
     <Button
         android:id="@+id/add_button"
-        android:text="@string/dialog_update_task"
+        android:text="@string/btn_update_task"
         style="@style/BTN2" />
 
     <Button
         android:id="@+id/cancel_button"
-        android:text="@string/cancel"
+        android:text="@string/btn_cancel"
         style="@style/BTN1" />
 </LinearLayout>

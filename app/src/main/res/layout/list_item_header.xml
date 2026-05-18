@@ -7,12 +7,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:padding="12sp"
-        android:paddingStart="22sp"
-        android:contentDescription="@string/cd_edit_session">
+        android:paddingStart="22sp">
 
         <ImageView
             android:src="@drawable/icon_edit"
-            android:contentDescription="@string/cd_edit_session"
+            android:contentDescription="@string/altdescr_edit_session"
             style="@style/Icon18" />
     </FrameLayout>
 
@@ -20,12 +19,11 @@
         android:id="@+id/ascend_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:padding="12sp"
-        android:contentDescription="@string/cd_ascend">
+        android:padding="12sp">
 
         <ImageView
             android:src="@drawable/icon_chevron_up_solid"
-            android:contentDescription="@string/cd_ascend"
+            android:contentDescription="@string/altdescr_ascend"
             style="@style/Icon18" />
     </FrameLayout>
 
@@ -33,12 +31,11 @@
         android:id="@+id/descend_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:padding="12sp"
-        android:contentDescription="@string/cd_descend">
+        android:padding="12sp">
 
         <ImageView
             android:src="@drawable/icon_chevron_down_solid"
-            android:contentDescription="@string/cd_descend"
+            android:contentDescription="@string/altdescr_descend"
             style="@style/Icon18" />
     </FrameLayout>
 
@@ -55,12 +52,11 @@
         android:id="@+id/add_task"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:padding="12sp"
-        android:contentDescription="@string/cd_add_task">
+        android:padding="12sp">
 
         <ImageView
             android:src="@drawable/icon_plus_solid"
-            android:contentDescription="@string/cd_add_task"
+            android:contentDescription="@string/altdescr_add_task"
             style="@style/Icon18" />
     </FrameLayout>
 
@@ -68,12 +64,11 @@
         android:id="@+id/reset_group"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:padding="12sp"
-        android:contentDescription="@string/cd_reset_group">
+        android:padding="12sp">
 
         <ImageView
             android:src="@drawable/icon_refresh"
-            android:contentDescription="@string/cd_reset_group"
+            android:contentDescription="@string/altdescr_reset_group"
             style="@style/Icon18" />
     </FrameLayout>
 
@@ -81,15 +76,12 @@
         android:id="@+id/start_group"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:padding="12sp"
-        android:contentDescription="@string/cd_start_group">
+        android:padding="12sp">
 
         <ImageView
             android:id="@+id/start_group_icon"
-            android:layout_width="18sp"
-            android:layout_height="18sp"
             android:src="@drawable/icon_play"
-            android:contentDescription="@string/cd_start_group"
+            android:contentDescription="@string/altdescr_start_group"
             style="@style/Icon18" />
     </FrameLayout>
 

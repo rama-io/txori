@@ -65,7 +65,7 @@ class StopwatchFragment : Fragment() {
             if (savedInstanceState.getBoolean(KEY_IS_RUNNING, false)) {
                 startStopwatch()
             } else {
-                counterStartButton.setText(getString(R.string.stopwatch_start))
+                counterStartButton.setText(getString(R.string.btn_stopwatch_start))
             }
         }
     }
@@ -77,23 +77,23 @@ class StopwatchFragment : Fragment() {
     private fun startStopwatch() {
         startTime = SystemClock.elapsedRealtime() - pausedElapsed
         isRunning = true
-        counterStartButton.setText(getString(R.string.stopwatch_pause))
+        counterStartButton.setText(getString(R.string.btn_stopwatch_pause))
         handler.post(ticker)
     }
 
     private fun pauseStopwatch() {
         pausedElapsed = SystemClock.elapsedRealtime() - startTime
         isRunning = false
-        counterStartButton.setText(getString(R.string.stopwatch_start))
+        counterStartButton.setText(getString(R.string.btn_stopwatch_start))
         handler.removeCallbacks(ticker)
     }
 
     private fun resetStopwatch() {
         isRunning = false
         pausedElapsed = 0L
-        counterStartButton.setText(getString(R.string.stopwatch_start))
+        counterStartButton.setText(getString(R.string.btn_stopwatch_start))
         handler.removeCallbacks(ticker)
-        counterView.text = getString(R.string.stopwatch_counter_default)
+        counterView.text = getString(R.string.h1_stopwatch_counter_default)
     }
 
     private fun formatTime(ms: Long): String {

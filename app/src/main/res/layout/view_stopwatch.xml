@@ -7,7 +7,7 @@
         android:id="@+id/counter_btn"
         android:layout_weight="1"
         android:layout_height="0dp"
-        android:text="@string/stopwatch_counter_default"
+        android:text="@string/h1_stopwatch_counter_default"
         android:background="@android:color/transparent"
         style="@style/H1_center" />
 
@@ -15,12 +15,12 @@
 
         <Button
             android:id="@+id/start_stopwatch"
-            android:text="@string/stopwatch_start"
+            android:text="@string/btn_stopwatch_start"
             style="@style/BTN2" />
 
         <Button
             android:id="@+id/reset_counter"
-            android:text="@string/stopwatch_reset"
+            android:text="@string/btn_stopwatch_reset"
             style="@style/BTN2" />
 
     </LinearLayout>

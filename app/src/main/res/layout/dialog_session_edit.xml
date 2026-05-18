@@ -8,26 +8,26 @@
 
     <TextView
         android:id="@+id/modal_title"
-        android:text="@string/dialog_add_group_title"
+        android:text="@string/h2_add_new_group"
         style="@style/H2_center" />
 
     <EditText
         android:id="@+id/edit_text"
-        android:hint="@string/dialog_group_name_hint"
+        android:hint="@string/hint_group_name"
         style="@style/EditText" />
 
     <Button
         android:id="@+id/yes_button"
-        android:text="@string/save"
+        android:text="@string/btn_save"
         style="@style/BTN2" />
 
     <Button
         android:id="@+id/delete_group_button"
-        android:text="@string/delete_group"
+        android:text="@string/btn_delete_group"
         style="@style/BTN_danger" />
 
     <Button
         android:id="@+id/no_button"
-        android:text="@string/cancel"
+        android:text="@string/btn_cancel"
         style="@style/BTN1" />
 </LinearLayout>

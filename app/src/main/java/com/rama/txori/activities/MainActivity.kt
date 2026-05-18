@@ -10,7 +10,6 @@ import android.widget.ImageView
 import android.widget.Toast
 import com.rama.txori.CsActivity
 import com.rama.txori.R
-import com.rama.txori.managers.FontManager
 import com.rama.txori.managers.ThemeManager
 import com.rama.txori.widgets.WdNavbar
 
@@ -65,7 +64,7 @@ class MainActivity : CsActivity() {
 
             Toast.makeText(
                 this,
-                if (isScreenLocked) getString(R.string.screen_stay_awake) else getString(R.string.screen_can_turn_off),
+                if (isScreenLocked) getString(R.string.toast_screen_stay_awake) else getString(R.string.toast_screen_can_turn_off),
                 Toast.LENGTH_SHORT
             ).show()
         }

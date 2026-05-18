@@ -14,18 +14,18 @@
         <TextView
             android:id="@+id/current_task_name"
             android:textColor="@color/foreground"
-            android:text="@string/home_greeting"
+            android:text="@string/h2_greeting"
             style="@style/H2_center" />
 
         <TextView
             android:id="@+id/current_task_timer"
-            android:text="@string/home_timer_zero"
+            android:text="@string/h1_timer_zero"
             style="@style/H1_center" />
 
         <TextView
             android:id="@+id/next_task_name"
             android:textColor="@color/disabled"
-            android:text="@string/home_next_placeholder"
+            android:text="@string/h2_next_placeholder"
             style="@style/H2_center" />
 
         <LinearLayout
@@ -37,46 +37,42 @@
 
             <FrameLayout
                 android:id="@+id/repeat_task"
-                android:contentDescription="@string/cd_repeat_task"
                 style="@style/BTN3">
 
                 <ImageView
                     android:src="@drawable/icon_refresh"
-                    android:contentDescription="@string/cd_repeat_task"
+                    android:contentDescription="@string/altdescr_repeat_task"
                     style="@style/Icon24" />
             </FrameLayout>
 
             <FrameLayout
                 android:id="@+id/increase_duration"
-                android:contentDescription="@string/cd_increase_duration"
                 style="@style/BTN3">
 
                 <ImageView
                     android:src="@drawable/icon_30_timer"
-                    android:contentDescription="@string/cd_increase_duration"
+                    android:contentDescription="@string/altdescr_increase_duration"
                     style="@style/Icon24" />
             </FrameLayout>
 
             <FrameLayout
                 android:id="@+id/start_task"
-                android:contentDescription="@string/cd_play_pause"
                 style="@style/BTN3">
 
                 <ImageView
                     android:id="@+id/play_pause_icon"
                     android:src="@drawable/icon_play"
-                    android:contentDescription="@string/cd_play_pause"
+                    android:contentDescription="@string/altdescr_play_pause"
                     style="@style/Icon24" />
             </FrameLayout>
 
             <FrameLayout
                 android:id="@+id/skip_task"
-                android:contentDescription="@string/cd_skip_task"
                 style="@style/BTN3">
 
                 <ImageView
                     android:src="@drawable/icon_next"
-                    android:contentDescription="@string/cd_skip_task"
+                    android:contentDescription="@string/altdescr_skip_task"
                     style="@style/Icon24" />
             </FrameLayout>
         </LinearLayout>
@@ -91,18 +87,18 @@
     <Button
         android:id="@+id/add_group_button"
         android:visibility="gone"
-        android:text="@string/add_group"
+        android:text="@string/btn_add_group"
         style="@style/BTN2" />
 
     <Button
         android:id="@+id/edit_button"
-        android:text="@string/switch_to_edit_mode"
+        android:text="@string/btn_switch_to_edit_mode"
         style="@style/BTN2" />
 
     <Button
         android:id="@+id/work_button"
         android:visibility="gone"
-        android:text="@string/switch_to_work_mode"
+        android:text="@string/btn_switch_to_work_mode"
         style="@style/BTN2" />
 
 </LinearLayout>

@@ -12,7 +12,6 @@ import com.rama.txori.DatabaseHelper
 import com.rama.txori.R
 import com.rama.txori.SessionItem
 import com.rama.txori.Task
-import com.rama.txori.managers.FontManager
 import com.rama.txori.managers.ThemeManager
 
 class SessionAdapter(
@@ -222,20 +221,20 @@ class SessionAdapter(
             }
         }
 
-        val editSessionButton = view.findViewById<View>(R.id.edit_session_button)
+        val editSessionButton = view.findViewById<FrameLayout>(R.id.edit_session_button)
         editSessionButton.visibility = if (!isEditMode) View.GONE else View.VISIBLE
         editSessionButton.setOnClickListener {
             showEditSessionDialog(header, position)
             true
         }
 
-        val addTaskButton = view.findViewById<View>(R.id.add_task)
+        val addTaskButton = view.findViewById<FrameLayout>(R.id.add_task)
         addTaskButton.visibility = if (!isEditMode) View.GONE else View.VISIBLE
         addTaskButton.setOnClickListener {
             showAddTaskDialog(header, position)
         }
 
-        val startGroupButton = view.findViewById<View>(R.id.start_group)
+        val startGroupButton = view.findViewById<FrameLayout>(R.id.start_group)
         startGroupButton.setOnClickListener {
             onStartGroup(header.sessionId, position + 1)
         }
@@ -249,7 +248,7 @@ class SessionAdapter(
                     R.drawable.icon_play
             )
 
-        val resetGroupButton = view.findViewById<View>(R.id.reset_group)
+        val resetGroupButton = view.findViewById<FrameLayout>(R.id.reset_group)
         resetGroupButton.setOnClickListener { onResetGroup(header.sessionId) }
         resetGroupButton.visibility = if (isEditMode) View.GONE else View.VISIBLE
 
@@ -342,7 +341,7 @@ class SessionAdapter(
             }
         }
 
-        val editTaskButton = view.findViewById<View>(R.id.edit_task_button)
+        val editTaskButton = view.findViewById<FrameLayout>(R.id.edit_task_button)
         editTaskButton.setOnClickListener {
             showEditTaskDialog(row, position)
             true
@@ -383,17 +382,17 @@ class SessionAdapter(
         val dialog = AlertDialog.Builder(context).setView(dialogView).create()
 
         val title = dialogView.findViewById<TextView>(R.id.modal_title)
-        title.text = context.getString(R.string.dialog_edit_group_title)
+        title.text = context.getString(R.string.h2_edit_group)
 
         val input = dialogView.findViewById<EditText>(R.id.edit_text)
         input.setText(header.name)
 
         dialogView.findViewById<Button>(R.id.yes_button).apply {
-            setText(context.getString(R.string.dialog_save_group))
+            setText(context.getString(R.string.btn_save))
             setOnClickListener {
                 val newName = input.text.toString().trim()
                 if (newName.isEmpty()) {
-                    input.error = context.getString(R.string.error_name_empty)
+                    input.error = context.getString(R.string.toast_name_empty)
                     return@setOnClickListener
                 }
                 val values = ContentValues().apply { put("name", newName) }
@@ -414,7 +413,7 @@ class SessionAdapter(
 
         dialogView.findViewById<Button>(R.id.delete_group_button).apply {
             visibility = View.VISIBLE
-            setText(context.getString(R.string.dialog_delete_group))
+            setText(context.getString(R.string.btn_delete_group))
             setOnClickListener {
                 dbHelper.deleteSession(db, header.sessionId)
 
@@ -442,9 +441,9 @@ class SessionAdapter(
         val dialog = AlertDialog.Builder(context).setView(dialogView).create()
 
         dialogView.findViewById<TextView>(R.id.modal_title)
-            .setText(context.getString(R.string.dialog_add_task_title))
+            .setText(context.getString(R.string.h2_add_new_task))
         dialogView.findViewById<Button>(R.id.add_button)
-            .setText(context.getString(R.string.dialog_create_task))
+            .setText(context.getString(R.string.btn_create_task))
 
         val labelInput = dialogView.findViewById<EditText>(R.id.label)
         val durationInput = dialogView.findViewById<EditText>(R.id.duration)
@@ -457,7 +456,7 @@ class SessionAdapter(
             val duration = durationInput.text.toString().toIntOrNull() ?: 60
 
             if (label.isEmpty()) {
-                labelInput.error = context.getString(R.string.error_label_empty)
+                labelInput.error = context.getString(R.string.toast_label_empty)
                 return@setOnClickListener
             }
 
@@ -510,7 +509,7 @@ class SessionAdapter(
             val newDuration = durationInput.text.toString().toIntOrNull() ?: row.task.duration
 
             if (newLabel.isEmpty()) {
-                labelInput.error = context.getString(R.string.error_label_empty)
+                labelInput.error = context.getString(R.string.toast_label_empty)
                 return@setOnClickListener
             }
 

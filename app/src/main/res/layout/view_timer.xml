@@ -6,7 +6,7 @@
     <Button
         android:id="@+id/timer_button"
         android:layout_weight="1"
-        android:hint="@string/timer_default"
+        android:hint="@string/h1_timer_default"
         android:background="@android:color/transparent"
         style="@style/H1_center" />
 
@@ -33,23 +33,23 @@
 
         <Button
             android:id="@+id/add_timer"
-            android:text="@string/timer_save"
+            android:text="@string/btn_timer_save"
             android:visibility="gone"
             style="@style/BTN2" />
 
         <Button
             android:id="@+id/start_timer"
-            android:text="@string/timer_start"
+            android:text="@string/btn_timer_start"
             style="@style/BTN2" />
 
         <Button
             android:id="@+id/reset_timer"
-            android:text="@string/timer_reset"
+            android:text="@string/btn_timer_reset"
             style="@style/BTN2" />
 
         <Button
             android:id="@+id/edit_mode"
-            android:text="@string/timer_switch_edit"
+            android:text="@string/btn_switch_to_edit_mode"
             style="@style/BTN2" />
 
     </LinearLayout>

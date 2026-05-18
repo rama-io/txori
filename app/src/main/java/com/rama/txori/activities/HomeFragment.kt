@@ -16,7 +16,6 @@ import com.rama.txori.DatabaseHelper
 import com.rama.txori.R
 import com.rama.txori.SessionItem
 import com.rama.txori.adapters.SessionAdapter
-import com.rama.txori.managers.FontManager
 import com.rama.txori.managers.SoundManager
 import com.rama.txori.managers.ThemeManager
 import com.rama.txori.managers.WorkoutManager
@@ -177,9 +176,9 @@ class HomeFragment : Fragment(), WorkoutManager.Listener {
     }
 
     override fun onGroupFinished(sessionId: Long) {
-        taskNameView.text = getString(R.string.home_done)
-        timerView.text = getString(R.string.home_timer_zero)
-        nextTaskView.text = getString(R.string.home_next_placeholder)
+        taskNameView.text = getString(R.string.h2_done)
+        timerView.text = getString(R.string.h1_timer_zero)
+        nextTaskView.text = getString(R.string.h2_next_placeholder)
         adapter.setActiveItemIndex(-1)
         adapter.setGroupPlayingState(sessionId, false)
         playPauseIcon.setImageResource(R.drawable.icon_play)
@@ -188,9 +187,9 @@ class HomeFragment : Fragment(), WorkoutManager.Listener {
     }
 
     override fun onGroupReset(sessionId: Long) {
-        taskNameView.text = getString(R.string.home_greeting)
-        timerView.text = getString(R.string.home_timer_zero)
-        nextTaskView.text = getString(R.string.home_next_placeholder)
+        taskNameView.text = getString(R.string.h2_greeting)
+        timerView.text = getString(R.string.h1_timer_zero)
+        nextTaskView.text = getString(R.string.h2_next_placeholder)
         adapter.setActiveItemIndex(-1)
         adapter.setGroupPlayingState(sessionId, false)
         playPauseIcon.setImageResource(R.drawable.icon_play)
@@ -216,9 +215,9 @@ class HomeFragment : Fragment(), WorkoutManager.Listener {
         }
         val nextRow = nextIndex?.let { items[it] as? SessionItem.Row }
         nextTaskView.text = if (nextRow != null) getString(
-            R.string.home_next_task_prefix,
+            R.string.h2_next_task_prefix,
             nextRow.task.label
-        ) else getString(R.string.home_next_placeholder)
+        ) else getString(R.string.h2_next_placeholder)
     }
 
     private fun updateTimerDisplay(ms: Long) {
@@ -234,11 +233,11 @@ class HomeFragment : Fragment(), WorkoutManager.Listener {
         val input = dialogView.findViewById<EditText>(R.id.edit_text)
 
         dialogView.findViewById<Button>(R.id.yes_button).apply {
-            setText(getString(R.string.dialog_create_group))
+            setText(getString(R.string.btn_create))
             setOnClickListener {
                 val name = input.text.toString().trim()
                 if (name.isEmpty()) {
-                    input.error = getString(R.string.error_name_empty); return@setOnClickListener
+                    input.error = getString(R.string.toast_name_empty); return@setOnClickListener
                 }
                 val newId = dbHelper.createSession(db, name)
                 items.add(SessionItem.Header(newId, name, emptyList()))

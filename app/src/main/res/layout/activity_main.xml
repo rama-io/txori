@@ -19,7 +19,7 @@
             <ImageView
                 android:id="@+id/lock_icon"
                 android:src="@drawable/icon_lock_open_solid"
-                android:contentDescription="@string/cd_lock_icon"
+                android:contentDescription="@string/altdescr_lock_icon"
                 style="@style/Icon24" />
         </FrameLayout>
 
@@ -32,7 +32,7 @@
 
             <ImageView
                 android:src="@drawable/icon_cog"
-                android:contentDescription="@string/alttext_open_settings"
+                android:contentDescription="@string/altdescr_open_settings"
                 style="@style/Icon24" />
         </FrameLayout>
     </LinearLayout>

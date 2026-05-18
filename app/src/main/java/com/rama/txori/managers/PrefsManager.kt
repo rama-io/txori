@@ -3,9 +3,7 @@ package com.rama.txori.managers
 import android.content.Context
 import android.content.SharedPreferences
 import android.net.Uri
-import android.os.UserHandle
 import android.util.Log
-import com.rama.txori.utils.IdUtils
 import org.json.JSONObject
 
 class PrefsManager private constructor(context: Context) {
@@ -31,6 +29,7 @@ class PrefsManager private constructor(context: Context) {
         const val SYSTEM_BAR_VISIBLE = "system:bar:visible"
 
         const val APP_THEME_NAME = "app:theme:name"
+        const val APP_THEME_H1 = "app:theme:h1"
         const val APP_THEME_FOREGROUND = "app:theme:foreground"
         const val APP_THEME_BG_1 = "app:theme:bg_1"
         const val APP_THEME_BG_2 = "app:theme:bg_2"
@@ -39,8 +38,11 @@ class PrefsManager private constructor(context: Context) {
         const val APP_THEME_ACCENT_2 = "app:theme:accent_2"
         const val APP_THEME_ACCENT_3 = "app:theme:accent_3"
         const val APP_THEME_DISABLED = "app:theme:disabled"
+        const val APP_THEME_PROGRESS_BAR = "app:theme:progress"
+        const val APP_THEME_TASK_FREQUENCY = "app:theme:task_frequency"
         const val APP_THEME_INPUT = "app:theme:input"
         const val APP_THEME_BUTTON_1 = "app:theme:button_1"
+        const val APP_THEME_BUTTON_1_SELECTED = "app:theme:button_1_selected"
         const val APP_THEME_BUTTON_2 = "app:theme:button_2"
         const val APP_THEME_DANGER = "app:theme:danger"
         const val APP_THEME_COLLAPSIBLE_HEADER = "app:theme:collapsible_header"

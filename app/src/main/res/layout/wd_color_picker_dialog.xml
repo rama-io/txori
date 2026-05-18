@@ -13,12 +13,12 @@
 
     <LinearLayout style="@style/VerticalListDivided_BG2">
 
-        <com.rama.mako.widgets.color.HSVSquareView
+        <com.rama.txori.widgets.color.HSVSquareView
             android:id="@+id/hsv_square"
             android:layout_width="match_parent"
             android:layout_height="220dp" />
 
-        <com.rama.mako.widgets.color.HueStripView
+        <com.rama.txori.widgets.color.HueStripView
             android:id="@+id/hue_slider"
             android:layout_width="match_parent"
             android:layout_height="24dp" />

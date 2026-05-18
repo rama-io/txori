@@ -158,6 +158,7 @@ class SettingsAppearanceController(private val activity: SettingsActivity) {
     }
 
     private fun populateCustomFields(palette: ThemeManager.Palette) {
+        activity.findViewById<WdColorPicker>(R.id.h1).setColor(palette.h1)
         activity.findViewById<WdColorPicker>(R.id.foreground).setColor(palette.foreground)
         activity.findViewById<WdColorPicker>(R.id.collapsible_header)
             .setColor(palette.collapsible_header)
@@ -167,8 +168,13 @@ class SettingsAppearanceController(private val activity: SettingsActivity) {
         activity.findViewById<WdColorPicker>(R.id.bg_1).setColor(palette.bg_1)
         activity.findViewById<WdColorPicker>(R.id.input).setColor(palette.input)
         activity.findViewById<WdColorPicker>(R.id.btn_1).setColor(palette.button_1)
+        activity.findViewById<WdColorPicker>(R.id.btn_1_selected)
+            .setColor(palette.button_1_selected)
         activity.findViewById<WdColorPicker>(R.id.btn_2).setColor(palette.button_2)
         activity.findViewById<WdColorPicker>(R.id.danger).setColor(palette.danger)
+        activity.findViewById<WdColorPicker>(R.id.progressbar).setColor(palette.progressbar)
+        activity.findViewById<WdColorPicker>(R.id.disabled).setColor(palette.disabled)
+        activity.findViewById<WdColorPicker>(R.id.task_frequency).setColor(palette.task_frequency)
     }
 
     private fun setupCustomTheme() {
@@ -179,6 +185,7 @@ class SettingsAppearanceController(private val activity: SettingsActivity) {
         val saveButton = activity.findViewById<android.view.View>(R.id.save_custom_theme)
         saveButton.setOnClickListener {
             val fields = mapOf(
+                PrefsManager.PrefKeys.APP_THEME_H1 to activity.findViewById<WdColorPicker>(R.id.h1),
                 PrefsManager.PrefKeys.APP_THEME_FOREGROUND to activity.findViewById<WdColorPicker>(R.id.foreground),
                 PrefsManager.PrefKeys.APP_THEME_COLLAPSIBLE_HEADER to activity.findViewById<WdColorPicker>(
                     R.id.collapsible_header
@@ -189,8 +196,18 @@ class SettingsAppearanceController(private val activity: SettingsActivity) {
                 PrefsManager.PrefKeys.APP_THEME_BG_3 to activity.findViewById<WdColorPicker>(R.id.bg_3),
                 PrefsManager.PrefKeys.APP_THEME_INPUT to activity.findViewById<WdColorPicker>(R.id.input),
                 PrefsManager.PrefKeys.APP_THEME_BUTTON_1 to activity.findViewById<WdColorPicker>(R.id.btn_1),
+                PrefsManager.PrefKeys.APP_THEME_BUTTON_1_SELECTED to activity.findViewById<WdColorPicker>(
+                    R.id.btn_1_selected
+                ),
                 PrefsManager.PrefKeys.APP_THEME_BUTTON_2 to activity.findViewById<WdColorPicker>(R.id.btn_2),
                 PrefsManager.PrefKeys.APP_THEME_DANGER to activity.findViewById<WdColorPicker>(R.id.danger),
+                PrefsManager.PrefKeys.APP_THEME_DISABLED to activity.findViewById<WdColorPicker>(R.id.disabled),
+                PrefsManager.PrefKeys.APP_THEME_TASK_FREQUENCY to activity.findViewById<WdColorPicker>(
+                    R.id.task_frequency
+                ),
+                PrefsManager.PrefKeys.APP_THEME_PROGRESS_BAR to activity.findViewById<WdColorPicker>(
+                    R.id.progressbar
+                ),
             )
 
             fields.forEach { (key, colorPicker) ->

@@ -81,6 +81,11 @@
                         style="@style/VerticalListDivided_BG2">
 
                         <com.rama.txori.widgets.WdColorPicker
+                            android:id="@+id/h1"
+                            app:text="@string/colorpicker_theme_h1"
+                            style="@style/ColorPickerBtn" />
+
+                        <com.rama.txori.widgets.WdColorPicker
                             android:id="@+id/foreground"
                             app:text="@string/colorpicker_theme_foreground"
                             style="@style/ColorPickerBtn" />
@@ -88,11 +93,6 @@
                         <com.rama.txori.widgets.WdColorPicker
                             android:id="@+id/collapsible_header"
                             app:text="@string/colorpicker_theme_collapsible_header"
-                            style="@style/ColorPickerBtn" />
-
-                        <com.rama.txori.widgets.WdColorPicker
-                            android:id="@+id/clock"
-                            app:text="@string/colorpicker_theme_clock"
                             style="@style/ColorPickerBtn" />
 
                         <com.rama.txori.widgets.WdColorPicker
@@ -113,6 +113,21 @@
                             style="@style/ColorPickerBtn" />
 
                         <com.rama.txori.widgets.WdColorPicker
+                            android:id="@+id/progressbar"
+                            app:text="@string/colorpicker_theme_progressbar"
+                            style="@style/ColorPickerBtn" />
+
+                        <com.rama.txori.widgets.WdColorPicker
+                            android:id="@+id/task_frequency"
+                            app:text="@string/colorpicker_theme_task_frequency"
+                            style="@style/ColorPickerBtn" />
+
+                        <com.rama.txori.widgets.WdColorPicker
+                            android:id="@+id/disabled"
+                            app:text="@string/colorpicker_theme_disabled"
+                            style="@style/ColorPickerBtn" />
+
+                        <com.rama.txori.widgets.WdColorPicker
                             android:id="@+id/bg_2"
                             app:text="@string/colorpicker_theme_background_2"
                             style="@style/ColorPickerBtn" />
@@ -130,6 +145,11 @@
                         <com.rama.txori.widgets.WdColorPicker
                             android:id="@+id/btn_1"
                             app:text="@string/colorpicker_theme_button_1_background"
+                            style="@style/ColorPickerBtn" />
+
+                        <com.rama.txori.widgets.WdColorPicker
+                            android:id="@+id/btn_1_selected"
+                            app:text="@string/colorpicker_theme_button_1_background_selected"
                             style="@style/ColorPickerBtn" />
 
                         <com.rama.txori.widgets.WdColorPicker
@@ -208,11 +228,6 @@
                 app:key="SETTINGS_SECTION_SYSTEM"
                 app:header="@string/h2_system"
                 app:defaultExpanded="true">
-
-                <!--                <com.rama.txori.widgets.WdCheckbox-->
-                <!--                    android:id="@+id/keep_screen_on"-->
-                <!--                    android:text="Keep screen always active while the app is running"-->
-                <!--                    style="@style/Checkbox" />-->
 
                 <com.rama.txori.widgets.WdCheckbox
                     android:id="@+id/show_system_bar"

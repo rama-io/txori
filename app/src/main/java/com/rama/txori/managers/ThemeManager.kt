@@ -4,7 +4,6 @@ import android.content.Context
 import android.view.View
 import android.view.ViewGroup
 import android.widget.CheckBox
-import android.widget.ImageView
 import android.widget.RadioButton
 import android.widget.TextView
 import com.rama.txori.R
@@ -12,6 +11,7 @@ import com.rama.txori.R
 object ThemeManager {
 
     data class Palette(
+        val h1: Int,
         val foreground: Int,
         val bg_1: Int,
         val bg_2: Int,
@@ -22,15 +22,17 @@ object ThemeManager {
         val disabled: Int,
         val input: Int,
         val button_1: Int,
-//        val button_1_selected: Int,
+        val button_1_selected: Int,
         val button_2: Int,
         val danger: Int,
         val collapsible_header: Int,
-
-        )
+        val task_frequency: Int,
+        val progressbar: Int,
+    )
 
     // Mako (default)
     private val MAKO = Palette(
+        h1 = 0xFFCACACA.toInt(),
         foreground = 0xFFCCCCCC.toInt(),
         bg_1 = 0xFF141417.toInt(),
         bg_2 = 0xFF1F1F29.toInt(),
@@ -39,16 +41,19 @@ object ThemeManager {
         accent_2 = 0xFFCDC58B.toInt(),
         accent_3 = 0xFFDCD07C.toInt(),
         disabled = 0xFF888888.toInt(),
-        input = 0xFF20203C.toInt(),
+        input = 0xFF16161F.toInt(),
         button_1 = 0xFF459984.toInt(),
-//        button_1_selected = 0xFFB083E4.toInt(),
+        button_1_selected = 0xFF5DB89F.toInt(),
         button_2 = 0xFF6194AF.toInt(),
         danger = 0xFFDC6364.toInt(),
         collapsible_header = 0xFF878787.toInt(),
+        task_frequency = 0xFF71ACC7.toInt(),
+        progressbar = 0xFF253F71.toInt(),
     )
 
     // Rama
     private val RAMA = Palette(
+        h1 = 0xFFABD68E.toInt(),
         foreground = 0xFFcbdecd.toInt(),
         bg_1 = 0xFF0e190e.toInt(),
         bg_2 = 0xFF1f2920.toInt(),
@@ -59,13 +64,17 @@ object ThemeManager {
         disabled = 0xFF888888.toInt(),
         input = 0xFF161f16.toInt(),
         button_1 = 0xFF45995a.toInt(),
+        button_1_selected = 0xFF62BF79.toInt(),
         button_2 = 0xFFb8e39d.toInt(),
         danger = 0xFFDC6364.toInt(),
         collapsible_header = 0xff8cde285.toInt(),
+        task_frequency = 0xFF7CCF8E.toInt(),
+        progressbar = 0xFF355B36.toInt(),
     )
 
     // Catppuccin Mocha
     private val CATPPUCCIN_MOCHA = Palette(
+        h1 = 0xFFCBA6F7.toInt(),
         foreground = 0xFFCDD6F4.toInt(),
         bg_1 = 0xFF1E1E2E.toInt(),
         bg_2 = 0xFF313244.toInt(),
@@ -76,14 +85,18 @@ object ThemeManager {
         disabled = 0xFF6C7086.toInt(),
         input = 0xFF181825.toInt(),
         button_1 = 0xFF89B4FA.toInt(),
+        button_1_selected = 0xFFA6C8FF.toInt(),
         button_2 = 0xFF74C7EC.toInt(),
         danger = 0xFFF38BA8.toInt(),
         collapsible_header = 0xFFB4BEFE.toInt(),
+        task_frequency = 0xFF89DCEB.toInt(),
+        progressbar = 0xFF394B70.toInt(),
     )
 
 
     // Dracula
     private val DRACULA = Palette(
+        h1 = 0xFFBD93F9.toInt(),
         foreground = 0xFFF8F8F2.toInt(),
         bg_1 = 0xFF282A36.toInt(),
         bg_2 = 0xFF363849.toInt(),
@@ -94,13 +107,17 @@ object ThemeManager {
         disabled = 0xFF6272A4.toInt(),
         input = 0xFF21222C.toInt(),
         button_1 = 0xFFBD93F9.toInt(),
+        button_1_selected = 0xFFD1B3FF.toInt(),
         button_2 = 0xFF8BE9FD.toInt(),
         danger = 0xFFFF79C6.toInt(),
         collapsible_header = 0xFFBD93F9.toInt(),
+        task_frequency = 0xFF8BE9FD.toInt(),
+        progressbar = 0xFF44475A.toInt(),
     )
 
     // Melange Dark
     private val MELANGE = Palette(
+        h1 = 0xFFEBC06D.toInt(),
         foreground = 0xFFECE1D7.toInt(),
         bg_1 = 0xFF292522.toInt(),
         bg_2 = 0xFF352F2A.toInt(),
@@ -111,13 +128,17 @@ object ThemeManager {
         disabled = 0xFF867462.toInt(),
         input = 0xFF211E1B.toInt(),
         button_1 = 0xFF7F91B2.toInt(),
+        button_1_selected = 0xFFA0B2D4.toInt(),
         button_2 = 0xFF85B695.toInt(),
         danger = 0xFFB65C60.toInt(),
         collapsible_header = 0xFFEBC06D.toInt(),
+        task_frequency = 0xFF8CBBA3.toInt(),
+        progressbar = 0xFF4A443D.toInt(),
     )
 
     // Tokyo Night
     private val TOKYO_NIGHT = Palette(
+        h1 = 0xFF7AA2F7.toInt(),
         foreground = 0xFFC0CAF5.toInt(),
         bg_1 = 0xFF1A1B26.toInt(),
         bg_2 = 0xFF24283B.toInt(),
@@ -128,9 +149,12 @@ object ThemeManager {
         disabled = 0xFF565F89.toInt(),
         input = 0xFF16161E.toInt(),
         button_1 = 0xFF7AA2F7.toInt(),
+        button_1_selected = 0xFF9BB8FF.toInt(),
         button_2 = 0xFF2AC3DE.toInt(),
         danger = 0xFFF7768E.toInt(),
         collapsible_header = 0xFF7AA2F7.toInt(),
+        task_frequency = 0xFF73DACA.toInt(),
+        progressbar = 0xFF2F3B63.toInt(),
     )
 
     fun paletteFor(theme: String, context: android.content.Context? = null): Palette =
@@ -149,6 +173,7 @@ object ThemeManager {
         val base = MAKO
         fun get(key: String, fallback: Int) = prefs.getCustomThemeColor(key, fallback)
         return Palette(
+            h1 = get(PrefsManager.PrefKeys.APP_THEME_H1, base.h1),
             foreground = get(PrefsManager.PrefKeys.APP_THEME_FOREGROUND, base.foreground),
             bg_1 = get(PrefsManager.PrefKeys.APP_THEME_BG_1, base.bg_1),
             bg_2 = get(PrefsManager.PrefKeys.APP_THEME_BG_2, base.bg_2),
@@ -159,12 +184,21 @@ object ThemeManager {
             disabled = get(PrefsManager.PrefKeys.APP_THEME_DISABLED, base.disabled),
             input = get(PrefsManager.PrefKeys.APP_THEME_INPUT, base.input),
             button_1 = get(PrefsManager.PrefKeys.APP_THEME_BUTTON_1, base.button_1),
+            button_1_selected = get(
+                PrefsManager.PrefKeys.APP_THEME_BUTTON_1_SELECTED,
+                base.button_1_selected
+            ),
             button_2 = get(PrefsManager.PrefKeys.APP_THEME_BUTTON_2, base.button_2),
             danger = get(PrefsManager.PrefKeys.APP_THEME_DANGER, base.danger),
             collapsible_header = get(
                 PrefsManager.PrefKeys.APP_THEME_COLLAPSIBLE_HEADER,
                 base.collapsible_header
-            )
+            ),
+            progressbar = get(PrefsManager.PrefKeys.APP_THEME_PROGRESS_BAR, base.progressbar),
+            task_frequency = get(
+                PrefsManager.PrefKeys.APP_THEME_TASK_FREQUENCY,
+                base.task_frequency
+            ),
         )
     }
 
@@ -258,6 +292,11 @@ object ThemeManager {
             DRACULA.button_1, MELANGE.button_1, TOKYO_NIGHT.button_1, custom.button_1,
             context.resources.getColor(R.color.button_1) -> palette.button_1
 
+            // button_primary_selected
+            MAKO.button_1_selected, RAMA.button_1_selected, CATPPUCCIN_MOCHA.button_1_selected,
+            DRACULA.button_1_selected, MELANGE.button_1_selected, TOKYO_NIGHT.button_1_selected, custom.button_1_selected,
+            context.resources.getColor(R.color.button_1_selected) -> palette.button_1_selected
+
             // button_secondary
             MAKO.button_2, RAMA.button_2, CATPPUCCIN_MOCHA.button_2,
             DRACULA.button_2, MELANGE.button_2, TOKYO_NIGHT.button_2, custom.button_2,
@@ -288,10 +327,25 @@ object ThemeManager {
             DRACULA.collapsible_header, MELANGE.collapsible_header, TOKYO_NIGHT.collapsible_header, custom.collapsible_header,
             context.resources.getColor(R.color.collapsible_header) -> palette.collapsible_header
 
+            // h1
+            MAKO.h1, RAMA.h1, CATPPUCCIN_MOCHA.h1,
+            DRACULA.h1, MELANGE.h1, TOKYO_NIGHT.h1, custom.h1,
+            context.resources.getColor(R.color.h1) -> palette.h1
+
             // foreground
             MAKO.foreground, RAMA.foreground, CATPPUCCIN_MOCHA.foreground,
             DRACULA.foreground, MELANGE.foreground, TOKYO_NIGHT.foreground, custom.foreground,
             context.resources.getColor(R.color.foreground) -> palette.foreground
+
+            // Progress
+            MAKO.progressbar, RAMA.progressbar, CATPPUCCIN_MOCHA.progressbar,
+            DRACULA.progressbar, MELANGE.progressbar, TOKYO_NIGHT.progressbar, custom.progressbar,
+            context.resources.getColor(R.color.progress) -> palette.progressbar
+
+            // Task Frequency
+            MAKO.task_frequency, RAMA.task_frequency, CATPPUCCIN_MOCHA.task_frequency,
+            DRACULA.task_frequency, MELANGE.task_frequency, TOKYO_NIGHT.task_frequency, custom.task_frequency,
+            context.resources.getColor(R.color.task_frequency) -> palette.task_frequency
 
             else -> null
         }

@@ -27,6 +27,7 @@ class PrefsManager private constructor(context: Context) {
         const val FONT_CUSTOM_PATH = "font:custom_path"
         const val APP_LANGUAGE = "app:language"
         const val SYSTEM_BAR_VISIBLE = "system:bar:visible"
+        const val SYSTEM_PREVENT_SLEEP = "system:prevent_sleeping"
 
         const val APP_THEME_NAME = "app:theme:name"
         const val APP_THEME_H1 = "app:theme:h1"

@@ -12,6 +12,7 @@ class SettingsCheckboxController(private val activity: SettingsActivity) {
 
     fun setup() {
         bindWdCheckbox(R.id.show_system_bar, PrefKeys.SYSTEM_BAR_VISIBLE, false)
+        bindWdCheckbox(R.id.keep_screen_awake, PrefKeys.SYSTEM_PREVENT_SLEEP, false)
     }
 
     private fun bindWdCheckbox(

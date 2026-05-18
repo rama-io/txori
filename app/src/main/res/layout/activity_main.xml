@@ -10,20 +10,6 @@
         style="@style/HorizontalListDivided">
 
         <FrameLayout
-            android:id="@+id/lock_view"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@color/bg_1"
-            android:padding="12sp">
-
-            <ImageView
-                android:id="@+id/lock_icon"
-                android:src="@drawable/icon_lock_open_solid"
-                android:contentDescription="@string/altdescr_lock_icon"
-                style="@style/Icon24" />
-        </FrameLayout>
-
-        <FrameLayout
             android:id="@+id/open_settings"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

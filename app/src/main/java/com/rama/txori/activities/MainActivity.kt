@@ -4,10 +4,7 @@ import android.app.Fragment
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
-import android.view.WindowManager
 import android.widget.FrameLayout
-import android.widget.ImageView
-import android.widget.Toast
 import com.rama.txori.CsActivity
 import com.rama.txori.R
 import com.rama.txori.managers.ThemeManager
@@ -17,7 +14,6 @@ class MainActivity : CsActivity() {
 
     private lateinit var navbar: WdNavbar
     private var currentPage: WdNavbar.Page = WdNavbar.Page.HOME
-    private var isScreenLocked = false
 
     private fun fragmentForPage(page: WdNavbar.Page): Fragment =
         fragmentManager.findFragmentByTag(page.name)
@@ -38,35 +34,10 @@ class MainActivity : CsActivity() {
         navbar = findViewById(R.id.navbar)
         navbar.onNavigate = { page -> navigateTo(page) }
 
-        // Restore lock state after rotation
-        if (savedInstanceState != null) {
-            isScreenLocked = savedInstanceState.getBoolean(KEY_LOCK, false)
-            if (isScreenLocked) window.addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON)
-        }
-
         val openSettingsBtn = findViewById<FrameLayout>(R.id.open_settings)
         openSettingsBtn.setOnClickListener {
             startActivity(Intent(this, SettingsActivity::class.java))
             true
-        }
-
-        val lockView = findViewById<View>(R.id.lock_view)
-        val lockIcon = findViewById<ImageView>(R.id.lock_icon)
-        lockView.setOnClickListener {
-            isScreenLocked = !isScreenLocked
-            if (isScreenLocked) {
-                window.addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON)
-                lockIcon.setImageResource(R.drawable.icon_lock_solid)
-            } else {
-                window.clearFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON)
-                lockIcon.setImageResource(R.drawable.icon_lock_open_solid)
-            }
-
-            Toast.makeText(
-                this,
-                if (isScreenLocked) getString(R.string.toast_screen_stay_awake) else getString(R.string.toast_screen_can_turn_off),
-                Toast.LENGTH_SHORT
-            ).show()
         }
 
         if (savedInstanceState == null) {
@@ -104,10 +75,22 @@ class MainActivity : CsActivity() {
         }
     }
 
+    override fun onResume() {
+        super.onResume()
+        if (prefs.getBoolean(
+                com.rama.txori.managers.PrefsManager.PrefKeys.SYSTEM_PREVENT_SLEEP,
+                false
+            )
+        ) {
+            window.addFlags(android.view.WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON)
+        } else {
+            window.clearFlags(android.view.WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON)
+        }
+    }
+
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
         outState.putString(KEY_PAGE, currentPage.name)
-        outState.putBoolean(KEY_LOCK, isScreenLocked)
     }
 
     fun navigateTo(page: WdNavbar.Page) {
@@ -131,6 +114,5 @@ class MainActivity : CsActivity() {
 
     companion object {
         private const val KEY_PAGE = "current_page"
-        private const val KEY_LOCK = "screen_locked"
     }
 }

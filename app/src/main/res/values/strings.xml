@@ -2,7 +2,6 @@
     <!-- Activities -->
     <string name="activity_settings_label">Settings</string>
     <string name="activity_about_label">About</string>
-    <string name="activity_lock_label">Lock</string>
 
     <!-- H1 -->
     <string name="h1_timer_default">00:00:00</string>
@@ -21,12 +20,9 @@
     <string name="h2_edit_group">Edit Group</string>
 
     <!-- H3 -->
-    <string name="h2_contributors">Contributors</string>
     <string name="h2_icons">Icons</string>
     <string name="h2_fonts">Fonts</string>
     <string name="h2_themes">Themes</string>
-    <string name="h2_date">Date</string>
-    <string name="h2_data">Data</string>
     <string name="h2_language">Language</string>
     <string name="h2_system">System</string>
     <string name="h2_app">App</string>
@@ -47,9 +43,7 @@
     <string name="btn_create">Create</string>
     <string name="btn_go_back">Go Back</string>
     <string name="btn_apply">Apply</string>
-    <string name="btn_clear">Clear</string>
     <string name="btn_about_txori">About Txori</string>
-    <string name="btn_reset">Reset</string>
     <string name="btn_cancel">Cancel</string>
     <string name="btn_delete_group">Delete group</string>
     <string name="btn_save">Save</string>
@@ -89,6 +83,7 @@
 
     <!-- Checkbox -->
     <string name="checkbox_show_system_bar">Show system bar</string>
+    <string name="checkbox_lock_screen_from_falling_asleep">Keep screen awake</string>
 
     <!-- InputLabel -->
     <string name="label_task_duration">Duration (seconds)</string>
@@ -102,8 +97,6 @@
     <!-- Toasts -->
     <string name="toast_name_empty">Name cannot be empty</string>
     <string name="toast_label_empty">Label cannot be empty</string>
-    <string name="toast_screen_stay_awake">Screen will stay awake</string>
-    <string name="toast_screen_can_turn_off">Screen can turn off</string>
     <string name="toast_invalid_color">Invalid color</string>
 
     <!-- AltDescription -->

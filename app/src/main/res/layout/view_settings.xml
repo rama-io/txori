@@ -233,6 +233,11 @@
                     android:id="@+id/show_system_bar"
                     android:text="@string/checkbox_show_system_bar"
                     style="@style/Checkbox" />
+
+                <com.rama.txori.widgets.WdCheckbox
+                    android:id="@+id/keep_screen_awake"
+                    android:text="@string/checkbox_lock_screen_from_falling_asleep"
+                    style="@style/Checkbox" />
             </com.rama.txori.widgets.WdCollapsibleSection>
 
             <!--Language-->

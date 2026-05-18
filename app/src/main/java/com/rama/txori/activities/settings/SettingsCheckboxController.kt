@@ -11,12 +11,7 @@ class SettingsCheckboxController(private val activity: SettingsActivity) {
     private val prefs get() = activity.prefs
 
     fun setup() {
-//        bindWdCheckbox(
-//            R.id.lock_settings,
-//            PrefKeys.SECURITY_KEYPAD_VISIBLE,
-//            false,
-//            listOf(R.id.randomized_keypad, R.id.pin_field)
-//        )
+        bindWdCheckbox(R.id.show_system_bar, PrefKeys.SYSTEM_BAR_VISIBLE, false)
     }
 
     private fun bindWdCheckbox(

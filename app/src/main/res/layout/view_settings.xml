@@ -201,6 +201,25 @@
 
             </com.rama.txori.widgets.WdCollapsibleSection>
 
+            <!--System-->
+            <com.rama.txori.widgets.WdCollapsibleSection
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:key="SETTINGS_SECTION_SYSTEM"
+                app:header="@string/h2_system"
+                app:defaultExpanded="true">
+
+                <!--                <com.rama.txori.widgets.WdCheckbox-->
+                <!--                    android:id="@+id/keep_screen_on"-->
+                <!--                    android:text="Keep screen always active while the app is running"-->
+                <!--                    style="@style/Checkbox" />-->
+
+                <com.rama.txori.widgets.WdCheckbox
+                    android:id="@+id/show_system_bar"
+                    android:text="@string/checkbox_show_system_bar"
+                    style="@style/Checkbox" />
+            </com.rama.txori.widgets.WdCollapsibleSection>
+
             <!--Language-->
             <com.rama.txori.widgets.WdCollapsibleSection
                 android:layout_width="match_parent"
@@ -220,7 +239,7 @@
 
     <Button
         android:id="@+id/about_button"
-        android:text="@string/btn_about_mako"
+        android:text="@string/btn_about_txori"
         style="@style/BTN1" />
 
     <Button

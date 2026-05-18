@@ -22,10 +22,12 @@ object ThemeManager {
         val disabled: Int,
         val input: Int,
         val button_1: Int,
+//        val button_1_selected: Int,
         val button_2: Int,
         val danger: Int,
         val collapsible_header: Int,
-    )
+
+        )
 
     // Mako (default)
     private val MAKO = Palette(
@@ -37,8 +39,9 @@ object ThemeManager {
         accent_2 = 0xFFCDC58B.toInt(),
         accent_3 = 0xFFDCD07C.toInt(),
         disabled = 0xFF888888.toInt(),
-        input = 0xFF16161F.toInt(),
+        input = 0xFF20203C.toInt(),
         button_1 = 0xFF459984.toInt(),
+//        button_1_selected = 0xFFB083E4.toInt(),
         button_2 = 0xFF6194AF.toInt(),
         danger = 0xFFDC6364.toInt(),
         collapsible_header = 0xFF878787.toInt(),

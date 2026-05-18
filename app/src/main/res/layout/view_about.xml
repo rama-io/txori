@@ -42,7 +42,7 @@
 
             <TextView
                 android:text="@string/h2_app"
-                style="@style/H2" />
+                style="@style/H3" />
 
             <com.rama.txori.widgets.WdLabel
                 android:layout_width="match_parent"
@@ -94,7 +94,7 @@
 
             <TextView
                 android:text="@string/h2_contributors"
-                style="@style/H2" />
+                style="@style/H3" />
 
             <com.rama.txori.widgets.WdLabel
                 android:layout_width="match_parent"
@@ -124,7 +124,7 @@
 
             <TextView
                 android:text="@string/h2_icons"
-                style="@style/H2" />
+                style="@style/H3" />
 
             <com.rama.txori.widgets.WdLabel
                 android:layout_width="match_parent"
@@ -152,7 +152,7 @@
 
             <TextView
                 android:text="@string/h2_fonts"
-                style="@style/H2" />
+                style="@style/H3" />
 
             <com.rama.txori.widgets.WdLabel
                 android:layout_width="match_parent"
@@ -180,7 +180,7 @@
 
             <TextView
                 android:text="@string/h2_themes"
-                style="@style/H2" />
+                style="@style/H3" />
 
             <com.rama.txori.widgets.WdLabel
                 android:layout_width="match_parent"

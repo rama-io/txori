@@ -9,6 +9,7 @@ import android.widget.Toast
 import com.rama.txori.CsActivity
 import com.rama.txori.R
 import com.rama.txori.managers.FontManager
+import com.rama.txori.managers.ThemeManager
 import com.rama.txori.widgets.WdNavbar
 
 class MainActivity : CsActivity() {
@@ -23,7 +24,6 @@ class MainActivity : CsActivity() {
                 WdNavbar.Page.HOME -> HomeFragment()
                 WdNavbar.Page.STOPWATCH -> StopwatchFragment()
                 WdNavbar.Page.TIMER -> TimerFragment()
-                WdNavbar.Page.ABOUT -> AboutFragment()
             }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -32,7 +32,7 @@ class MainActivity : CsActivity() {
 
         val root = findViewById<View>(R.id.root)
         applyEdgeToEdgePadding(root)
-        applyFont(root)
+        applyCurrentTheme(root)
 
         navbar = findViewById(R.id.navbar)
         navbar.onNavigate = { page -> navigateTo(page) }
@@ -67,11 +67,6 @@ class MainActivity : CsActivity() {
             fragmentManager.beginTransaction()
                 .add(
                     R.id.content_container,
-                    fragmentForPage(WdNavbar.Page.ABOUT),
-                    WdNavbar.Page.ABOUT.name
-                )
-                .add(
-                    R.id.content_container,
                     fragmentForPage(WdNavbar.Page.TIMER),
                     WdNavbar.Page.TIMER.name
                 )
@@ -91,7 +86,7 @@ class MainActivity : CsActivity() {
             navigateTo(WdNavbar.Page.HOME)
 
             findViewById<View>(R.id.root).post {
-                FontManager.applyToView(this, findViewById(R.id.root))
+                ThemeManager.applyTheme(this, findViewById(R.id.root))
             }
         } else {
             currentPage = savedInstanceState
@@ -120,7 +115,7 @@ class MainActivity : CsActivity() {
 
         currentPage = page
         navbar.setActivePage(page)
-        FontManager.applyToView(this, findViewById(R.id.root))
+        ThemeManager.applyTheme(this, findViewById(R.id.root))
     }
 
     fun setNavbarVisible(visible: Boolean) {

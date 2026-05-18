@@ -13,12 +13,11 @@ class WdNavbar @JvmOverloads constructor(
     defStyleAttr: Int = 0
 ) : LinearLayout(context, attrs, defStyleAttr) {
 
-    enum class Page { HOME, STOPWATCH, TIMER, ABOUT }
+    enum class Page { HOME, STOPWATCH, TIMER }
 
     private val homeBtn: FrameLayout
     private val stopwatchBtn: FrameLayout
     private val timerBtn: FrameLayout
-    private val aboutBtn: FrameLayout
     private val selectedColor = resources.getColor(R.color.button_1_selected)
     private val inactiveColor = resources.getColor(R.color.button_1)
 
@@ -30,21 +29,18 @@ class WdNavbar @JvmOverloads constructor(
         homeBtn = findViewById(R.id.home_nav)
         stopwatchBtn = findViewById(R.id.stopwatch_nav)
         timerBtn = findViewById(R.id.timer_nav)
-        aboutBtn = findViewById(R.id.about_nav)
 
         homeBtn.setOnClickListener { onNavigate?.invoke(Page.HOME) }
         stopwatchBtn.setOnClickListener { onNavigate?.invoke(Page.STOPWATCH) }
         timerBtn.setOnClickListener { onNavigate?.invoke(Page.TIMER) }
-        aboutBtn.setOnClickListener { onNavigate?.invoke(Page.ABOUT) }
     }
 
     fun setActivePage(page: Page) {
-        val allButtons = listOf(homeBtn, stopwatchBtn, timerBtn, aboutBtn)
+        val allButtons = listOf(homeBtn, stopwatchBtn, timerBtn)
         val activeBtn = when (page) {
             Page.HOME -> homeBtn
             Page.STOPWATCH -> stopwatchBtn
             Page.TIMER -> timerBtn
-            Page.ABOUT -> aboutBtn
         }
         allButtons.forEach { btn ->
             val isSelected = btn === activeBtn

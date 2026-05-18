@@ -39,16 +39,4 @@
             android:contentDescription="@string/cd_timer_nav"
             style="@style/Icon24" />
     </FrameLayout>
-
-    <FrameLayout
-        android:id="@+id/about_nav"
-        android:layout_weight="1"
-        android:contentDescription="@string/cd_about_nav"
-        style="@style/BTN1">
-
-        <ImageView
-            android:src="@drawable/icon_info_circle_solid"
-            android:contentDescription="@string/cd_about_nav"
-            style="@style/Icon24" />
-    </FrameLayout>
 </LinearLayout>

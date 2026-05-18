@@ -9,6 +9,16 @@
         android:theme="@style/Theme.Txori">
 
         <activity
+            android:exported="false"
+            android:name=".activities.AboutActivity"
+            android:label="@string/activity_about_label" />
+
+        <activity
+            android:exported="false"
+            android:name=".activities.SettingsActivity"
+            android:label="@string/activity_settings_label" />
+
+        <activity
             android:name=".activities.MainActivity"
             android:exported="true"
             android:windowSoftInputMode="adjustResize"

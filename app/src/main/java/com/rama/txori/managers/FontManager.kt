@@ -4,51 +4,71 @@ import android.content.Context
 import android.graphics.Typeface
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ListView
 import android.widget.TextView
-import androidx.core.content.res.ResourcesCompat
 import com.rama.txori.R
+import java.io.File
 
 object FontManager {
 
-    private var cached: Typeface? = null
+    private val cache = mutableMapOf<String, Typeface?>()
 
-    /** Returns the app typeface, loading it once and caching it forever. */
-    fun getTypeface(context: Context): Typeface {
-        cached?.let { return it }
-        val tf = try {
-            ResourcesCompat.getFont(context.applicationContext, R.font.jersey25_regular)
-        } catch (e: Exception) {
-            null
-        } ?: Typeface.createFromAsset(context.assets, "fonts/jersey25_regular.otf")
-        cached = tf
+    fun applyFont(context: Context, root: View) {
+        val prefs = PrefsManager.getInstance(context)
+        val fontStyle = prefs.getFontStyle() ?: "system"
+
+        root.findViewById<View?>(R.id.custom_font_container)?.visibility =
+            if (fontStyle == PrefsManager.FontStyle.CUSTOM) {
+                View.VISIBLE
+            } else {
+                View.GONE
+            }
+
+        val typeface = getTypeface(context, fontStyle)
+
+        applyRecursively(root, typeface)
+    }
+
+    fun getTypeface(context: Context, style: String): Typeface? {
+
+        if (style == PrefsManager.FontStyle.DEFAULT) return null
+
+        // Custom font: always reload from path (don't cache by style key alone)
+        if (style == PrefsManager.FontStyle.CUSTOM) {
+            val path = PrefsManager.getInstance(context).getCustomFontPath()
+            if (path.isBlank()) return null
+            val cacheKey = "custom:$path"
+            if (cache.containsKey(cacheKey)) return cache[cacheKey]
+            val tf = runCatching { Typeface.createFromFile(File(path)) }.getOrNull()
+            cache[cacheKey] = tf
+            return tf
+        }
+
+        if (cache.containsKey(style)) {
+            return cache[style]
+        }
+
+        val tf = when (style) {
+            PrefsManager.FontStyle.JERSEY_25 ->
+                Typeface.createFromAsset(context.assets, "fonts/jersey25_regular.otf")
+
+            else -> null
+        }
+
+        cache[style] = tf
         return tf
     }
 
-    /**
-     * Walk [root] and set the typeface on every TextView found in the tree.
-     * Safe to call multiple times — just resets the same typeface.
-     */
-    fun applyToView(context: Context, root: View) {
-        applyRecursively(root, getTypeface(context))
+    /** Call this after saving a new custom font so the old cached entry is evicted. */
+    fun clearCustomCache() {
+        cache.keys.filter { it.startsWith("custom:") }.forEach { cache.remove(it) }
     }
 
-    /**
-     * Re-apply the font to every currently visible child of a ListView.
-     * Call this from the adapter's notifyDataSetChanged path (or after
-     * the list has been populated) so recycled rows get the font too.
-     */
-    fun applyToListView(context: Context, listView: ListView) {
-        val tf = getTypeface(context)
-        for (i in 0 until listView.childCount) {
-            applyRecursively(listView.getChildAt(i), tf)
-        }
-    }
+    private fun applyRecursively(view: View, typeface: Typeface?) {
 
-    private fun applyRecursively(view: View, typeface: Typeface) {
         if (view is TextView) {
-            view.typeface = typeface
+            view.typeface = typeface ?: Typeface.DEFAULT
         }
+
         if (view is ViewGroup) {
             for (i in 0 until view.childCount) {
                 applyRecursively(view.getChildAt(i), typeface)

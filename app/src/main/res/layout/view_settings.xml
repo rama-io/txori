@@ -1,0 +1,230 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/settings_root"
+    android:background="@color/bg_1"
+    android:layout_height="match_parent"
+    style="@style/VerticalListDivided">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:fillViewport="true"
+        android:scrollbars="none">
+
+        <LinearLayout style="@style/VerticalList">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/activity_settings_label"
+                style="@style/H2" />
+
+            <!--Themes-->
+            <com.rama.txori.widgets.WdCollapsibleSection
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:key="SETTINGS_SECTION_THEMES"
+                app:header="@string/h2_themes"
+                app:defaultExpanded="true">
+
+                <RadioGroup
+                    android:id="@+id/themes_group"
+                    style="@style/RadioGroup">
+
+                    <RadioButton
+                        android:id="@+id/theme_mako"
+                        android:text="@string/app_name"
+                        style="@style/Radio" />
+
+                    <RadioButton
+                        android:id="@+id/theme_rama"
+                        android:text="@string/radio_theme_rama"
+                        style="@style/Radio" />
+
+                    <RadioButton
+                        android:id="@+id/theme_catppuccin_mocha"
+                        android:text="@string/product_catppuccin_name"
+                        style="@style/Radio" />
+
+                    <RadioButton
+                        android:id="@+id/theme_dracula"
+                        android:text="@string/product_dracula_name"
+                        style="@style/Radio" />
+
+                    <RadioButton
+                        android:id="@+id/theme_melange"
+                        android:text="@string/product_melange_name"
+                        style="@style/Radio" />
+
+                    <RadioButton
+                        android:id="@+id/theme_tokyo_night"
+                        android:text="@string/product_tokyo_name"
+                        style="@style/Radio" />
+
+                    <RadioButton
+                        android:id="@+id/theme_custom"
+                        android:text="@string/radio_theme_custom"
+                        style="@style/Radio" />
+                </RadioGroup>
+
+                <LinearLayout
+                    android:id="@+id/themes_form"
+                    android:visibility="gone"
+                    style="@style/VerticalList">
+
+                    <View style="@style/Separator" />
+
+                    <LinearLayout
+                        android:focusableInTouchMode="true"
+                        style="@style/VerticalListDivided_BG2">
+
+                        <com.rama.txori.widgets.WdColorPicker
+                            android:id="@+id/foreground"
+                            app:text="@string/colorpicker_theme_foreground"
+                            style="@style/ColorPickerBtn" />
+
+                        <com.rama.txori.widgets.WdColorPicker
+                            android:id="@+id/collapsible_header"
+                            app:text="@string/colorpicker_theme_collapsible_header"
+                            style="@style/ColorPickerBtn" />
+
+                        <com.rama.txori.widgets.WdColorPicker
+                            android:id="@+id/clock"
+                            app:text="@string/colorpicker_theme_clock"
+                            style="@style/ColorPickerBtn" />
+
+                        <com.rama.txori.widgets.WdColorPicker
+                            android:id="@+id/icons"
+                            android:visibility="gone"
+                            app:text="@string/colorpicker_theme_icons"
+                            style="@style/ColorPickerBtn" />
+
+                        <com.rama.txori.widgets.WdColorPicker
+                            android:id="@+id/accent"
+                            android:visibility="gone"
+                            app:text="@string/colorpicker_theme_accent"
+                            style="@style/ColorPickerBtn" />
+
+                        <com.rama.txori.widgets.WdColorPicker
+                            android:id="@+id/bg_1"
+                            app:text="@string/colorpicker_theme_background_1"
+                            style="@style/ColorPickerBtn" />
+
+                        <com.rama.txori.widgets.WdColorPicker
+                            android:id="@+id/bg_2"
+                            app:text="@string/colorpicker_theme_background_2"
+                            style="@style/ColorPickerBtn" />
+
+                        <com.rama.txori.widgets.WdColorPicker
+                            android:id="@+id/bg_3"
+                            app:text="@string/colorpicker_theme_background_3"
+                            style="@style/ColorPickerBtn" />
+
+                        <com.rama.txori.widgets.WdColorPicker
+                            android:id="@+id/input"
+                            app:text="@string/colorpicker_theme_input_background"
+                            style="@style/ColorPickerBtn" />
+
+                        <com.rama.txori.widgets.WdColorPicker
+                            android:id="@+id/btn_1"
+                            app:text="@string/colorpicker_theme_button_1_background"
+                            style="@style/ColorPickerBtn" />
+
+                        <com.rama.txori.widgets.WdColorPicker
+                            android:id="@+id/btn_2"
+                            app:text="@string/colorpicker_theme_button_2_background"
+                            style="@style/ColorPickerBtn" />
+
+                        <com.rama.txori.widgets.WdColorPicker
+                            android:id="@+id/danger"
+                            app:text="@string/colorpicker_theme_danger"
+                            style="@style/ColorPickerBtn" />
+
+                        <Button
+                            android:id="@+id/save_custom_theme"
+                            android:text="@string/btn_theme_apply_custom"
+                            style="@style/BTN2" />
+                    </LinearLayout>
+                </LinearLayout>
+            </com.rama.txori.widgets.WdCollapsibleSection>
+
+            <!--Fonts-->
+            <com.rama.txori.widgets.WdCollapsibleSection
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:key="SETTINGS_SECTION_FONTS"
+                app:header="@string/h2_fonts"
+                app:defaultExpanded="true">
+
+                <RadioGroup
+                    android:id="@+id/font_style_group"
+                    style="@style/RadioGroup">
+
+                    <RadioButton
+                        android:id="@+id/font_default"
+                        android:text="@string/radio_default_system"
+                        style="@style/Radio" />
+
+                    <RadioButton
+                        android:id="@+id/font_jersey"
+                        android:text="@string/product_jersey_name"
+                        style="@style/Radio" />
+
+                    <RadioButton
+                        android:id="@+id/font_custom"
+                        android:text="@string/radio_font_custom"
+                        style="@style/Radio" />
+                </RadioGroup>
+
+                <LinearLayout
+                    android:id="@+id/custom_font_container"
+                    android:visibility="gone"
+                    style="@style/VerticalListDivided_BG2">
+
+                    <TextView
+                        android:id="@+id/font_custom_name_label"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/foreground"
+                        android:textSize="16sp"
+                        android:padding="16sp"
+                        android:text="@string/filepicker_font_custom_none" />
+
+                    <Button
+                        android:id="@+id/font_custom_pick_btn"
+                        android:text="@string/btn_font_custom_pick"
+                        style="@style/BTN2" />
+
+                </LinearLayout>
+
+            </com.rama.txori.widgets.WdCollapsibleSection>
+
+            <!--Language-->
+            <com.rama.txori.widgets.WdCollapsibleSection
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:key="SETTINGS_SECTION_LANGUAGE"
+                app:header="@string/h2_language"
+                app:defaultExpanded="true">
+
+                <RadioGroup
+                    android:id="@+id/language_group"
+                    style="@style/RadioGroup" />
+            </com.rama.txori.widgets.WdCollapsibleSection>
+        </LinearLayout>
+    </ScrollView>
+
+    <View style="@style/Separator" />
+
+    <Button
+        android:id="@+id/about_button"
+        android:text="@string/btn_about_mako"
+        style="@style/BTN1" />
+
+    <Button
+        android:id="@+id/close_button"
+        android:text="@string/btn_go_back"
+        style="@style/BTN1" />
+</LinearLayout>

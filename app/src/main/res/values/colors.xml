@@ -15,4 +15,5 @@
     <color name="button_2">#4CAB9E</color>
     <color name="danger">#DC6364</color>
     <color name="input">#20203C</color>
+    <color name="collapsible_header">#878787</color>
 </resources>

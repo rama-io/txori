@@ -18,6 +18,7 @@ import com.rama.txori.SessionItem
 import com.rama.txori.adapters.SessionAdapter
 import com.rama.txori.managers.FontManager
 import com.rama.txori.managers.SoundManager
+import com.rama.txori.managers.ThemeManager
 import com.rama.txori.managers.WorkoutManager
 
 class HomeFragment : Fragment(), WorkoutManager.Listener {
@@ -82,10 +83,10 @@ class HomeFragment : Fragment(), WorkoutManager.Listener {
             dbHelper = dbHelper,
             onStartGroup = { sessionId, startIndex -> workout.startGroup(sessionId, startIndex) },
             onResetGroup = { sessionId -> workout.resetGroup(sessionId) },
-            onDataChanged = { FontManager.applyToListView(activity, listView) }
+            onDataChanged = { ThemeManager.applyTheme(activity, listView) }
         )
         listView.adapter = adapter
-        listView.post { FontManager.applyToListView(activity, listView) }
+        listView.post { ThemeManager.applyTheme(activity, listView) }
 
         view.findViewById<View>(R.id.repeat_task).setOnClickListener { workout.repeatCurrentTask() }
         view.findViewById<View>(R.id.increase_duration)
@@ -228,7 +229,7 @@ class HomeFragment : Fragment(), WorkoutManager.Listener {
     private fun showAddGroupDialog() {
         val dialogView = activity.layoutInflater.inflate(R.layout.dialog_session_edit, null)
 
-        FontManager.applyToView(activity, dialogView)
+        ThemeManager.applyTheme(activity, dialogView)
         val dialog = AlertDialog.Builder(activity).setView(dialogView).create()
         val input = dialogView.findViewById<EditText>(R.id.edit_text)
 
@@ -243,7 +244,7 @@ class HomeFragment : Fragment(), WorkoutManager.Listener {
                 items.add(SessionItem.Header(newId, name, emptyList()))
                 workout.items = items
                 adapter.notifyDataSetChanged()
-                FontManager.applyToListView(activity, listView)
+                ThemeManager.applyTheme(activity, listView)
                 dialog.dismiss()
             }
         }

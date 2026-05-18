@@ -306,5 +306,6 @@
     <string name="easter_eggs_unlock">Can you please stop playing with it xD</string>
     <string name="easter_eggs_counter">%d more...</string>
     <string name="hint_timer">HHMMSS</string>
+    <string name="alttext_open_settings">Open Settings</string>
 </resources>
 

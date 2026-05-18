@@ -13,6 +13,7 @@ import com.rama.txori.R
 import com.rama.txori.SessionItem
 import com.rama.txori.Task
 import com.rama.txori.managers.FontManager
+import com.rama.txori.managers.ThemeManager
 
 class SessionAdapter(
     private val context: Context,
@@ -252,7 +253,7 @@ class SessionAdapter(
         resetGroupButton.setOnClickListener { onResetGroup(header.sessionId) }
         resetGroupButton.visibility = if (isEditMode) View.GONE else View.VISIBLE
 
-        FontManager.applyToView(context, view)
+        ThemeManager.applyTheme(context, view)
         return view
     }
 
@@ -348,7 +349,7 @@ class SessionAdapter(
         }
         editTaskButton.visibility = if (!isEditMode) View.GONE else View.VISIBLE
 
-        FontManager.applyToView(context, view)
+        ThemeManager.applyTheme(context, view)
         return view
     }
 
@@ -378,7 +379,7 @@ class SessionAdapter(
         val dialogView = LayoutInflater.from(context)
             .inflate(R.layout.dialog_session_edit, null)
 
-        FontManager.applyToView(context, dialogView)
+        ThemeManager.applyTheme(context, dialogView)
         val dialog = AlertDialog.Builder(context).setView(dialogView).create()
 
         val title = dialogView.findViewById<TextView>(R.id.modal_title)
@@ -437,7 +438,7 @@ class SessionAdapter(
         val dialogView = LayoutInflater.from(context)
             .inflate(R.layout.dialog_task_edit, null)
 
-        FontManager.applyToView(context, dialogView)
+        ThemeManager.applyTheme(context, dialogView)
         val dialog = AlertDialog.Builder(context).setView(dialogView).create()
 
         dialogView.findViewById<TextView>(R.id.modal_title)
@@ -487,7 +488,7 @@ class SessionAdapter(
         val dialogView = LayoutInflater.from(context)
             .inflate(R.layout.dialog_task_edit, null)
 
-        FontManager.applyToView(context, dialogView)
+        ThemeManager.applyTheme(context, dialogView)
         val dialog = AlertDialog.Builder(context).setView(dialogView).create()
 
         val labelInput = dialogView.findViewById<EditText>(R.id.label)

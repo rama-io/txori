@@ -8,8 +8,6 @@
         <item name="android:textColor">?attr/foregroundColor</item>
         <item name="android:statusBarColor">@android:color/transparent</item>
         <item name="android:windowFullscreen">false</item>
-
-        <item name="android:fontFamily">@font/jersey25_regular</item>
     </style>
 
     <!-- Global -->

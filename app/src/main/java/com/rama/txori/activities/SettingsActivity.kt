@@ -20,9 +20,9 @@ class SettingsActivity : CsActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        Activity.setContentView(R.layout.view_settings)
+        setContentView(R.layout.view_settings)
 
-        settingsRootView = Activity.findViewById(R.id.settings_root)
+        settingsRootView = findViewById(R.id.settings_root)
         applyEdgeToEdgePadding(settingsRootView)
         applyCurrentTheme(settingsRootView)
 

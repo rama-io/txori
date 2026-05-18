@@ -1,9 +1,11 @@
 package com.rama.txori.activities
 
 import android.app.Fragment
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.view.WindowManager
+import android.widget.FrameLayout
 import android.widget.ImageView
 import android.widget.Toast
 import com.rama.txori.CsActivity
@@ -41,6 +43,12 @@ class MainActivity : CsActivity() {
         if (savedInstanceState != null) {
             isScreenLocked = savedInstanceState.getBoolean(KEY_LOCK, false)
             if (isScreenLocked) window.addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON)
+        }
+
+        val openSettingsBtn = findViewById<FrameLayout>(R.id.open_settings)
+        openSettingsBtn.setOnLongClickListener {
+            startActivity(Intent(this, SettingsActivity::class.java))
+            true
         }
 
         val lockView = findViewById<View>(R.id.lock_view)

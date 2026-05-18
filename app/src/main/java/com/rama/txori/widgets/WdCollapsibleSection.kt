@@ -8,8 +8,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.widget.LinearLayout
 import android.widget.TextView
-import com.rama.mako.R
-import com.rama.mako.managers.PrefsManager
+import com.rama.txori.R
+import com.rama.txori.managers.PrefsManager
 
 class WdCollapsibleSection @JvmOverloads constructor(
     context: Context,

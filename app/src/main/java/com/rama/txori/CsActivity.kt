@@ -129,7 +129,7 @@ abstract class CsActivity : Activity() {
 
                 view.setPadding(
                     sysBars.left + paddingInline,
-                    sysBars.top + paddingBlock,
+                    sysBars.top,
                     sysBars.right + paddingInline,
                     bottomInset + paddingBlock
                 )
@@ -138,7 +138,7 @@ abstract class CsActivity : Activity() {
                 @Suppress("DEPRECATION")
                 view.setPadding(
                     insets.systemWindowInsetLeft + paddingInline,
-                    insets.systemWindowInsetTop + paddingBlock,
+                    paddingBlock, // insets.systemWindowInsetTop
                     insets.systemWindowInsetRight + paddingInline,
                     insets.systemWindowInsetBottom + paddingBlock
                 )

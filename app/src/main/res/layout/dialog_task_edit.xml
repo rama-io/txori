@@ -37,6 +37,18 @@
         <EditText
             android:id="@+id/duration"
             style="@style/EditText" />
+
+        <TextView
+            android:id="@+id/group_label"
+            android:text="@string/label_group"
+            android:visibility="gone"
+            style="@style/Text" />
+
+        <AutoCompleteTextView
+            android:id="@+id/group_spinner"
+            android:completionThreshold="1"
+            android:visibility="gone"
+            style="@style/EditText" />
     </LinearLayout>
 
     <Button

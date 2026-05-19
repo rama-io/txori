@@ -460,6 +460,19 @@ class SessionAdapter(
             ArrayAdapter(context, android.R.layout.simple_dropdown_item_1line, allLabels)
         labelInput.setAdapter(suggestionAdapter)
 
+        // Group autocomplete all sessions, pre-filled with current group
+        val allSessions = dbHelper.getSessions(db)
+        val groupInput = dialogView.findViewById<AutoCompleteTextView>(R.id.group_spinner)
+        val groupLabel = dialogView.findViewById<TextView>(R.id.group_label)
+        groupInput.visibility = View.VISIBLE
+        groupLabel.visibility = View.VISIBLE
+        val groupNames = allSessions.map { it.second }
+        val groupSuggestionAdapter =
+            ArrayAdapter(context, android.R.layout.simple_dropdown_item_1line, groupNames)
+        groupInput.setAdapter(groupSuggestionAdapter)
+        val currentGroup = allSessions.firstOrNull { it.first == header.sessionId }
+        groupInput.setText(currentGroup?.second ?: "")
+
         dialogView.findViewById<Button>(R.id.add_button).setOnClickListener {
             val label = labelInput.text.toString().trim()
             val duration = durationInput.text.toString().toIntOrNull() ?: 60
@@ -469,17 +482,27 @@ class SessionAdapter(
                 return@setOnClickListener
             }
 
-            dbHelper.addTaskToSession(db, header.sessionId, label, duration)
+            val pickedName = groupInput.text.toString().trim()
+            val targetSession = allSessions.firstOrNull { it.second == pickedName }
+                ?: allSessions.firstOrNull { it.first == header.sessionId }
+                ?: return@setOnClickListener
+            val targetSessionId = targetSession.first
+
+            dbHelper.addTaskToSession(db, targetSessionId, label, duration)
 
             // Reload tasks from DB so the new task carries its real stepId.
             // Without it, swapStepOrder queries id=0 and silently fails.
-            val freshTasks = dbHelper.getSessionTasks(db, header.sessionId)
+            val freshTasks = dbHelper.getSessionTasks(db, targetSessionId)
             val newTask = freshTasks.lastOrNull() ?: Task(label = label, duration = duration)
 
-            var insertAt = headerPosition + 1
+            // Find the correct insert position for the target session
+            val targetHeaderIdx = items.indexOfFirst {
+                it is SessionItem.Header && it.sessionId == targetSessionId
+            }
+            var insertAt = targetHeaderIdx + 1
             while (insertAt < items.size && items[insertAt] is SessionItem.Row) insertAt++
 
-            items.add(insertAt, SessionItem.Row(header.sessionId, newTask))
+            items.add(insertAt, SessionItem.Row(targetSessionId, newTask))
 
             notifyDataSetChanged()
             onDataChanged()
@@ -513,6 +536,24 @@ class SessionAdapter(
             dialog.dismiss()
         }
 
+        // Group autocomplete all sessions except the current one
+        val allSessions = dbHelper.getSessions(db)
+        val otherSessions = allSessions.filter { it.first != row.sessionId }
+        val groupInput = dialogView.findViewById<AutoCompleteTextView>(R.id.group_spinner)
+        val groupLabel = dialogView.findViewById<TextView>(R.id.group_label)
+        if (otherSessions.isNotEmpty()) {
+            groupInput.visibility = View.VISIBLE
+            groupLabel.visibility = View.VISIBLE
+            val groupSuggestionAdapter = ArrayAdapter(
+                context,
+                android.R.layout.simple_dropdown_item_1line,
+                otherSessions.map { it.second })
+            groupInput.setAdapter(groupSuggestionAdapter)
+            val currentGroupName =
+                allSessions.firstOrNull { it.first == row.sessionId }?.second ?: ""
+            groupInput.setText(currentGroupName)
+        }
+
         dialogView.findViewById<Button>(R.id.add_button).setOnClickListener {
             val newLabel = labelInput.text.toString().trim()
             val newDuration = durationInput.text.toString().toIntOrNull() ?: row.task.duration
@@ -526,11 +567,34 @@ class SessionAdapter(
                 put("label", newLabel)
                 put("duration", newDuration)
             }
-
             db.update("tasks", values, "id = ?", arrayOf(row.task.id.toString()))
-
             row.task.label = newLabel
             row.task.duration = newDuration
+
+            // Move to another group if the spinner is visible and a group was selected
+            val pickedName = groupInput.text.toString().trim()
+            val targetSession = otherSessions.firstOrNull { it.second == pickedName }
+            if (targetSession != null) {
+                val targetSessionId = targetSession.first
+
+                // Update the step's session_id in the DB
+                val stepValues = ContentValues().apply { put("session_id", targetSessionId) }
+                db.update(
+                    "session_steps",
+                    stepValues,
+                    "id = ?",
+                    arrayOf(row.task.stepId.toString())
+                )
+
+                // Move the item in memory: remove from current position, append to target group
+                items.removeAt(position)
+                val targetHeaderIdx = items.indexOfFirst {
+                    it is SessionItem.Header && it.sessionId == targetSessionId
+                }
+                var insertAt = targetHeaderIdx + 1
+                while (insertAt < items.size && items[insertAt] is SessionItem.Row) insertAt++
+                items.add(insertAt, SessionItem.Row(targetSessionId, row.task))
+            }
 
             notifyDataSetChanged()
             onDataChanged()

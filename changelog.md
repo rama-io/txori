@@ -2,7 +2,11 @@
 
 ## 6
 
-- Adding settings
+- Add settings
+- Add themes
+- Move lock to the settings view as a checkbox
+- Autocomplete from other created tasks when creating a new task
+- Allowing moving tasks from one group to another
 
 ## 5
 

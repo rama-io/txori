@@ -11,10 +11,18 @@
         android:text="@string/h2_add_new_group"
         style="@style/H2_center" />
 
-    <EditText
-        android:id="@+id/edit_text"
-        android:hint="@string/hint_group_name"
-        style="@style/EditText" />
+    <LinearLayout style="@style/VerticalListDivided_BG2">
+
+        <TextView
+            android:text="@string/label_group_name"
+            style="@style/Text" />
+
+        <EditText
+            android:id="@+id/edit_text"
+            android:hint=""
+            style="@style/EditText" />
+
+    </LinearLayout>
 
     <Button
         android:id="@+id/yes_button"

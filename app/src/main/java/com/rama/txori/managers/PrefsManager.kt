@@ -83,7 +83,7 @@ class PrefsManager private constructor(context: Context) {
 
                 .putBoolean(PrefKeys.SYSTEM_BAR_VISIBLE, false)
 
-                .putString(PrefKeys.APP_THEME_NAME, Theme.RAMA)
+                .putString(PrefKeys.APP_THEME_NAME, Theme.TOKYO_NIGHT)
 
                 .putBoolean(PrefKeys.SETTINGS_SECTION_FONTS, true)
                 .putBoolean(PrefKeys.SETTINGS_SECTION_SYSTEM, true)

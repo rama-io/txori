@@ -445,11 +445,20 @@ class SessionAdapter(
         dialogView.findViewById<Button>(R.id.add_button)
             .setText(context.getString(R.string.btn_create_task))
 
-        val labelInput = dialogView.findViewById<EditText>(R.id.label)
+        val labelInput = dialogView.findViewById<AutoCompleteTextView>(R.id.label)
         val durationInput = dialogView.findViewById<EditText>(R.id.duration)
         durationInput.setText("60")
 
         dialogView.findViewById<Button>(R.id.delete_button).visibility = View.GONE
+        dialogView.findViewById<ListView>(R.id.existing_tasks_list).visibility = View.GONE
+
+        // Unique labels across all tasks, for autocomplete suggestions
+        val allLabels = dbHelper.getAllTasks(db)
+            .map { it.label }
+            .distinct()
+        val suggestionAdapter =
+            ArrayAdapter(context, android.R.layout.simple_dropdown_item_1line, allLabels)
+        labelInput.setAdapter(suggestionAdapter)
 
         dialogView.findViewById<Button>(R.id.add_button).setOnClickListener {
             val label = labelInput.text.toString().trim()

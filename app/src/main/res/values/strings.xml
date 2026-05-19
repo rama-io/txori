@@ -87,12 +87,11 @@
 
     <!-- InputLabel -->
     <string name="label_task_duration">Duration (seconds)</string>
-
+    <string name="label_task_label">Task Label</string>
+    <string name="label_group_name">Group Name</string>
+    
     <!-- InputHints -->
-    <string name="hint_new_task">New Task</string>
-    <string name="hint_group_name">Group Name</string>
     <string name="hint_timer">HHMMSS</string>
-    <string name="hint_task_label">Task Label</string>
 
     <!-- Toasts -->
     <string name="toast_name_empty">Name cannot be empty</string>

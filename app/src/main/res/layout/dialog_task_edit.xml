@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_height="match_parent"
+    android:layout_width="match_parent"
     android:padding="16sp"
     android:background="@color/bg_1"
     android:focusableInTouchMode="true"
@@ -11,28 +12,32 @@
         android:text="@string/h2_edit_task"
         style="@style/H2_center" />
 
-    <TextView
+    <!-- Kept for layout inflation compatibility, never shown -->
+    <ListView
+        android:id="@+id/existing_tasks_list"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textSize="16sp"
-        android:textColor="@color/foreground"
-        android:text="@string/hint_task_label" />
+        android:layout_height="0dp"
+        android:visibility="gone" />
 
-    <EditText
-        android:id="@+id/label"
-        android:hint="@string/hint_new_task"
-        style="@style/EditText" />
+    <LinearLayout style="@style/VerticalListDivided_BG2">
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textSize="16sp"
-        android:textColor="@color/foreground"
-        android:text="@string/label_task_duration" />
+        <TextView
+            android:text="@string/label_task_label"
+            style="@style/Text" />
 
-    <EditText
-        android:id="@+id/duration"
-        style="@style/EditText" />
+        <AutoCompleteTextView
+            android:id="@+id/label"
+            android:completionThreshold="1"
+            style="@style/EditText" />
+
+        <TextView
+            android:text="@string/label_task_duration"
+            style="@style/Text" />
+
+        <EditText
+            android:id="@+id/duration"
+            style="@style/EditText" />
+    </LinearLayout>
 
     <Button
         android:id="@+id/delete_button"

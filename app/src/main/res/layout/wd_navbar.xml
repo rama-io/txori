@@ -1,80 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    style="@style/HorizontalList">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_gravity="center"
-        android:orientation="horizontal">
+    <FrameLayout
+        android:id="@+id/home_nav"
+        android:layout_weight="1"
+        android:layout_marginEnd="2dp"
+        style="@style/BTN1">
 
-        <FrameLayout
-            android:id="@+id/home_nav"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="2dp"
-            android:layout_weight="1"
-            android:background="@color/button_primary_color"
-            android:padding="12sp">
+        <ImageView
+            android:src="@drawable/icon_bullet_list_solid"
+            android:contentDescription="@string/altdescr_home_nav"
+            style="@style/Icon24" />
+    </FrameLayout>
 
-            <ImageView
-                android:layout_width="24sp"
-                android:layout_height="24sp"
-                android:layout_gravity="center"
-                android:src="@drawable/icon_bullet_list_solid"
-                android:textSize="16sp" />
-        </FrameLayout>
+    <FrameLayout
+        android:id="@+id/stopwatch_nav"
+        android:layout_weight="1"
+        android:layout_marginEnd="2dp"
+        style="@style/BTN1">
 
-        <FrameLayout
-            android:id="@+id/stopwatch_nav"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="2dp"
-            android:layout_weight="1"
-            android:background="@color/button_primary_color"
-            android:padding="12sp">
+        <ImageView
+            android:src="@drawable/icon_stopwatch"
+            android:contentDescription="@string/altdescr_stopwatch_nav"
+            style="@style/Icon24" />
+    </FrameLayout>
 
-            <ImageView
-                android:layout_width="24sp"
-                android:layout_height="24sp"
-                android:layout_gravity="center"
-                android:src="@drawable/icon_stopwatch"
-                android:textSize="16sp" />
-        </FrameLayout>
+    <FrameLayout
+        android:id="@+id/timer_nav"
+        android:layout_weight="1"
+        style="@style/BTN1">
 
-        <FrameLayout
-            android:id="@+id/timer_nav"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="2dp"
-            android:layout_weight="1"
-            android:background="@color/button_primary_color"
-            android:padding="12sp">
-
-            <ImageView
-                android:layout_width="24sp"
-                android:layout_height="24sp"
-                android:layout_gravity="center"
-                android:src="@drawable/icon_timer_solid"
-                android:textSize="16sp" />
-        </FrameLayout>
-
-        <FrameLayout
-            android:id="@+id/about_nav"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:background="@color/button_primary_color"
-            android:padding="12sp">
-
-            <ImageView
-                android:layout_width="24sp"
-                android:layout_height="24sp"
-                android:layout_gravity="center"
-                android:src="@drawable/icon_info_circle_solid"
-                android:textSize="16sp" />
-        </FrameLayout>
-    </LinearLayout>
+        <ImageView
+            android:src="@drawable/icon_timer_solid"
+            android:contentDescription="@string/altdescr_timer_nav"
+            style="@style/Icon24" />
+    </FrameLayout>
 </LinearLayout>

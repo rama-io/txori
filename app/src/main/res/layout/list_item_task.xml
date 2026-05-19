@@ -16,18 +16,13 @@
 
     <LinearLayout
         android:id="@+id/app_row"
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
         android:padding="12sp"
-        android:gravity="center_vertical">
+        style="@style/HorizontalListDivided">
 
         <LinearLayout
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:orientation="horizontal"
-            android:gravity="center_vertical">
+            style="@style/HorizontalListDivided">
 
             <FrameLayout
                 android:id="@+id/edit_task_button"
@@ -36,9 +31,9 @@
                 android:padding="12sp">
 
                 <ImageView
-                    android:layout_width="18sp"
-                    android:layout_height="18sp"
-                    android:src="@drawable/icon_edit" />
+                    android:src="@drawable/icon_edit"
+                    android:contentDescription="@string/altdescr_edit_task"
+                    style="@style/Icon18" />
             </FrameLayout>
 
             <FrameLayout
@@ -48,10 +43,9 @@
                 android:padding="12sp">
 
                 <ImageView
-                    android:layout_width="24sp"
-                    android:layout_height="24sp"
                     android:src="@drawable/icon_chevron_up_solid"
-                    android:contentDescription="Ascend" />
+                    android:contentDescription="@string/altdescr_ascend"
+                    style="@style/Icon18" />
             </FrameLayout>
 
             <FrameLayout
@@ -61,10 +55,9 @@
                 android:padding="12sp">
 
                 <ImageView
-                    android:layout_width="24sp"
-                    android:layout_height="24sp"
                     android:src="@drawable/icon_chevron_down_solid"
-                    android:contentDescription="Descend" />
+                    android:contentDescription="@string/altdescr_descend"
+                    style="@style/Icon18" />
             </FrameLayout>
 
             <TextView
@@ -80,7 +73,7 @@
                 android:id="@+id/task_frequency"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="1 / 2"
+                android:text="1 / 1"
                 android:textSize="16sp"
                 android:textColor="@color/task_frequency" />
 
@@ -90,7 +83,7 @@
             android:id="@+id/task_duration"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="0:30"
+            android:text="0:00"
             android:textSize="16sp"
             android:textColor="@color/disabled" />
     </LinearLayout>

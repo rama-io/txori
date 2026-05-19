@@ -1,40 +1,161 @@
 <resources>
-    <string name="add_task">+ Add Task</string>
+    <!-- Activities -->
+    <string name="activity_settings_label">Settings</string>
+    <string name="activity_about_label">About</string>
 
-    <!-- Global -->
-    <string name="go_back_label">Go Back</string>
+    <!-- H1 -->
+    <string name="h1_timer_default">00:00:00</string>
+    <string name="h1_timer_zero">00:00</string>
+    <string name="h1_stopwatch_counter_default">0</string>
 
-    <!-- APP / About -->
+    <!-- H2 -->
+    <string name="h2_greeting">Kaixo!</string>
+    <string name="h2_done">Done!</string>
+    <string name="h2_next_placeholder">---</string>
+    <string name="h2_next_task_prefix">Next: %1$s</string>
+    <string name="h2_edit_task">Edit task</string>
+    <string name="h2_add_new_task">Add new task</string>
+    <string name="h2_add_new_group">Add new group</string>
+    <string name="h2_color_picker">Pick a Color</string>
+    <string name="h2_edit_group">Edit Group</string>
+
+    <!-- H3 -->
+    <string name="h2_icons">Icons</string>
+    <string name="h2_fonts">Fonts</string>
+    <string name="h2_themes">Themes</string>
+    <string name="h2_language">Language</string>
+    <string name="h2_system">System</string>
+    <string name="h2_app">App</string>
+
+    <!-- Button -->
+    <string name="btn_timer_save">Save timer</string>
+    <string name="btn_timer_start">Start timer</string>
+    <string name="btn_timer_pause">Pause timer</string>
+    <string name="btn_timer_reset">Reset timer</string>
+    <string name="btn_stopwatch_start">Start stopwatch</string>
+    <string name="btn_stopwatch_pause">Pause stopwatch</string>
+    <string name="btn_stopwatch_reset">Reset Stopwatch</string>
+    <string name="btn_switch_to_edit_mode">Switch to Edit Mode</string>
+    <string name="btn_switch_to_work_mode">Switch to Work Mode</string>
+    <string name="btn_create_task">Create Task</string>
+    <string name="btn_update_task">Update task</string>
+    <string name="btn_delete_task">Delete task</string>
+    <string name="btn_create">Create</string>
+    <string name="btn_go_back">Go Back</string>
+    <string name="btn_apply">Apply</string>
+    <string name="btn_about_txori">About Txori</string>
+    <string name="btn_cancel">Cancel</string>
+    <string name="btn_delete_group">Delete group</string>
+    <string name="btn_save">Save</string>
+    <string name="btn_join_discord">Join Discord</string>
+    <string name="btn_theme_apply_custom">Apply Custom Theme</string>
+    <string name="btn_add_group">+ Add New Group</string>
+    <string name="btn_font_custom_pick">Choose Font file</string>
+
+    <!-- ColorPicker -->
+    <string name="colorpicker_theme_foreground">Foreground</string>
+    <string name="colorpicker_theme_collapsible_header">Collapsible Header</string>
+    <string name="colorpicker_theme_h1">H1</string>
+    <string name="colorpicker_theme_icons">Icons</string>
+    <string name="colorpicker_theme_accent">Accent</string>
+    <string name="colorpicker_theme_background_1">Background 1</string>
+    <string name="colorpicker_theme_background_2">Background 2</string>
+    <string name="colorpicker_theme_background_3">Background 3</string>
+    <string name="colorpicker_theme_input_background">Input Background</string>
+    <string name="colorpicker_theme_button_1_background">Button 1 Background</string>
+    <string name="colorpicker_theme_button_1_background_selected">Button 1 Selected Background</string>
+    <string name="colorpicker_theme_button_2_background">Button 2 Background</string>
+    <string name="colorpicker_theme_danger">Danger</string>
+    <string name="colorpicker_theme_disabled">Disabled</string>
+    <string name="colorpicker_theme_task_frequency">Task Frequency</string>
+    <string name="colorpicker_theme_progressbar">Progress Bar</string>
+    <!-- FilePicker -->
+    <string name="filepicker_font_custom_none">No font selected</string>
+
+    <!-- Radio -->
+    <string name="radio_default_system">Default (System)</string>
+    <string name="radio_language_system_default">System Default (fallback to English)</string>
+    <string name="radio_language_english" translatable="false">English</string>
+    <string name="radio_font_custom">Custom font</string>
+    <string name="radio_theme_rama">Rama</string>
+    <string name="radio_theme_mako">Mako</string>
+    <string name="radio_theme_custom">Custom</string>
+
+    <!-- Checkbox -->
+    <string name="checkbox_show_system_bar">Show system bar</string>
+    <string name="checkbox_lock_screen_from_falling_asleep">Keep screen awake</string>
+
+    <!-- InputLabel -->
+    <string name="label_task_duration">Duration (seconds)</string>
+    <string name="label_task_label">Task Label</string>
+    <string name="label_group_name">Group Name</string>
+    <string name="label_group">Current Group</string>
+
+    <!-- InputHints -->
+    <string name="hint_timer">HHMMSS</string>
+
+    <!-- Toasts -->
+    <string name="toast_name_empty">Name cannot be empty</string>
+    <string name="toast_label_empty">Label cannot be empty</string>
+    <string name="toast_invalid_color">Invalid color</string>
+
+    <!-- AltDescription -->
+    <string name="altdescr_open_settings">Open Settings</string>
+    <string name="altdescr_lock_icon">Lock screen</string>
+    <string name="altdescr_home_nav">Home</string>
+    <string name="altdescr_stopwatch_nav">Stopwatch</string>
+    <string name="altdescr_timer_nav">Timer</string>
+    <string name="altdescr_play_pause">Play or pause</string>
+    <string name="altdescr_repeat_task">Repeat task</string>
+    <string name="altdescr_increase_duration">Add 30 seconds</string>
+    <string name="altdescr_skip_task">Skip task</string>
+    <string name="altdescr_reset_group">Reset group</string>
+    <string name="altdescr_start_group">Start group</string>
+    <string name="altdescr_edit_session">Edit group</string>
+    <string name="altdescr_add_task">Add task</string>
+    <string name="altdescr_edit_task">Edit task</string>
+    <string name="altdescr_ascend">Move up</string>
+    <string name="altdescr_descend">Move down</string>
+
+    <!-- APP -->
     <string name="app_name" translatable="false">Txori</string>
-    <string name="app_description">A minimal, privacy-first focus session app designed to help you stay present and intentional with your time.</string>
-    <string name="icon_block_desc">No Background Tasks</string>
-    <string name="icon_ads_desc">No Ads</string>
-    <string name="icon_location_desc">No Trackers</string>
-    <string name="icon_offline_desc">Works Offline</string>
-    <string name="main_project_url" translatable="false">github.com/rama-io/txori</string>
-    <string name="app_header">App</string>
-    <string name="icons_header">Icons</string>
-    <string name="fonts_header">Fonts</string>
-
-    <string name="gpl3_desc" translatable="false">GPL 3.0 or Later</string>
-    <string name="ofl_1_1_desc" translatable="false">OFL 1.1</string>
-    <string name="apache_2_desc" translatable="false">Apache 2.0</string>
-    <string name="cc_4_desc" translatable="false">CC 4.0</string>
-
-    <string name="hackernoon_url" translatable="false">github.com/hackernoon/pixel-icon-library</string>
     <string name="app_creator" translatable="false">Pombo</string>
-    <string name="hackernoon_creator" translatable="false">HackerNoon</string>
-    <string name="hackernoon_product" translatable="false">Pixel Icon Library</string>
-    <string name="jersey_creator" translatable="false">Sarah Cadigan-Fried</string>
-    <string name="jersey_url" translatable="false">github.com/scfried/soft-type-jersey</string>
-    <string name="font_jersey_label" translatable="false">Jersey 25</string>
-    <string name="font_quicksand_label" translatable="false">Quicksand</string>
+    <string name="app_desc">A minimal, privacy-first focus session app designed to help you stay present and intentional with your time.</string>
+    <string name="app_background_tasks_desc">No Background Tasks</string>
+    <string name="app_ads_desc">No Ads</string>
+    <string name="app_trackers_desc">No Trackers</string>
+    <string name="app_offline_desc">Works Offline</string>
+    <!-- Product -->
+    <string name="product_txori_url" translatable="false">github.com/rama-io/txori</string>
+    <string name="product_hackernoon_creator" translatable="false">HackerNoon</string>
+    <string name="product_hackernoon_name" translatable="false">Pixel Icon Library</string>
+    <string name="product_hackernoon_url" translatable="false">github.com/hackernoon/pixel-icon-library</string>
+    <string name="product_jersey_creator" translatable="false">Sarah Cadigan-Fried</string>
+    <string name="product_jersey_name" translatable="false">Jersey 25</string>
+    <string name="product_jersey_url" translatable="false">github.com/scfried/soft-type-jersey</string>
+    <string name="product_dracula_creator" translatable="false">Zeno Rocha</string>
+    <string name="product_dracula_name" translatable="false">Dracula</string>
+    <string name="product_dracula_url" translatable="false">github.com/dracula</string>
+    <string name="product_catppuccin_creator" translatable="false">Pocco</string>
+    <string name="product_catppuccin_name" translatable="false">Catppuccin Moccha</string>
+    <string name="product_catppuccin_url" translatable="false">github.com/catppuccin</string>
+    <string name="product_tokyo_creator" translatable="false">Enkia</string>
+    <string name="product_tokyo_name" translatable="false">Tokyo Night</string>
+    <string name="product_tokyo_url" translatable="false">github.com/enkia/tokyo-night-vscode-theme</string>
+    <string name="product_melange_creator" translatable="false">Savq</string>
+    <string name="product_melange_name" translatable="false">Mélange Dark</string>
+    <string name="product_melange_url" translatable="false">github.com/savq/melange-nvim</string>
 
-    <!-- Dialog -->
-    <string name="save">Save</string>
-    <string name="cancel">Cancel</string>
+    <!-- License -->
+    <string name="license_gpl3" translatable="false">GPL 3.0 or Later</string>
+    <string name="license_ofl_1_1" translatable="false">OFL 1.1</string>
+    <string name="license_apache_2" translatable="false">Apache 2.0</string>
+    <string name="license_cc_4" translatable="false">CC 4.0</string>
+    <string name="license_mit" translatable="false">MIT</string>
 
-    <!-- Dialog :: Delete Group -->
-    <string name="delete_group_title">Are you sure you want to delete this group?\nThis action cannot be undone.</string>
-    <string name="delete_group">Delete group</string>
+    <!-- Custom Blocks -->
+    <!-- Groups -->
+    <string name="settings_section_expand_indicator" translatable="false">[+]</string>
+    <string name="settings_section_collapse_indicator" translatable="false">[-]</string>
 </resources>
+

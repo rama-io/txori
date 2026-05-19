@@ -1,32 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/root"
-    android:orientation="vertical"
-    android:layout_width="match_parent"
+    android:background="@color/bg_1"
     android:layout_height="match_parent"
-    android:background="@color/bg_1">
+    style="@style/VerticalListDivided">
 
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:gravity="end">
+        android:gravity="end"
+        style="@style/HorizontalListDivided">
 
         <FrameLayout
-            android:id="@+id/lock_view"
+            android:id="@+id/open_settings"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="2dp"
             android:background="@color/bg_1"
             android:padding="12sp">
 
             <ImageView
-                android:id="@+id/lock_icon"
-                android:layout_width="24sp"
-                android:layout_height="24sp"
-                android:layout_gravity="center"
-                android:src="@drawable/icon_lock_open_solid"
-                android:textSize="16sp" />
+                android:src="@drawable/icon_cog"
+                android:contentDescription="@string/altdescr_open_settings"
+                style="@style/Icon24" />
         </FrameLayout>
     </LinearLayout>
 
@@ -38,7 +31,6 @@
 
     <com.rama.txori.widgets.WdNavbar
         android:id="@+id/navbar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        style="@style/BlockFlow" />
 
 </LinearLayout>

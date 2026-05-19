@@ -8,14 +8,14 @@ import android.os.SystemClock
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import com.rama.txori.R
-import com.rama.txori.widgets.WdButton
 
 class StopwatchFragment : Fragment() {
 
-    private lateinit var counterView: android.widget.TextView
-    private lateinit var counterStartButton: WdButton
-    private lateinit var counterResetButton: WdButton
+    private lateinit var counterView: Button
+    private lateinit var counterStartButton: Button
+    private lateinit var counterResetButton: Button
 
     private val handler = Handler(Looper.getMainLooper())
     private var isRunning = false
@@ -49,7 +49,7 @@ class StopwatchFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        counterView = view.findViewById(R.id.counter)
+        counterView = view.findViewById(R.id.counter_btn)
         counterStartButton = view.findViewById(R.id.start_stopwatch)
         counterResetButton = view.findViewById(R.id.reset_counter)
 
@@ -65,7 +65,7 @@ class StopwatchFragment : Fragment() {
             if (savedInstanceState.getBoolean(KEY_IS_RUNNING, false)) {
                 startStopwatch()
             } else {
-                counterStartButton.setText("Start stopwatch")
+                counterStartButton.setText(getString(R.string.btn_stopwatch_start))
             }
         }
     }
@@ -77,23 +77,23 @@ class StopwatchFragment : Fragment() {
     private fun startStopwatch() {
         startTime = SystemClock.elapsedRealtime() - pausedElapsed
         isRunning = true
-        counterStartButton.setText("Pause stopwatch")
+        counterStartButton.setText(getString(R.string.btn_stopwatch_pause))
         handler.post(ticker)
     }
 
     private fun pauseStopwatch() {
         pausedElapsed = SystemClock.elapsedRealtime() - startTime
         isRunning = false
-        counterStartButton.setText("Start stopwatch")
+        counterStartButton.setText(getString(R.string.btn_stopwatch_start))
         handler.removeCallbacks(ticker)
     }
 
     private fun resetStopwatch() {
         isRunning = false
         pausedElapsed = 0L
-        counterStartButton.setText("Start stopwatch")
+        counterStartButton.setText(getString(R.string.btn_stopwatch_start))
         handler.removeCallbacks(ticker)
-        counterView.text = "0"
+        counterView.text = getString(R.string.h1_stopwatch_counter_default)
     }
 
     private fun formatTime(ms: Long): String {

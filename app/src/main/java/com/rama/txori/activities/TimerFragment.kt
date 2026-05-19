@@ -10,21 +10,20 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
+import android.widget.Button
 import android.widget.EditText
-import android.widget.LinearLayout
-import android.widget.TextView
+import android.widget.FrameLayout
 import com.rama.txori.R
-import com.rama.txori.widgets.WdButton
 
 class TimerFragment : Fragment() {
 
-    private lateinit var timerButton: TextView
-    private lateinit var editView: LinearLayout
+    private lateinit var timerButton: Button
+    private lateinit var editView: FrameLayout
     private lateinit var timerInput: EditText
-    private lateinit var addTimer: WdButton
-    private lateinit var startButton: WdButton
-    private lateinit var resetButton: WdButton
-    private lateinit var editModeButton: WdButton
+    private lateinit var addTimer: Button
+    private lateinit var startButton: Button
+    private lateinit var resetButton: Button
+    private lateinit var editModeButton: Button
 
     private var isRunning = false
     private var initialMs = 0L
@@ -40,7 +39,7 @@ class TimerFragment : Fragment() {
             val elapsed = SystemClock.elapsedRealtime() - startTime
             val msLeft = remainingMs - elapsed
             if (msLeft <= 0) {
-                timerButton.text = "00:00:00"
+                timerButton.text = getString(R.string.h1_timer_default)
                 isRunning = false
                 remainingMs = 0L
                 updateButtons()
@@ -75,13 +74,13 @@ class TimerFragment : Fragment() {
 
         timerButton = view.findViewById(R.id.timer_button)
         editView = view.findViewById(R.id.edit_view)
-        timerInput = view.findViewById(R.id.timer)
+        timerInput = view.findViewById(R.id.timer_input)
         addTimer = view.findViewById(R.id.add_timer)
         startButton = view.findViewById(R.id.start_timer)
         resetButton = view.findViewById(R.id.reset_timer)
         editModeButton = view.findViewById(R.id.edit_mode)
 
-        timerButton.text = "00:00:00"
+        timerButton.text = getString(R.string.h1_timer_default)
 
         editModeButton.setOnClickListener { setEditMode(!isEditMode) }
         timerButton.setOnClickListener { toggleTimer() }
@@ -109,7 +108,7 @@ class TimerFragment : Fragment() {
 
     private fun toggleTimer() {
         if (isRunning) pauseTimer() else startTimer()
-        startButton.setText(if (isRunning) "Pause timer" else "Start timer")
+        startButton.setText(if (isRunning) getString(R.string.btn_timer_pause) else getString(R.string.btn_timer_start))
     }
 
     private fun updateButtons() {
@@ -122,13 +121,13 @@ class TimerFragment : Fragment() {
             if (hasTimer && !isEditMode && hasTimerActive) View.VISIBLE else View.GONE
         resetButton.visibility =
             if (hasTimer && !isEditMode) View.VISIBLE else View.GONE
-        startButton.setText(if (isRunning) "Pause timer" else "Start timer")
+        startButton.setText(if (isRunning) getString(R.string.btn_timer_pause) else getString(R.string.btn_timer_start))
         startButton.isEnabled = canStart || isRunning
     }
 
     private fun updateEditModeUI() {
         if (isEditMode) {
-            editModeButton.setText("Switch to work mode")
+            editModeButton.setText(getString(R.string.btn_switch_to_work_mode))
             timerButton.visibility = View.GONE
             editView.visibility = View.VISIBLE
             addTimer.visibility = View.VISIBLE
@@ -140,7 +139,7 @@ class TimerFragment : Fragment() {
             timerInput.requestFocus()
             showKeyboard()
         } else {
-            editModeButton.setText("Switch to edit mode")
+            editModeButton.setText(getString(R.string.btn_switch_to_edit_mode))
             editView.visibility = View.GONE
             addTimer.visibility = View.GONE
             timerButton.visibility = View.VISIBLE

@@ -1,9 +1,6 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/app_row_header"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="horizontal"
-    android:gravity="center">
+    style="@style/HorizontalListDivided">
 
     <FrameLayout
         android:id="@+id/edit_session_button"
@@ -13,9 +10,9 @@
         android:paddingStart="22sp">
 
         <ImageView
-            android:layout_width="18sp"
-            android:layout_height="18sp"
-            android:src="@drawable/icon_edit" />
+            android:src="@drawable/icon_edit"
+            android:contentDescription="@string/altdescr_edit_session"
+            style="@style/Icon18" />
     </FrameLayout>
 
     <FrameLayout
@@ -25,10 +22,9 @@
         android:padding="12sp">
 
         <ImageView
-            android:layout_width="24sp"
-            android:layout_height="24sp"
             android:src="@drawable/icon_chevron_up_solid"
-            android:contentDescription="Ascend" />
+            android:contentDescription="@string/altdescr_ascend"
+            style="@style/Icon18" />
     </FrameLayout>
 
     <FrameLayout
@@ -38,22 +34,19 @@
         android:padding="12sp">
 
         <ImageView
-            android:layout_width="24sp"
-            android:layout_height="24sp"
             android:src="@drawable/icon_chevron_down_solid"
-            android:contentDescription="Descend" />
+            android:contentDescription="@string/altdescr_descend"
+            style="@style/Icon18" />
     </FrameLayout>
 
     <TextView
         android:id="@+id/group_label"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
         android:layout_weight="1"
         android:text="[-] Workout :: 44:00"
-        android:textSize="18sp"
         android:paddingTop="12sp"
         android:paddingBottom="12sp"
-        android:textColor="@color/foreground" />
+        style="@style/H3" />
 
     <FrameLayout
         android:id="@+id/add_task"
@@ -62,9 +55,9 @@
         android:padding="12sp">
 
         <ImageView
-            android:layout_width="18sp"
-            android:layout_height="18sp"
-            android:src="@drawable/icon_plus_solid" />
+            android:src="@drawable/icon_plus_solid"
+            android:contentDescription="@string/altdescr_add_task"
+            style="@style/Icon18" />
     </FrameLayout>
 
     <FrameLayout
@@ -74,9 +67,9 @@
         android:padding="12sp">
 
         <ImageView
-            android:layout_width="18sp"
-            android:layout_height="18sp"
-            android:src="@drawable/icon_refresh" />
+            android:src="@drawable/icon_refresh"
+            android:contentDescription="@string/altdescr_reset_group"
+            style="@style/Icon18" />
     </FrameLayout>
 
     <FrameLayout
@@ -87,9 +80,9 @@
 
         <ImageView
             android:id="@+id/start_group_icon"
-            android:layout_width="18sp"
-            android:layout_height="18sp"
-            android:src="@drawable/icon_play" />
+            android:src="@drawable/icon_play"
+            android:contentDescription="@string/altdescr_start_group"
+            style="@style/Icon18" />
     </FrameLayout>
 
 </LinearLayout>

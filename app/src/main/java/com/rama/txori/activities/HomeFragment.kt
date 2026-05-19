@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageView
 import android.widget.LinearLayout
@@ -15,10 +16,9 @@ import com.rama.txori.DatabaseHelper
 import com.rama.txori.R
 import com.rama.txori.SessionItem
 import com.rama.txori.adapters.SessionAdapter
-import com.rama.txori.managers.FontManager
 import com.rama.txori.managers.SoundManager
+import com.rama.txori.managers.ThemeManager
 import com.rama.txori.managers.WorkoutManager
-import com.rama.txori.widgets.WdButton
 
 class HomeFragment : Fragment(), WorkoutManager.Listener {
 
@@ -31,7 +31,7 @@ class HomeFragment : Fragment(), WorkoutManager.Listener {
     private lateinit var timerView: TextView
     private lateinit var nextTaskView: TextView
     private lateinit var globalControllers: LinearLayout
-    private lateinit var editButton: WdButton
+    private lateinit var editButton: Button
     private lateinit var playPauseIcon: ImageView
 
     private val items: MutableList<SessionItem> = mutableListOf()
@@ -82,10 +82,10 @@ class HomeFragment : Fragment(), WorkoutManager.Listener {
             dbHelper = dbHelper,
             onStartGroup = { sessionId, startIndex -> workout.startGroup(sessionId, startIndex) },
             onResetGroup = { sessionId -> workout.resetGroup(sessionId) },
-            onDataChanged = { FontManager.applyToListView(activity, listView) }
+            onDataChanged = { ThemeManager.applyTheme(activity, listView) }
         )
         listView.adapter = adapter
-        listView.post { FontManager.applyToListView(activity, listView) }
+        listView.post { ThemeManager.applyTheme(activity, listView) }
 
         view.findViewById<View>(R.id.repeat_task).setOnClickListener { workout.repeatCurrentTask() }
         view.findViewById<View>(R.id.increase_duration)
@@ -93,8 +93,8 @@ class HomeFragment : Fragment(), WorkoutManager.Listener {
         view.findViewById<View>(R.id.start_task).setOnClickListener { workout.togglePlayPause() }
         view.findViewById<View>(R.id.skip_task).setOnClickListener { workout.skipTask() }
 
-        val addGroupButton = view.findViewById<WdButton>(R.id.add_group_button)
-        val workButton = view.findViewById<WdButton>(R.id.work_button)
+        val addGroupButton = view.findViewById<Button>(R.id.add_group_button)
+        val workButton = view.findViewById<Button>(R.id.work_button)
         val timeContainer = view.findViewById<View>(R.id.time_container)
 
         addGroupButton.setOnClickListener { showAddGroupDialog() }
@@ -176,9 +176,9 @@ class HomeFragment : Fragment(), WorkoutManager.Listener {
     }
 
     override fun onGroupFinished(sessionId: Long) {
-        taskNameView.text = "Done!"
-        timerView.text = "00:00"
-        nextTaskView.text = "---"
+        taskNameView.text = getString(R.string.h2_done)
+        timerView.text = getString(R.string.h1_timer_zero)
+        nextTaskView.text = getString(R.string.h2_next_placeholder)
         adapter.setActiveItemIndex(-1)
         adapter.setGroupPlayingState(sessionId, false)
         playPauseIcon.setImageResource(R.drawable.icon_play)
@@ -187,9 +187,9 @@ class HomeFragment : Fragment(), WorkoutManager.Listener {
     }
 
     override fun onGroupReset(sessionId: Long) {
-        taskNameView.text = "Kaixo!"
-        timerView.text = "00:00"
-        nextTaskView.text = "---"
+        taskNameView.text = getString(R.string.h2_greeting)
+        timerView.text = getString(R.string.h1_timer_zero)
+        nextTaskView.text = getString(R.string.h2_next_placeholder)
         adapter.setActiveItemIndex(-1)
         adapter.setGroupPlayingState(sessionId, false)
         playPauseIcon.setImageResource(R.drawable.icon_play)
@@ -214,7 +214,10 @@ class HomeFragment : Fragment(), WorkoutManager.Listener {
             item is SessionItem.Row && item.sessionId == sessionId
         }
         val nextRow = nextIndex?.let { items[it] as? SessionItem.Row }
-        nextTaskView.text = if (nextRow != null) "Next: ${nextRow.task.label}" else "---"
+        nextTaskView.text = if (nextRow != null) getString(
+            R.string.h2_next_task_prefix,
+            nextRow.task.label
+        ) else getString(R.string.h2_next_placeholder)
     }
 
     private fun updateTimerDisplay(ms: Long) {
@@ -225,27 +228,27 @@ class HomeFragment : Fragment(), WorkoutManager.Listener {
     private fun showAddGroupDialog() {
         val dialogView = activity.layoutInflater.inflate(R.layout.dialog_session_edit, null)
 
-        FontManager.applyToView(activity, dialogView)
+        ThemeManager.applyTheme(activity, dialogView)
         val dialog = AlertDialog.Builder(activity).setView(dialogView).create()
         val input = dialogView.findViewById<EditText>(R.id.edit_text)
 
-        dialogView.findViewById<WdButton>(R.id.yes_button).apply {
-            setText("Create")
+        dialogView.findViewById<Button>(R.id.yes_button).apply {
+            setText(getString(R.string.btn_create))
             setOnClickListener {
                 val name = input.text.toString().trim()
                 if (name.isEmpty()) {
-                    input.error = "Name cannot be empty"; return@setOnClickListener
+                    input.error = getString(R.string.toast_name_empty); return@setOnClickListener
                 }
                 val newId = dbHelper.createSession(db, name)
                 items.add(SessionItem.Header(newId, name, emptyList()))
                 workout.items = items
                 adapter.notifyDataSetChanged()
-                FontManager.applyToListView(activity, listView)
+                ThemeManager.applyTheme(activity, listView)
                 dialog.dismiss()
             }
         }
-        dialogView.findViewById<WdButton>(R.id.delete_group_button).visibility = View.GONE
-        dialogView.findViewById<WdButton>(R.id.no_button).setOnClickListener { dialog.dismiss() }
+        dialogView.findViewById<Button>(R.id.delete_group_button).visibility = View.GONE
+        dialogView.findViewById<Button>(R.id.no_button).setOnClickListener { dialog.dismiss() }
         dialog.show()
     }
 

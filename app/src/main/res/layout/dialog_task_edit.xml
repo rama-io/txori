@@ -1,81 +1,68 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_width="match_parent"
     android:padding="16sp"
-    android:orientation="vertical"
     android:background="@color/bg_1"
-    android:focusableInTouchMode="true">
+    android:focusableInTouchMode="true"
+    style="@style/VerticalListDivided">
 
     <TextView
         android:id="@+id/modal_title"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="16sp"
-        android:textSize="32sp"
-        android:textColor="@color/foreground"
-        android:text="Edit task"
-        android:gravity="center" />
+        android:text="@string/h2_edit_task"
+        style="@style/H2_center" />
 
-    <TextView
+    <!-- Kept for layout inflation compatibility, never shown -->
+    <ListView
+        android:id="@+id/existing_tasks_list"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="8sp"
-        android:textSize="16sp"
-        android:textColor="@color/foreground"
-        android:text="Label" />
+        android:layout_height="0dp"
+        android:visibility="gone" />
 
-    <EditText
-        android:id="@+id/label"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:maxLines="1"
-        android:singleLine="true"
-        android:textSize="16sp"
-        android:padding="16sp"
-        android:text="New Task"
-        android:layout_marginBottom="8sp"
-        android:background="@color/input" />
+    <LinearLayout style="@style/VerticalListDivided_BG2">
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="8sp"
-        android:textSize="16sp"
-        android:textColor="@color/foreground"
-        android:text="Duration (seconds)" />
+        <TextView
+            android:text="@string/label_task_label"
+            style="@style/Text" />
 
-    <EditText
-        android:id="@+id/duration"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:maxLines="1"
-        android:singleLine="true"
-        android:textSize="16sp"
-        android:padding="16sp"
-        android:layout_marginBottom="8sp"
-        android:background="@color/input" />
+        <AutoCompleteTextView
+            android:id="@+id/label"
+            android:completionThreshold="1"
+            style="@style/EditText" />
 
-    <com.rama.txori.widgets.WdButton
+        <TextView
+            android:text="@string/label_task_duration"
+            style="@style/Text" />
+
+        <EditText
+            android:id="@+id/duration"
+            style="@style/EditText" />
+
+        <TextView
+            android:id="@+id/group_label"
+            android:text="@string/label_group"
+            android:visibility="gone"
+            style="@style/Text" />
+
+        <AutoCompleteTextView
+            android:id="@+id/group_spinner"
+            android:completionThreshold="1"
+            android:visibility="gone"
+            style="@style/EditText" />
+    </LinearLayout>
+
+    <Button
         android:id="@+id/delete_button"
-        android:layout_width="match_parent"
-        android:layout_marginBottom="8sp"
-        android:layout_height="wrap_content"
-        android:background="@color/danger"
-        android:text="Delete task" />
+        android:text="@string/btn_delete_task"
+        style="@style/BTN_danger" />
 
-    <com.rama.txori.widgets.WdButton
+    <Button
         android:id="@+id/add_button"
-        android:layout_width="match_parent"
-        android:layout_marginBottom="8sp"
-        android:layout_height="wrap_content"
-        android:background="@color/button_secondary_color"
-        android:text="Update task" />
+        android:text="@string/btn_update_task"
+        style="@style/BTN2" />
 
-    <com.rama.txori.widgets.WdButton
+    <Button
         android:id="@+id/cancel_button"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/button_primary_color"
-        android:text="@string/cancel" />
+        android:text="@string/btn_cancel"
+        style="@style/BTN1" />
 </LinearLayout>

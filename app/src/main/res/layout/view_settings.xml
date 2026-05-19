@@ -108,11 +108,6 @@
                             style="@style/ColorPickerBtn" />
 
                         <com.rama.txori.widgets.WdColorPicker
-                            android:id="@+id/bg_1"
-                            app:text="@string/colorpicker_theme_background_1"
-                            style="@style/ColorPickerBtn" />
-
-                        <com.rama.txori.widgets.WdColorPicker
                             android:id="@+id/progressbar"
                             app:text="@string/colorpicker_theme_progressbar"
                             style="@style/ColorPickerBtn" />
@@ -125,6 +120,11 @@
                         <com.rama.txori.widgets.WdColorPicker
                             android:id="@+id/disabled"
                             app:text="@string/colorpicker_theme_disabled"
+                            style="@style/ColorPickerBtn" />
+
+                        <com.rama.txori.widgets.WdColorPicker
+                            android:id="@+id/bg_1"
+                            app:text="@string/colorpicker_theme_background_1"
                             style="@style/ColorPickerBtn" />
 
                         <com.rama.txori.widgets.WdColorPicker

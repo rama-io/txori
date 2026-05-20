@@ -18,6 +18,7 @@
 
             <ImageView
                 android:src="@drawable/icon_cog"
+                android:tint="@color/foreground"
                 android:contentDescription="@string/altdescr_open_settings"
                 style="@style/Icon24" />
         </FrameLayout>

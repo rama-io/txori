@@ -4,6 +4,7 @@ import android.content.Context
 import android.view.View
 import android.view.ViewGroup
 import android.widget.CheckBox
+import android.widget.ImageView
 import android.widget.RadioButton
 import android.widget.TextView
 import com.rama.txori.R
@@ -115,7 +116,7 @@ object ThemeManager {
         progressbar = 0xFF44475A.toInt(),
     )
 
-    // Melange Dark
+    // Mélange Dark
     private val MELANGE = Palette(
         h1 = 0xFFEBC06D.toInt(),
         foreground = 0xFFECE1D7.toInt(),
@@ -204,7 +205,7 @@ object ThemeManager {
 
     fun applyTheme(context: Context, root: View) {
         val prefs = PrefsManager.getInstance(context)
-        val palette = paletteFor(prefs.getTheme(), context)
+        val palette = com.rama.txori.managers.ThemeManager.paletteFor(prefs.getTheme(), context)
         val typeface = FontManager.getTypeface(context, prefs.getFontStyle())
         applyRecursively(context, root, palette, typeface)
     }
@@ -212,7 +213,7 @@ object ThemeManager {
     private fun applyRecursively(
         context: Context,
         view: View,
-        palette: Palette,
+        palette: com.rama.txori.managers.ThemeManager.Palette,
         typeface: android.graphics.Typeface?
     ) {
         applyToView(context, view, palette, typeface)
@@ -226,9 +227,35 @@ object ThemeManager {
     private fun applyToView(
         context: Context,
         view: View,
-        palette: Palette,
+        palette: com.rama.txori.managers.ThemeManager.Palette,
         typeface: android.graphics.Typeface?
     ) {
+        // Icon tinting, ImageView src drawables use @color/* fill colors which don't
+        // update automatically when the palette changes. We apply an imageTintList so
+        // the color is remapped through the same mapColor logic used everywhere else.
+        if (view is ImageView) {
+            val currentTint = view.imageTintList?.defaultColor
+            if (currentTint != null) {
+                // Already has a tint, remap it to the new palette slot
+                val mapped =
+                    com.rama.txori.managers.ThemeManager.mapColor(context, currentTint, palette)
+                if (mapped != null) {
+                    view.imageTintList = android.content.res.ColorStateList.valueOf(mapped)
+                }
+            } else {
+                // No tint set yet, seed from the drawable's fill color resource so
+                // subsequent theme switches can remap it correctly.
+                val seedColor = resolveDrawableFillColor(context, view) ?: return
+                val mapped = com.rama.txori.managers.ThemeManager.mapColor(
+                    context,
+                    seedColor,
+                    palette
+                ) ?: seedColor
+                view.imageTintList = android.content.res.ColorStateList.valueOf(mapped)
+            }
+            return
+        }
+
         // Font + text color
         if (view is TextView) {
             typeface?.let { view.typeface = it }
@@ -248,17 +275,24 @@ object ThemeManager {
                 }
 
                 else -> {
-                    // Only remap if we recognise the color — don't blindly overwrite
+                    // Only remap if we recognise the color, don't blindly overwrite
                     // with foreground, as that would clobber clock/icon/header text colors
-                    val mapped = mapColor(context, view.currentTextColor, palette)
+                    val mapped = com.rama.txori.managers.ThemeManager.mapColor(
+                        context,
+                        view.currentTextColor,
+                        palette
+                    )
                     if (mapped != null) view.setTextColor(mapped)
                 }
             }
         }
 
         // Background
-        val currentColor = resolveDrawableColor(view.background ?: return) ?: return
-        val mapped = mapColor(context, currentColor, palette) ?: return
+        val currentColor = com.rama.txori.managers.ThemeManager.resolveDrawableColor(
+            view.background ?: return
+        ) ?: return
+        val mapped =
+            com.rama.txori.managers.ThemeManager.mapColor(context, currentColor, palette) ?: return
         view.setBackgroundColor(mapped)
     }
 
@@ -353,5 +387,17 @@ object ThemeManager {
 
     private fun resolveDrawableColor(drawable: android.graphics.drawable.Drawable): Int? {
         return if (drawable is android.graphics.drawable.ColorDrawable) drawable.color else null
+    }
+
+    /**
+     * Reads the tint color seeded by android:tint in the layout XML.
+     * Returns null if no tint has been set (icon will be skipped this pass).
+     */
+    private fun resolveDrawableFillColor(context: Context, view: ImageView): Int? {
+        // android:tint in XML is exposed as imageTintList, but we already handle
+        // the tintList != null case before calling this. This path is only reached
+        // when no tint is set at all, which shouldn't happen once the layouts are
+        // updated. Return null so we skip safely rather than guess.
+        return null
     }
 }

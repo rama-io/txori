@@ -14,6 +14,7 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.FrameLayout
 import com.rama.txori.R
+import com.rama.txori.managers.SoundManager
 
 class TimerFragment : Fragment() {
 
@@ -42,6 +43,7 @@ class TimerFragment : Fragment() {
                 timerButton.text = getString(R.string.h1_timer_default)
                 isRunning = false
                 remainingMs = 0L
+                SoundManager.beepFinish()
                 updateButtons()
                 return
             }
@@ -180,10 +182,9 @@ class TimerFragment : Fragment() {
 
     private fun resetTimer() {
         handler.removeCallbacks(ticker)
-        isRunning = false
         remainingMs = initialMs
         timerButton.text = formatMillis(initialMs)
-        updateButtons()
+        startTimer()
     }
 
     private fun digitsToMillis(digits: String): Long {

@@ -331,5 +331,21 @@ class DatabaseHelper(context: Context) :
         s1("Deep Squat", 60)
         addRest(15)
         s1("Split Stretch", 60)
+
+        val s2Id = insertSession(db, "Roulette", 1)
+        fun s2(label: String, duration: Int) {
+            insertSessionStep(db, s2Id, getOrCreateTaskId(db, label, duration), n++)
+        }
+
+        s2("Drink Water", 0)
+        s2("Stand Up", 0)
+        s2("Walk Around", 0)
+        s2("Change Sitting Position", 0)
+        s2("Roll Shoulders", 0)
+        s2("Neck Stretch", 0)
+        s2("Wrist Stretch", 0)
+        s2("Goblin Posture Detected", 0)
+        s2("Look Away From Screen", 0)
+        s2("Touch Grass", 0)
     }
 }

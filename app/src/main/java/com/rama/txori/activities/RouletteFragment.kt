@@ -138,7 +138,14 @@ class RouletteFragment : Fragment() {
         db.close()
 
         val savedId = PrefsManager.getInstance(activity)
-            .prefs.getInt(PrefsManager.PrefKeys.ROULETTE_LIST, 0).toLong()
+            .prefs.getInt(PrefsManager.PrefKeys.ROULETTE_LIST, -1).toLong()
+
+        val defaultId = when {
+            savedId != -1L -> savedId
+            else -> sessions.firstOrNull { (_, name) -> name == "Roulette" }?.first
+                ?: sessions.firstOrNull()?.first
+                ?: -1L
+        }
 
         listsGroup.removeAllViews()
         sessions.forEach { (session_id, name) ->
@@ -146,7 +153,7 @@ class RouletteFragment : Fragment() {
                 text = name
                 tag = session_id
                 id = View.generateViewId()
-                if (session_id == savedId) isChecked = true
+                if (session_id == defaultId) isChecked = true
             }
             listsGroup.addView(rb)
         }

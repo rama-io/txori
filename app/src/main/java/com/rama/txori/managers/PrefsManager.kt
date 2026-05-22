@@ -91,7 +91,7 @@ class PrefsManager private constructor(context: Context) {
 
                 .putString(PrefKeys.APP_TIMER, "3000")
                 .putString(PrefKeys.ROULETTE_TIMER, "3000")
-                .putInt(PrefKeys.ROULETTE_LIST, 0)
+                .putInt(PrefKeys.ROULETTE_LIST, -1)
 
                 .putBoolean(PrefKeys.SETTINGS_SECTION_FONTS, true)
                 .putBoolean(PrefKeys.SETTINGS_SECTION_SYSTEM, true)

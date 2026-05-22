@@ -20,7 +20,7 @@ import com.rama.txori.managers.SoundManager
 import com.rama.txori.managers.ThemeManager
 import com.rama.txori.managers.WorkoutManager
 
-class HomeFragment : Fragment(), WorkoutManager.Listener {
+class SessionFragment : Fragment(), WorkoutManager.Listener {
 
     private lateinit var listView: ListView
     private lateinit var adapter: SessionAdapter

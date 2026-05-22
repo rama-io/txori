@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_height="match_parent"
+    style="@style/VerticalList">
+
+    <ScrollView
+        android:layout_weight="1"
+        style="@style/VerticalList">
+
+        <LinearLayout
+            android:id="@+id/choose_list"
+            style="@style/VerticalListDivided">
+
+            <TextView
+                android:text="@string/h3_timer"
+                style="@style/H3" />
+
+
+            <LinearLayout style="@style/HorizontalList_BG2">
+
+                <EditText
+                    android:id="@+id/timer_input"
+                    android:layout_weight="1"
+                    style="@style/EditText" />
+
+                <FrameLayout
+                    android:id="@+id/save_timer_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="12sp">
+
+                    <ImageView
+                        android:src="@drawable/icon_disk"
+                        android:contentDescription="@string/altdescr_save"
+                        style="@style/Icon24" />
+                </FrameLayout>
+            </LinearLayout>
+
+            <TextView
+                android:text="@string/h3_lists"
+                style="@style/H3" />
+
+            <RadioGroup
+                android:id="@+id/lists"
+                style="@style/VerticalListDivided_BG2" />
+
+
+        </LinearLayout>
+    </ScrollView>
+
+
+    <LinearLayout
+        android:visibility="gone"
+        android:id="@+id/running_roulette"
+        android:layout_weight="1"
+        android:gravity="center"
+        style="@style/VerticalListDivided">
+
+        <Button
+            android:id="@+id/counter_btn"
+            android:text="@string/h1_stopwatch_counter_default"
+            android:background="@android:color/transparent"
+            style="@style/H1_center" />
+
+        <TextView
+            android:id="@+id/next_task_name"
+            android:textColor="@color/disabled"
+            android:text="@string/h2_next_placeholder"
+            style="@style/H2_center" />
+    </LinearLayout>
+
+    <LinearLayout style="@style/VerticalListDivided">
+
+        <Button
+            android:id="@+id/start_roulette"
+            android:text="@string/btn_start_roulette"
+            style="@style/BTN2" />
+
+        <Button
+            android:id="@+id/play_pause_btn"
+            android:visibility="gone"
+            android:text="@string/altdescr_play_pause"
+            style="@style/BTN2" />
+
+        <Button
+            android:id="@+id/skip_task"
+            android:visibility="gone"
+            android:text="@string/btn_skip"
+            style="@style/BTN2" />
+
+    </LinearLayout>
+</LinearLayout>

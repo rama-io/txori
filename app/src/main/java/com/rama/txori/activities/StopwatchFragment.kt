@@ -89,11 +89,8 @@ class StopwatchFragment : Fragment() {
     }
 
     private fun resetStopwatch() {
-        isRunning = false
         pausedElapsed = 0L
-        counterStartButton.setText(getString(R.string.btn_stopwatch_start))
-        handler.removeCallbacks(ticker)
-        counterView.text = getString(R.string.h1_stopwatch_counter_default)
+        startStopwatch()
     }
 
     private fun formatTime(ms: Long): String {

@@ -48,6 +48,8 @@ class PrefsManager private constructor(context: Context) {
         const val APP_THEME_DANGER = "app:theme:danger"
         const val APP_THEME_COLLAPSIBLE_HEADER = "app:theme:collapsible_header"
 
+        const val ROULETTE_TIMER = "roulette:timer"
+
         const val SETTINGS_SECTION_FONTS = "settings:section:fonts"
         const val SETTINGS_SECTION_SYSTEM = "settings:section:system"
         const val SETTINGS_SECTION_LANGUAGE = "settings:section:language"
@@ -84,6 +86,8 @@ class PrefsManager private constructor(context: Context) {
                 .putBoolean(PrefKeys.SYSTEM_BAR_VISIBLE, false)
 
                 .putString(PrefKeys.APP_THEME_NAME, Theme.TOKYO_NIGHT)
+
+                .putString(PrefKeys.ROULETTE_TIMER, "00:00:00")
 
                 .putBoolean(PrefKeys.SETTINGS_SECTION_FONTS, true)
                 .putBoolean(PrefKeys.SETTINGS_SECTION_SYSTEM, true)

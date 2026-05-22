@@ -26,8 +26,12 @@
     <string name="h2_language">Language</string>
     <string name="h2_system">System</string>
     <string name="h2_app">App</string>
+    <string name="h3_lists">Lists</string>
+    <string name="h3_timer">Timer</string>
 
     <!-- Button -->
+    <string name="btn_skip">Skip</string>
+    <string name="btn_start_roulette">Start roulette</string>
     <string name="btn_timer_save">Save timer</string>
     <string name="btn_timer_start">Start timer</string>
     <string name="btn_timer_pause">Pause timer</string>
@@ -116,6 +120,7 @@
     <string name="altdescr_edit_task">Edit task</string>
     <string name="altdescr_ascend">Move up</string>
     <string name="altdescr_descend">Move down</string>
+    <string name="altdescr_save">Save</string>
 
     <!-- APP -->
     <string name="app_name" translatable="false">Txori</string>

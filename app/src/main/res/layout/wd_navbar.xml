@@ -29,6 +29,18 @@
     <FrameLayout
         android:id="@+id/timer_nav"
         android:layout_weight="1"
+        android:layout_marginEnd="2dp"
+        style="@style/BTN1">
+
+        <ImageView
+            android:src="@drawable/icon_timer_solid"
+            android:contentDescription="@string/altdescr_timer_nav"
+            style="@style/Icon24" />
+    </FrameLayout>
+
+    <FrameLayout
+        android:id="@+id/roulette_nav"
+        android:layout_weight="1"
         style="@style/BTN1">
 
         <ImageView

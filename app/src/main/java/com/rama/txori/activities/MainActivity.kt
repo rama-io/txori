@@ -18,9 +18,10 @@ class MainActivity : CsActivity() {
     private fun fragmentForPage(page: WdNavbar.Page): Fragment =
         fragmentManager.findFragmentByTag(page.name)
             ?: when (page) {
-                WdNavbar.Page.HOME -> HomeFragment()
+                WdNavbar.Page.HOME -> SessionFragment()
                 WdNavbar.Page.STOPWATCH -> StopwatchFragment()
                 WdNavbar.Page.TIMER -> TimerFragment()
+                WdNavbar.Page.ROULETTE -> RouletteFragment()
             }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -57,6 +58,11 @@ class MainActivity : CsActivity() {
                     R.id.content_container,
                     fragmentForPage(WdNavbar.Page.HOME),
                     WdNavbar.Page.HOME.name
+                )
+                .add(
+                    R.id.content_container,
+                    fragmentForPage(WdNavbar.Page.ROULETTE),
+                    WdNavbar.Page.ROULETTE.name
                 )
                 .commit()
             fragmentManager.executePendingTransactions()

@@ -11,6 +11,7 @@
     <!-- H2 -->
     <string name="h2_greeting">Kaixo!</string>
     <string name="h2_done">Done!</string>
+    <string name="h2_go">Go!</string>
     <string name="h2_next_placeholder">---</string>
     <string name="h2_next_task_prefix">Next: %1$s</string>
     <string name="h2_edit_task">Edit task</string>
@@ -30,7 +31,7 @@
     <string name="h3_timer">Timer</string>
 
     <!-- Button -->
-    <string name="btn_skip">Skip</string>
+    <string name="btn_next">Next</string>
     <string name="btn_start_roulette">Start roulette</string>
     <string name="btn_timer_save">Save timer</string>
     <string name="btn_timer_start">Start timer</string>
@@ -55,6 +56,7 @@
     <string name="btn_theme_apply_custom">Apply Custom Theme</string>
     <string name="btn_add_group">+ Add New Group</string>
     <string name="btn_font_custom_pick">Choose Font file</string>
+    <string name="btn_finish">Finish</string>
 
     <!-- ColorPicker -->
     <string name="colorpicker_theme_foreground">Foreground</string>

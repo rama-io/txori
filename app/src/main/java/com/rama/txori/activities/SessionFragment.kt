@@ -91,7 +91,7 @@ class SessionFragment : Fragment(), WorkoutManager.Listener {
         view.findViewById<View>(R.id.increase_duration)
             .setOnClickListener { workout.addTime(30_000L) }
         view.findViewById<View>(R.id.start_task).setOnClickListener { workout.togglePlayPause() }
-        view.findViewById<View>(R.id.skip_task).setOnClickListener { workout.skipTask() }
+        view.findViewById<View>(R.id.next_task).setOnClickListener { workout.skipTask() }
 
         val addGroupButton = view.findViewById<Button>(R.id.add_group_button)
         val workButton = view.findViewById<Button>(R.id.work_button)

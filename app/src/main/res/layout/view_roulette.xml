@@ -4,12 +4,11 @@
     style="@style/VerticalList">
 
     <ScrollView
+        android:id="@+id/edit_view"
         android:layout_weight="1"
         style="@style/VerticalList">
 
-        <LinearLayout
-            android:id="@+id/choose_list"
-            style="@style/VerticalListDivided">
+        <LinearLayout style="@style/VerticalListDivided">
 
             <TextView
                 android:text="@string/h3_timer"
@@ -21,6 +20,7 @@
                 <EditText
                     android:id="@+id/timer_input"
                     android:layout_weight="1"
+                    android:hint="@string/hint_timer"
                     style="@style/EditText" />
 
                 <FrameLayout
@@ -83,9 +83,15 @@
             style="@style/BTN2" />
 
         <Button
-            android:id="@+id/skip_task"
+            android:id="@+id/next_task"
             android:visibility="gone"
-            android:text="@string/btn_skip"
+            android:text="@string/btn_next"
+            style="@style/BTN2" />
+
+        <Button
+            android:id="@+id/finish_roulette"
+            android:visibility="gone"
+            android:text="@string/btn_finish"
             style="@style/BTN2" />
 
     </LinearLayout>

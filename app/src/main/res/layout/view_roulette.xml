@@ -31,6 +31,7 @@
 
                     <ImageView
                         android:src="@drawable/icon_disk"
+                        android:tint="@color/foreground"
                         android:contentDescription="@string/altdescr_save"
                         style="@style/Icon24" />
                 </FrameLayout>
@@ -64,7 +65,6 @@
 
         <TextView
             android:id="@+id/next_task_name"
-            android:textColor="@color/disabled"
             android:text="@string/h2_next_placeholder"
             style="@style/H2_center" />
     </LinearLayout>

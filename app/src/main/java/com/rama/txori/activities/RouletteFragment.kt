@@ -31,7 +31,7 @@ class RouletteFragment : Fragment() {
     private lateinit var saveTimerButton: FrameLayout
     private lateinit var listsGroup: RadioGroup
     private lateinit var counterBtn: Button
-    private lateinit var nextTaskName: TextView
+    private lateinit var currentTaskName: TextView
     private lateinit var startRouletteBtn: Button
     private lateinit var playPauseBtn: Button
     private lateinit var skipTaskBtn: Button
@@ -82,7 +82,7 @@ class RouletteFragment : Fragment() {
         saveTimerButton = view.findViewById(R.id.save_timer_button)
         listsGroup = view.findViewById(R.id.lists)
         counterBtn = view.findViewById(R.id.counter_btn)
-        nextTaskName = view.findViewById(R.id.next_task_name)
+        currentTaskName = view.findViewById(R.id.next_task_name)
         startRouletteBtn = view.findViewById(R.id.start_roulette)
         playPauseBtn = view.findViewById(R.id.play_pause_btn)
         skipTaskBtn = view.findViewById(R.id.next_task)
@@ -180,11 +180,7 @@ class RouletteFragment : Fragment() {
         }
         val task = shuffledTasks[currentIndex]
         counterBtn.text = formatMillis(timerMs)
-        nextTaskName.text = if (currentIndex < shuffledTasks.size) {
-            task.label
-        } else {
-            getString(R.string.h2_next_placeholder)
-        }
+        currentTaskName.text = task.label
         waitingForComplete = false
     }
 

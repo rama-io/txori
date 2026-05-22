@@ -105,6 +105,11 @@ class RouletteFragment : Fragment() {
         }
     }
 
+    override fun onHiddenChanged(hidden: Boolean) {
+        super.onHiddenChanged(hidden)
+        if (!hidden) populateSessionList()
+    }
+
     override fun onDestroyView() {
         handler.removeCallbacks(ticker)
         super.onDestroyView()

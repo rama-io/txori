@@ -89,8 +89,8 @@ class PrefsManager private constructor(context: Context) {
 
                 .putString(PrefKeys.APP_THEME_NAME, Theme.TOKYO_NIGHT)
 
-                .putString(PrefKeys.APP_TIMER, "000000")
-                .putString(PrefKeys.ROULETTE_TIMER, "000000")
+                .putString(PrefKeys.APP_TIMER, "3000")
+                .putString(PrefKeys.ROULETTE_TIMER, "3000")
                 .putInt(PrefKeys.ROULETTE_LIST, 0)
 
                 .putBoolean(PrefKeys.SETTINGS_SECTION_FONTS, true)

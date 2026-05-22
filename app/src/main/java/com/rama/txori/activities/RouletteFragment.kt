@@ -16,6 +16,7 @@ import android.widget.RadioButton
 import android.widget.RadioGroup
 import android.widget.ScrollView
 import android.widget.TextView
+import android.widget.Toast
 import com.rama.txori.DatabaseHelper
 import com.rama.txori.R
 import com.rama.txori.Task
@@ -123,6 +124,7 @@ class RouletteFragment : Fragment() {
         PrefsManager.getInstance(activity)
             .setString(PrefsManager.PrefKeys.ROULETTE_TIMER, formatted)
         timerInput.clearFocus()
+        Toast.makeText(activity, getString(R.string.toast_saved_timer), Toast.LENGTH_LONG).show()
     }
 
     private fun populateSessionList() {

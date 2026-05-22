@@ -104,6 +104,7 @@
     <string name="toast_name_empty">Name cannot be empty</string>
     <string name="toast_label_empty">Label cannot be empty</string>
     <string name="toast_invalid_color">Invalid color</string>
+    <string name="toast_saved_timer">Timer saved</string>
 
     <!-- AltDescription -->
     <string name="altdescr_open_settings">Open Settings</string>
@@ -123,6 +124,7 @@
     <string name="altdescr_ascend">Move up</string>
     <string name="altdescr_descend">Move down</string>
     <string name="altdescr_save">Save</string>
+    <string name="altdescr_shuffle_nav">Shuffle</string>
 
     <!-- APP -->
     <string name="app_name" translatable="false">Txori</string>

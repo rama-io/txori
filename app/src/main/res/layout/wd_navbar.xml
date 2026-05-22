@@ -44,8 +44,8 @@
         style="@style/BTN1">
 
         <ImageView
-            android:src="@drawable/icon_timer_solid"
-            android:contentDescription="@string/altdescr_timer_nav"
+            android:src="@drawable/icon_shuffle"
+            android:contentDescription="@string/altdescr_shuffle_nav"
             style="@style/Icon24" />
     </FrameLayout>
 </LinearLayout>

@@ -64,7 +64,7 @@
             style="@style/H1_center" />
 
         <TextView
-            android:id="@+id/next_task_name"
+            android:id="@+id/current_roulette_task_name"
             android:text="@string/h2_next_placeholder"
             style="@style/H2_center" />
     </LinearLayout>

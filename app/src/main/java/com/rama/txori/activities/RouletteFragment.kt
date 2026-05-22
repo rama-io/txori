@@ -35,6 +35,7 @@ class RouletteFragment : Fragment() {
     private lateinit var startRouletteBtn: Button
     private lateinit var playPauseBtn: Button
     private lateinit var skipTaskBtn: Button
+    private lateinit var finishBtn: Button
 
     // State
     private var isRunning = false
@@ -82,10 +83,11 @@ class RouletteFragment : Fragment() {
         saveTimerButton = view.findViewById(R.id.save_timer_button)
         listsGroup = view.findViewById(R.id.lists)
         counterBtn = view.findViewById(R.id.counter_btn)
-        currentTaskName = view.findViewById(R.id.next_task_name)
+        currentTaskName = view.findViewById(R.id.current_roulette_task_name)
         startRouletteBtn = view.findViewById(R.id.start_roulette)
         playPauseBtn = view.findViewById(R.id.play_pause_btn)
         skipTaskBtn = view.findViewById(R.id.next_task)
+        finishBtn = view.findViewById(R.id.finish_roulette)
 
         loadPrefs()
         populateSessionList()
@@ -94,6 +96,7 @@ class RouletteFragment : Fragment() {
         startRouletteBtn.setOnClickListener { startRoulette() }
         playPauseBtn.setOnClickListener { togglePlayPause() }
         skipTaskBtn.setOnClickListener { nextTask() }
+        finishBtn.setOnClickListener { finishRoulette() }
 
         // Tap counter to mark task complete when waiting
         counterBtn.setOnClickListener {
@@ -242,6 +245,7 @@ class RouletteFragment : Fragment() {
     private fun showRunningSection() {
         chooseListSection.visibility = View.GONE
         runningSection.visibility = View.VISIBLE
+        finishBtn.visibility = View.VISIBLE
         updateRunningUI()
     }
 
@@ -251,6 +255,7 @@ class RouletteFragment : Fragment() {
         startRouletteBtn.visibility = View.VISIBLE
         playPauseBtn.visibility = View.GONE
         skipTaskBtn.visibility = View.GONE
+        finishBtn.visibility = View.GONE
     }
 
     private fun updateRunningUI() {
@@ -261,7 +266,9 @@ class RouletteFragment : Fragment() {
         if (waitingForComplete) {
             playPauseBtn.text = getString(R.string.btn_timer_start)
             counterBtn.text = getString(R.string.h2_go)
+            playPauseBtn.visibility = View.GONE
         } else {
+            playPauseBtn.visibility = View.VISIBLE
             playPauseBtn.text = if (isRunning)
                 getString(R.string.btn_timer_pause)
             else

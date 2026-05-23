@@ -126,7 +126,7 @@
         <item name="android:paddingStart">2sp</item>
         <item name="android:paddingEnd">2sp</item>
         <item name="android:textSize">@dimen/small</item>
-        <item name="android:background">@color/accent_2</item>
+        <item name="android:background">@color/button_2</item>
         <item name="android:textColor">@color/bg_1</item>
         <item name="android:textStyle">bold</item>
         <item name="android:textAllCaps">true</item>

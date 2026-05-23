@@ -51,10 +51,14 @@ class DatabaseHelper(context: Context) :
     }
 
     override fun onUpgrade(db: SQLiteDatabase, oldVersion: Int, newVersion: Int) {
-        db.execSQL("DROP TABLE IF EXISTS session_steps")
-        db.execSQL("DROP TABLE IF EXISTS sessions")
-        db.execSQL("DROP TABLE IF EXISTS tasks")
-        onCreate(db)
+        if (oldVersion < 3) {
+            db.execSQL(
+                """
+            ALTER TABLE tasks
+            ADD COLUMN rest_duration INTEGER DEFAULT 60
+            """.trimIndent()
+            )
+        }
     }
 
     // PUBLIC QUERY HELPERS

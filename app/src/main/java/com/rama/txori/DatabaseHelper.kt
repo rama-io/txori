@@ -334,7 +334,7 @@ class DatabaseHelper(context: Context) :
         s1("Split Stretch", 60, 0)
 
         val s2Id = insertSession(db, "Roulette", 1)
-        fun s2(label: String, duration: Int = 0, restDuration: Int = 0) {
+        fun s2(label: String, duration: Int = 60, restDuration: Int = 0) {
             insertSessionStep(db, s2Id, getOrCreateTaskId(db, label, duration, restDuration), n++)
         }
 

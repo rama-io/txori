@@ -163,6 +163,21 @@ class SessionFragment : Fragment(), WorkoutManager.Listener {
         adapter.setProgress(index, 1f)
     }
 
+    override fun onRestStarted(index: Int, restDurationMs: Long) {
+        taskNameView.text = getString(R.string.h2_resting)
+        updateTimerDisplay(restDurationMs)
+        adapter.setRestProgress(index, 0f)
+    }
+
+    override fun onRestTick(index: Int, remainingMs: Long, progress: Float) {
+        updateTimerDisplay(remainingMs)
+        adapter.setRestProgress(index, progress)
+    }
+
+    override fun onRestFinished(index: Int) {
+        adapter.setRestProgress(index, 0f)
+    }
+
     override fun onSessionTick(sessionId: Long, remainingMs: Long) {
         adapter.updateActiveHeaderTimer(sessionId, remainingMs)
     }
@@ -222,7 +237,7 @@ class SessionFragment : Fragment(), WorkoutManager.Listener {
 
     private fun updateTimerDisplay(ms: Long) {
         val total = (ms / 1000).coerceAtLeast(0)
-        timerView.text = String.format("%02d:%02d", total / 60, total % 60)
+        timerView.text = String.format("%02d:%02d:%02d", total / 3600, (total % 3600) / 60, total % 60)
     }
 
     private fun showAddGroupDialog() {

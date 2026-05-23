@@ -11,6 +11,7 @@
     <!-- H2 -->
     <string name="h2_greeting">Kaixo!</string>
     <string name="h2_done">Done!</string>
+    <string name="h2_resting">Resting...</string>
     <string name="h2_go">Go!</string>
     <string name="h2_next_placeholder">---</string>
     <string name="h2_next_task_prefix">Next: %1$s</string>

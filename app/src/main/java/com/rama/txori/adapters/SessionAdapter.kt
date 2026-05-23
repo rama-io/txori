@@ -31,6 +31,7 @@ class SessionAdapter(
 
     private var activeItemIndex: Int = -1
     private var activeProgress: Float = 0f
+    private var activeRestProgress: Float = 0f
     private val collapsedSessions: MutableSet<Long> = mutableSetOf()
     private var isEditMode: Boolean = false
     private val playingSessions: MutableSet<Long> = mutableSetOf()
@@ -43,6 +44,7 @@ class SessionAdapter(
     fun setActiveItemIndex(index: Int) {
         activeItemIndex = index
         activeProgress = 0f
+        activeRestProgress = 0f
         notifyDataSetChanged()
     }
 
@@ -61,6 +63,23 @@ class SessionAdapter(
         if (localPosition < 0 || localPosition >= listView.childCount) return
         val itemView = listView.getChildAt(localPosition) ?: return
         applyProgress(progress, itemView)
+    }
+
+    fun setRestProgress(index: Int, progress: Float) {
+        if (index != activeItemIndex) return
+        activeRestProgress = progress
+
+        val listView = (context as? android.app.Activity)
+            ?.findViewById<ListView>(R.id.task_list) ?: return
+
+        val visiblePosition = rawIndexToVisiblePosition(index)
+        if (visiblePosition < 0) return
+
+        val firstVisible = listView.firstVisiblePosition
+        val localPosition = visiblePosition - firstVisible
+        if (localPosition < 0 || localPosition >= listView.childCount) return
+        val itemView = listView.getChildAt(localPosition) ?: return
+        applyRestProgress(progress, itemView)
     }
 
     fun rawIndexToVisiblePosition(rawIndex: Int): Int {
@@ -302,6 +321,8 @@ class SessionAdapter(
 
         val p = if (position == activeItemIndex) activeProgress else 0f
         applyProgress(p, view)
+        val rp = if (position == activeItemIndex) activeRestProgress else 0f
+        applyRestProgress(rp, view)
 
         // --- Ascend (move task up within its session) ---
         val ascendButton = view.findViewById<FrameLayout>(R.id.ascend_button)
@@ -363,6 +384,19 @@ class SessionAdapter(
             if (totalWidth > 0) {
                 progressView.layoutParams.width = (totalWidth * progress).toInt()
                 progressView.requestLayout()
+            }
+        }
+    }
+
+    private fun applyRestProgress(progress: Float, itemView: View) {
+        val container = itemView.findViewById<View>(R.id.app_row_container) ?: return
+        val restProgressView = itemView.findViewById<View>(R.id.progress_rest_bg) ?: return
+
+        container.post {
+            val totalWidth = container.width
+            if (totalWidth > 0) {
+                restProgressView.layoutParams.width = (totalWidth * progress).toInt()
+                restProgressView.requestLayout()
             }
         }
     }

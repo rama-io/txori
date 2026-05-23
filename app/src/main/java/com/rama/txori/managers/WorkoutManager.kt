@@ -9,6 +9,9 @@ class WorkoutManager(private var listener: Listener) {
         fun onTaskStarted(index: Int, label: String, remainingMs: Long)
         fun onTaskTick(index: Int, remainingMs: Long, progress: Float)
         fun onTaskFinished(index: Int)
+        fun onRestStarted(index: Int, restDurationMs: Long)
+        fun onRestTick(index: Int, remainingMs: Long, progress: Float)
+        fun onRestFinished(index: Int)
         fun onSessionTick(sessionId: Long, remainingMs: Long)
         fun onPlayingStateChanged(sessionId: Long, playing: Boolean)
         fun onGroupFinished(sessionId: Long)
@@ -34,6 +37,8 @@ class WorkoutManager(private var listener: Listener) {
     private var taskGeneration: Int = 0
     private var lastBeepSecond: Long = -1
     private var taskDurationMs: Long = 0L
+    private var restTimer: CountDownTimer? = null
+    private var restDurationMs: Long = 0L
 
     //  Public actions
 
@@ -117,6 +122,7 @@ class WorkoutManager(private var listener: Listener) {
 
     private fun pause() {
         cancelTaskTimer()
+        cancelRestTimer()
         cancelGlobalTimer()
         isRunning = false
         listener.onPlayingStateChanged(activeSessionId, false)
@@ -166,6 +172,7 @@ class WorkoutManager(private var listener: Listener) {
 
     private fun stopTask() {
         cancelTaskTimer()
+        cancelRestTimer()
         isRunning = false
     }
 
@@ -192,7 +199,13 @@ class WorkoutManager(private var listener: Listener) {
                 isRunning = false
                 SoundManager.beepFinish()
                 listener.onTaskFinished(currentItemIndex)
-                startFromIndex(currentItemIndex + 1)
+                val row = items.getOrNull(currentItemIndex) as? com.rama.txori.SessionItem.Row
+                val restMs = (row?.task?.restDuration ?: 0) * 1_000L
+                if (restMs > 0) {
+                    launchRestTimer(currentItemIndex, restMs)
+                } else {
+                    startFromIndex(currentItemIndex + 1)
+                }
             }
         }.start()
     }
@@ -214,6 +227,26 @@ class WorkoutManager(private var listener: Listener) {
 
     private fun cancelTaskTimer() {
         taskTimer?.cancel(); taskTimer = null
+    }
+
+    private fun launchRestTimer(index: Int, durationMs: Long) {
+        cancelRestTimer()
+        restDurationMs = durationMs
+        listener.onRestStarted(index, durationMs)
+        restTimer = object : CountDownTimer(durationMs, 100) {
+            override fun onTick(millisUntilFinished: Long) {
+                val progress = (1f - millisUntilFinished.toFloat() / restDurationMs).coerceIn(0f, 1f)
+                listener.onRestTick(index, millisUntilFinished, progress)
+            }
+            override fun onFinish() {
+                listener.onRestFinished(index)
+                startFromIndex(index + 1)
+            }
+        }.start()
+    }
+
+    private fun cancelRestTimer() {
+        restTimer?.cancel(); restTimer = null
     }
 
     private fun cancelGlobalTimer() {

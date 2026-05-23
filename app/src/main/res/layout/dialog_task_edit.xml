@@ -19,45 +19,50 @@
         android:layout_height="0dp"
         android:visibility="gone" />
 
-    <LinearLayout style="@style/VerticalListDivided_BG2">
+    <ScrollView
+        android:layout_weight="1"
+        style="@style/VerticalList">
 
-        <TextView
-            android:text="@string/label_task_label"
-            style="@style/Text" />
+        <LinearLayout style="@style/VerticalListDivided_BG2">
 
-        <AutoCompleteTextView
-            android:id="@+id/label"
-            android:completionThreshold="1"
-            style="@style/EditText" />
+            <TextView
+                android:text="@string/label_task_label"
+                style="@style/Text" />
 
-        <TextView
-            android:text="@string/label_task_duration"
-            style="@style/Text" />
+            <AutoCompleteTextView
+                android:id="@+id/label"
+                android:completionThreshold="1"
+                style="@style/EditText" />
 
-        <EditText
-            android:id="@+id/duration"
-            style="@style/EditText" />
+            <TextView
+                android:text="@string/label_task_duration"
+                style="@style/Text" />
 
-        <TextView
-            android:text="@string/label_rest_duration"
-            style="@style/Text" />
+            <EditText
+                android:id="@+id/duration"
+                style="@style/EditText" />
 
-        <EditText
-            android:id="@+id/rest_duration"
-            style="@style/EditText" />
+            <TextView
+                android:text="@string/label_rest_duration"
+                style="@style/Text" />
 
-        <TextView
-            android:id="@+id/group_label"
-            android:text="@string/label_group"
-            android:visibility="gone"
-            style="@style/Text" />
+            <EditText
+                android:id="@+id/rest_duration"
+                style="@style/EditText" />
 
-        <AutoCompleteTextView
-            android:id="@+id/group_spinner"
-            android:completionThreshold="1"
-            android:visibility="gone"
-            style="@style/EditText" />
-    </LinearLayout>
+            <TextView
+                android:id="@+id/group_label"
+                android:text="@string/label_group"
+                android:visibility="gone"
+                style="@style/Text" />
+
+            <AutoCompleteTextView
+                android:id="@+id/group_spinner"
+                android:completionThreshold="1"
+                android:visibility="gone"
+                style="@style/EditText" />
+        </LinearLayout>
+    </ScrollView>
 
     <Button
         android:id="@+id/delete_button"

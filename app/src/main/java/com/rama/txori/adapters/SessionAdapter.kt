@@ -169,7 +169,7 @@ class SessionAdapter(
         val view = convertView ?: LayoutInflater.from(context)
             .inflate(R.layout.list_item_header, parent, false)
 
-        val totalSec = header.tasks.sumOf { it.duration }
+        val totalSec = header.tasks.sumOf { hhmmssToSeconds(it.duration) }
         val timeStr = formatGroupTime(totalSec)
         val isCollapsed = collapsedSessions.contains(header.sessionId)
         val collapseIndicator = if (isCollapsed) "[-]" else "[+]"
@@ -290,7 +290,7 @@ class SessionAdapter(
             .inflate(R.layout.list_item_task, parent, false)
 
         view.findViewById<TextView>(R.id.task_label).text = row.task.label
-        view.findViewById<TextView>(R.id.task_duration).text = formatDuration(row.task.duration)
+        view.findViewById<TextView>(R.id.task_duration).text = hhmmssToDisplay(row.task.duration)
 
         var occurrence = 0
         var total = 0
@@ -481,9 +481,9 @@ class SessionAdapter(
 
         val labelInput = dialogView.findViewById<AutoCompleteTextView>(R.id.label)
         val durationInput = dialogView.findViewById<EditText>(R.id.duration)
-        durationInput.setText("60")
+        durationInput.setText("000100")
         val restDurationInput = dialogView.findViewById<EditText>(R.id.rest_duration)
-        restDurationInput.setText("60")
+        restDurationInput.setText("000100")
 
         dialogView.findViewById<Button>(R.id.delete_button).visibility = View.GONE
         dialogView.findViewById<ListView>(R.id.existing_tasks_list).visibility = View.GONE
@@ -511,8 +511,8 @@ class SessionAdapter(
 
         dialogView.findViewById<Button>(R.id.add_button).setOnClickListener {
             val label = labelInput.text.toString().trim()
-            val duration = durationInput.text.toString().toIntOrNull() ?: 60
-            val restDuration = restDurationInput.text.toString().toIntOrNull() ?: 60
+            val duration = sanitiseHhmmss(durationInput.text.toString())
+            val restDuration = sanitiseHhmmss(restDurationInput.text.toString())
 
             if (label.isEmpty()) {
                 labelInput.error = context.getString(R.string.toast_label_empty)
@@ -530,7 +530,7 @@ class SessionAdapter(
             // Reload tasks from DB so the new task carries its real stepId.
             // Without it, swapStepOrder queries id=0 and silently fails.
             val freshTasks = dbHelper.getSessionTasks(db, targetSessionId)
-            val newTask = freshTasks.lastOrNull() ?: Task(label = label, duration = duration)
+            val newTask = freshTasks.lastOrNull() ?: Task(label = label, duration = duration, restDuration = restDuration)
 
             // Find the correct insert position for the target session
             val targetHeaderIdx = items.indexOfFirst {
@@ -564,8 +564,8 @@ class SessionAdapter(
         val restDurationInput = dialogView.findViewById<EditText>(R.id.rest_duration)
 
         labelInput.setText(row.task.label)
-        durationInput.setText(row.task.duration.toString())
-        restDurationInput.setText(row.task.restDuration.toString())
+        durationInput.setText(row.task.duration)
+        restDurationInput.setText(row.task.restDuration)
 
         dialogView.findViewById<Button>(R.id.delete_button).setOnClickListener {
             dbHelper.removeStepFromSession(db, row.task.stepId)
@@ -595,9 +595,8 @@ class SessionAdapter(
 
         dialogView.findViewById<Button>(R.id.add_button).setOnClickListener {
             val newLabel = labelInput.text.toString().trim()
-            val newDuration = durationInput.text.toString().toIntOrNull() ?: row.task.duration
-            val newRestDuration =
-                restDurationInput.text.toString().toIntOrNull() ?: row.task.restDuration
+            val newDuration = sanitiseHhmmss(durationInput.text.toString())
+            val newRestDuration = sanitiseHhmmss(restDurationInput.text.toString())
 
             if (newLabel.isEmpty()) {
                 labelInput.error = context.getString(R.string.toast_label_empty)
@@ -652,24 +651,27 @@ class SessionAdapter(
 
     //  Formatting
 
-    private fun formatDuration(seconds: Int): String {
-        return if (seconds >= 60) {
-            val m = seconds / 60
-            val s = seconds % 60
-            if (s == 0) "${m}m" else "${m}m ${s}s"
-        } else "${seconds}s"
+    // Parse "hhmmss" raw digits → total seconds
+    private fun hhmmssToSeconds(raw: String): Int {
+        val d = raw.filter { it.isDigit() }.padStart(6, '0')
+        val hh = d.substring(0, 2).toInt()
+        val mm = d.substring(2, 4).toInt()
+        val ss = d.substring(4, 6).toInt()
+        return hh * 3600 + mm * 60 + ss
     }
 
-    private fun formatGroupTime(totalSeconds: Int): String {
-        return if (totalSeconds >= 3600) {
-            val h = totalSeconds / 3600
-            val m = (totalSeconds % 3600) / 60
-            val s = totalSeconds % 60
-            String.format("%02d:%02d:%02d", h, m, s)
-        } else {
-            val m = totalSeconds / 60
-            val s = totalSeconds % 60
-            String.format("%02d:%02d", m, s)
-        }
+    // Display "hhmmss" stored string as "hh:mm:ss"
+    private fun hhmmssToDisplay(raw: String): String {
+        val d = raw.filter { it.isDigit() }.padStart(6, '0')
+        return "${d.substring(0, 2)}:${d.substring(2, 4)}:${d.substring(4, 6)}"
     }
+
+    // Sanitise user input: accept "hhmmss" digits (max 6), pad/trim as needed
+    private fun sanitiseHhmmss(input: String): String {
+        val digits = input.filter { it.isDigit() }.takeLast(6).padStart(6, '0')
+        return digits
+    }
+
+    private fun formatGroupTime(totalSeconds: Int): String =
+        String.format("%02d:%02d:%02d", totalSeconds / 3600, (totalSeconds % 3600) / 60, totalSeconds % 60)
 }

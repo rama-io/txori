@@ -93,12 +93,12 @@
     <string name="checkbox_lock_screen_from_falling_asleep">Keep screen awake</string>
 
     <!-- InputLabel -->
-    <string name="label_task_duration">Duration (seconds)</string>
+    <string name="label_task_duration">Duration (HHMMSS)</string>
     <string name="label_task_label">Task Label</string>
     <string name="label_group_name">Group Name</string>
     <string name="label_group">Current Group</string>
     <string name="label_zoom">Zoom</string>
-    <string name="label_rest_duration">Rest Duration (seconds)</string>
+    <string name="label_rest_duration">Rest Duration (HHMMSS)</string>
 
     <!-- InputHints -->
     <string name="hint_timer">HHMMSS</string>

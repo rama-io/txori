@@ -238,6 +238,18 @@
                     android:id="@+id/keep_screen_awake"
                     android:text="@string/checkbox_lock_screen_from_falling_asleep"
                     style="@style/Checkbox" />
+
+                <LinearLayout style="@style/VerticalListDivided_BG2">
+
+                    <TextView
+                        android:text="@string/label_zoom"
+                        style="@style/Text" />
+
+                    <com.rama.txori.widgets.WdRange
+                        android:id="@+id/zoom"
+                        app:values="0.75,1,1.25,1.5,1.75,2,2.25,2.50,2.75,3,3.25"
+                        style="@style/BlockFlow" />
+                </LinearLayout>
             </com.rama.txori.widgets.WdCollapsibleSection>
 
             <!--Language-->

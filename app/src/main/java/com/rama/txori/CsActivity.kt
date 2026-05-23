@@ -1,9 +1,10 @@
 package com.rama.txori
 
-import android.app.Activity
+import android.content.res.Configuration
 import android.content.Context
 import android.os.Build
 import android.os.Bundle
+import android.util.DisplayMetrics
 import android.view.View
 import android.view.WindowInsets
 import android.view.WindowManager
@@ -13,14 +14,28 @@ import com.rama.txori.utils.dp
 import com.rama.txori.managers.PrefsManager
 import com.rama.txori.utils.LocaleHelper
 
-abstract class CsActivity : Activity() {
+abstract class CsActivity : android.app.Activity() {
 
     val prefs by lazy { PrefsManager.getInstance(this) }
     private var lastKnownAppLanguage: String? = null
     private var lastKnownTheme: String? = null
 
     override fun attachBaseContext(newBase: Context) {
-        super.attachBaseContext(LocaleHelper.wrapContext(newBase))
+        val localeContext = LocaleHelper.wrapContext(newBase)
+
+        val scale = PrefsManager.getInstance(localeContext).getUiScale()
+
+        val context = if (scale != 1f) {
+            // createConfigurationContext derives densityDpi from the *base* context
+            // each time, so there is no compounding across recreate() calls.
+            val config = Configuration(localeContext.resources.configuration)
+            config.densityDpi = (localeContext.resources.displayMetrics.densityDpi * scale).toInt()
+            localeContext.createConfigurationContext(config)
+        } else {
+            localeContext
+        }
+
+        super.attachBaseContext(context)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -138,7 +153,7 @@ abstract class CsActivity : Activity() {
                 @Suppress("DEPRECATION")
                 view.setPadding(
                     insets.systemWindowInsetLeft + paddingInline,
-                    paddingBlock, // insets.systemWindowInsetTop
+                    paddingBlock,
                     insets.systemWindowInsetRight + paddingInline,
                     insets.systemWindowInsetBottom + paddingBlock
                 )

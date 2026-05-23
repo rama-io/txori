@@ -23,6 +23,7 @@ class SettingsAppearanceController(private val activity: SettingsActivity) {
         setupFontStyle()
         setupTheme()
         setupCustomTheme()
+        setupUiScale()
     }
 
     fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -216,7 +217,36 @@ class SettingsAppearanceController(private val activity: SettingsActivity) {
             }
             prefs.setTheme(PrefsManager.Theme.CUSTOM)
             activity.recreate()
+        }
+    }
 
+    private fun setupUiScale() {
+        val range = activity.findViewById<com.rama.txori.widgets.WdRange>(R.id.zoom)
+
+        val savedScale = prefs.getUiScale()
+
+        // Set the listener BEFORE the pre-selection click, but guard with a value
+        // comparison so the initial performClick() never triggers a recreate().
+        // Without the guard: performClick() → onValueChanged → recreate() → setup()
+        // → performClick() → ... infinite loop.
+        range.onValueChanged = { value ->
+            val scale = value.toFloatOrNull() ?: 1f
+            if (scale != prefs.getUiScale()) {
+                prefs.setUiScale(scale)
+                activity.recreate()
+            }
+        }
+
+        // Pre-select the button matching the saved scale. WdRange always selects
+        // index 0 in its init block, so we override that with a post() click.
+        val steps =
+            listOf("0.75", "1", "1.25", "1.5", "1.75", "2", "2.25", "2.50", "2.75", "3", "3.25")
+        val matchIndex = steps.indexOfFirst { it.toFloatOrNull() == savedScale }
+        if (matchIndex >= 0) {
+            range.post {
+                val container = range.findViewById<android.widget.LinearLayout>(R.id.container)
+                (container?.getChildAt(matchIndex) as? android.widget.Button)?.performClick()
+            }
         }
     }
 }

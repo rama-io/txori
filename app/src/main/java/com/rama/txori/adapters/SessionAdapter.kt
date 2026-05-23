@@ -448,6 +448,8 @@ class SessionAdapter(
         val labelInput = dialogView.findViewById<AutoCompleteTextView>(R.id.label)
         val durationInput = dialogView.findViewById<EditText>(R.id.duration)
         durationInput.setText("60")
+        val restDurationInput = dialogView.findViewById<EditText>(R.id.rest_duration)
+        restDurationInput.setText("60")
 
         dialogView.findViewById<Button>(R.id.delete_button).visibility = View.GONE
         dialogView.findViewById<ListView>(R.id.existing_tasks_list).visibility = View.GONE
@@ -476,6 +478,7 @@ class SessionAdapter(
         dialogView.findViewById<Button>(R.id.add_button).setOnClickListener {
             val label = labelInput.text.toString().trim()
             val duration = durationInput.text.toString().toIntOrNull() ?: 60
+            val restDuration = restDurationInput.text.toString().toIntOrNull() ?: 60
 
             if (label.isEmpty()) {
                 labelInput.error = context.getString(R.string.toast_label_empty)
@@ -488,7 +491,7 @@ class SessionAdapter(
                 ?: return@setOnClickListener
             val targetSessionId = targetSession.first
 
-            dbHelper.addTaskToSession(db, targetSessionId, label, duration)
+            dbHelper.addTaskToSession(db, targetSessionId, label, duration, restDuration)
 
             // Reload tasks from DB so the new task carries its real stepId.
             // Without it, swapStepOrder queries id=0 and silently fails.
@@ -524,9 +527,11 @@ class SessionAdapter(
 
         val labelInput = dialogView.findViewById<EditText>(R.id.label)
         val durationInput = dialogView.findViewById<EditText>(R.id.duration)
+        val restDurationInput = dialogView.findViewById<EditText>(R.id.rest_duration)
 
         labelInput.setText(row.task.label)
         durationInput.setText(row.task.duration.toString())
+        restDurationInput.setText(row.task.restDuration.toString())
 
         dialogView.findViewById<Button>(R.id.delete_button).setOnClickListener {
             dbHelper.removeStepFromSession(db, row.task.stepId)
@@ -557,6 +562,8 @@ class SessionAdapter(
         dialogView.findViewById<Button>(R.id.add_button).setOnClickListener {
             val newLabel = labelInput.text.toString().trim()
             val newDuration = durationInput.text.toString().toIntOrNull() ?: row.task.duration
+            val newRestDuration =
+                restDurationInput.text.toString().toIntOrNull() ?: row.task.restDuration
 
             if (newLabel.isEmpty()) {
                 labelInput.error = context.getString(R.string.toast_label_empty)
@@ -566,10 +573,12 @@ class SessionAdapter(
             val values = ContentValues().apply {
                 put("label", newLabel)
                 put("duration", newDuration)
+                put("rest_duration", newRestDuration)
             }
             db.update("tasks", values, "id = ?", arrayOf(row.task.id.toString()))
             row.task.label = newLabel
             row.task.duration = newDuration
+            row.task.restDuration = newRestDuration
 
             // Move to another group if the spinner is visible and a group was selected
             val pickedName = groupInput.text.toString().trim()

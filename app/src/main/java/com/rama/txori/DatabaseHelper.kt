@@ -16,7 +16,8 @@ class DatabaseHelper(context: Context) :
             CREATE TABLE tasks (
                 id INTEGER PRIMARY KEY AUTOINCREMENT,
                 label TEXT,
-                duration INTEGER
+                duration INTEGER,
+                rest_duration INTEGER DEFAULT 0
             )
             """.trimIndent()
         )
@@ -61,7 +62,7 @@ class DatabaseHelper(context: Context) :
     fun getAllTasks(db: SQLiteDatabase): MutableList<Task> {
         val tasks = mutableListOf<Task>()
         val cursor = db.rawQuery(
-            "SELECT id, label, duration FROM tasks ORDER BY label", null
+            "SELECT id, label, duration, rest_duration FROM tasks ORDER BY label", null
         )
         while (cursor.moveToNext()) {
             tasks.add(
@@ -69,6 +70,7 @@ class DatabaseHelper(context: Context) :
                     id = cursor.getLong(0),
                     label = cursor.getString(1),
                     duration = cursor.getInt(2),
+                    restDuration = cursor.getInt(3)
                 )
             )
         }
@@ -81,7 +83,7 @@ class DatabaseHelper(context: Context) :
         val tasks = mutableListOf<Task>()
         val cursor = db.rawQuery(
             """
-            SELECT ss.id, t.id, t.label, t.duration
+            SELECT ss.id, t.id, t.label, t.duration, t.rest_duration
             FROM session_steps ss
             JOIN tasks t ON ss.task_id = t.id
             WHERE ss.session_id = ?
@@ -96,6 +98,7 @@ class DatabaseHelper(context: Context) :
                     id = cursor.getLong(1),
                     label = cursor.getString(2),
                     duration = cursor.getInt(3),
+                    restDuration = cursor.getInt(4)
                 )
             )
         }
@@ -131,8 +134,14 @@ class DatabaseHelper(context: Context) :
         db.delete("sessions", "id = ?", arrayOf(sessionId.toString()))
     }
 
-    fun addTaskToSession(db: SQLiteDatabase, sessionId: Long, label: String, duration: Int): Long {
-        val taskId = getOrCreateTaskId(db, label, duration)
+    fun addTaskToSession(
+        db: SQLiteDatabase,
+        sessionId: Long,
+        label: String,
+        duration: Int,
+        restDuration: Int
+    ): Long {
+        val taskId = getOrCreateTaskId(db, label, duration, restDuration)
         val cursor = db.rawQuery(
             "SELECT COALESCE(MAX(step_order), 0) FROM session_steps WHERE session_id = ?",
             arrayOf(sessionId.toString())
@@ -201,10 +210,15 @@ class DatabaseHelper(context: Context) :
 
     // PRIVATE HELPERS
 
-    private fun getOrCreateTaskId(db: SQLiteDatabase, label: String, duration: Int): Long {
+    private fun getOrCreateTaskId(
+        db: SQLiteDatabase,
+        label: String,
+        duration: Int,
+        restDuration: Int
+    ): Long {
         val cursor = db.rawQuery(
-            "SELECT id FROM tasks WHERE label = ? AND duration = ?",
-            arrayOf(label, duration.toString())
+            "SELECT id FROM tasks WHERE label = ? AND duration = ? AND rest_duration = ?",
+            arrayOf(label, duration.toString(), restDuration.toString())
         )
         if (cursor.moveToFirst()) {
             val id = cursor.getLong(0)
@@ -216,6 +230,7 @@ class DatabaseHelper(context: Context) :
         val values = ContentValues().apply {
             put("label", label)
             put("duration", duration)
+            put("rest_duration", restDuration)
         }
         return db.insert("tasks", null, values)
     }
@@ -246,7 +261,7 @@ class DatabaseHelper(context: Context) :
         val tasks = mutableListOf<Task>()
         val cursor = db.rawQuery(
             """
-            SELECT ss.id, t.id, t.label, t.duration
+            SELECT ss.id, t.id, t.label, t.duration, t.rest_duration
             FROM session_steps ss
             JOIN tasks t ON ss.task_id = t.id
             ORDER BY ss.session_id, ss.step_order
@@ -259,7 +274,8 @@ class DatabaseHelper(context: Context) :
                     stepId = cursor.getLong(0),
                     id = cursor.getLong(1),
                     label = cursor.getString(2),
-                    duration = cursor.getInt(3)
+                    duration = cursor.getInt(3),
+                    restDuration = cursor.getInt(4)
                 )
             )
         }
@@ -268,11 +284,10 @@ class DatabaseHelper(context: Context) :
     }
 
     private fun insertInitialData(db: SQLiteDatabase) {
-
         var n = 1
         val s0Id = insertSession(db, "Morning Reset", 1)
-        fun s0(label: String, duration: Int) {
-            insertSessionStep(db, s0Id, getOrCreateTaskId(db, label, duration), n++)
+        fun s0(label: String, duration: Int, restDuration: Int = 0) {
+            insertSessionStep(db, s0Id, getOrCreateTaskId(db, label, duration, restDuration), n++)
         }
 
         s0("Drink Water", 60 * 5)
@@ -282,70 +297,52 @@ class DatabaseHelper(context: Context) :
         s0("Wash Dishes", 60 * 5)
 
         val s1Id = insertSession(db, "Workout", 2)
-        fun s1(label: String, duration: Int) {
-            insertSessionStep(db, s1Id, getOrCreateTaskId(db, label, duration), n++)
+        fun s1(label: String, duration: Int, restDuration: Int = 0) {
+            insertSessionStep(db, s1Id, getOrCreateTaskId(db, label, duration, restDuration), n++)
         }
 
-        fun addRest(unit: Int = 60) {
-            s1("Rest", unit)
-        }
+        s1("Getting Ready", 15, 0)
+        s1("Chest Opener", 90, 60)
+        s1("Dead Hang", 40, 60)
 
-        s1("Getting Ready", 15)
-        s1("Chest Opener", 90)
-        addRest()
-        s1("Dead Hang", 40)
-        addRest()
+        s1("Pull-Up x12", 30, 90)
+        s1("Push-Up x40", 60, 60)
 
-        s1("Pull-Up x12", 30)
-        addRest(90)
-        s1("Push-Up x40", 60)
-        addRest()
-
-        s1("Pull-Up x12", 30)
-        addRest(90)
-        s1("Push-Up x40", 60)
-        addRest()
+        s1("Pull-Up x12", 30, 90)
+        s1("Push-Up x40", 60, 60)
 
         repeat(2) {
-            s1("Chin-Up x12", 30)
-            addRest(90)
+            s1("Chin-Up x12", 30, 90)
         }
 
-        s1("Hip Thrust x30", 60)
-        addRest()
-        s1("Hip Thrust x30", 60)
-        addRest()
+        s1("Hip Thrust x30", 60, 60)
+        s1("Hip Thrust x30", 60, 60)
 
-        s1("Wall Sit", 60)
-        addRest()
+        s1("Wall Sit", 60, 60)
 
         repeat(2) {
-            s1("Crunches x12", 60)
-            addRest()
+            s1("Crunches x12", 60, 60)
         }
 
-        s1("Plank", 60)
-        addRest()
-        s1("Dead Hang", 60)
-        addRest(15)
-        s1("Deep Squat", 60)
-        addRest(15)
-        s1("Split Stretch", 60)
+        s1("Plank", 60, 60)
+        s1("Dead Hang", 60, 15)
+        s1("Deep Squat", 60, 15)
+        s1("Split Stretch", 60, 0)
 
         val s2Id = insertSession(db, "Roulette", 1)
-        fun s2(label: String, duration: Int) {
-            insertSessionStep(db, s2Id, getOrCreateTaskId(db, label, duration), n++)
+        fun s2(label: String, duration: Int = 0, restDuration: Int = 0) {
+            insertSessionStep(db, s2Id, getOrCreateTaskId(db, label, duration, restDuration), n++)
         }
 
-        s2("Drink Water", 0)
-        s2("Stand Up", 0)
-        s2("Walk Around", 0)
-        s2("Change Sitting Position", 0)
-        s2("Roll Shoulders", 0)
-        s2("Neck Stretch", 0)
-        s2("Wrist Stretch", 0)
-        s2("Goblin Posture Detected", 0)
-        s2("Look Away From Screen", 0)
-        s2("Touch Grass", 0)
+        s2("Drink Water")
+        s2("Stand Up")
+        s2("Walk Around")
+        s2("Change Sitting Position")
+        s2("Roll Shoulders")
+        s2("Neck Stretch")
+        s2("Wrist Stretch")
+        s2("Goblin Posture Detected")
+        s2("Look Away From Screen")
+        s2("Touch Grass")
     }
 }

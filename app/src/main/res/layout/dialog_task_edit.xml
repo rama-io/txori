@@ -39,6 +39,14 @@
             style="@style/EditText" />
 
         <TextView
+            android:text="@string/label_rest_duration"
+            style="@style/Text" />
+
+        <EditText
+            android:id="@+id/rest_duration"
+            style="@style/EditText" />
+
+        <TextView
             android:id="@+id/group_label"
             android:text="@string/label_group"
             android:visibility="gone"

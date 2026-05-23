@@ -97,6 +97,7 @@
     <string name="label_group_name">Group Name</string>
     <string name="label_group">Current Group</string>
     <string name="label_zoom">Zoom</string>
+    <string name="label_rest_duration">Rest Duration (seconds)</string>
 
     <!-- InputHints -->
     <string name="hint_timer">HHMMSS</string>

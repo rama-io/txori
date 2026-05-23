@@ -90,6 +90,7 @@ class PrefsManager private constructor(context: Context) {
                 .putBoolean(PrefKeys.SYSTEM_BAR_VISIBLE, false)
 
                 .putString(PrefKeys.APP_THEME_NAME, Theme.TOKYO_NIGHT)
+                .putInt(PrefKeys.APP_UI_SCALE, 1)
 
                 .putString(PrefKeys.APP_TIMER, "3000")
                 .putString(PrefKeys.ROULETTE_TIMER, "3000")

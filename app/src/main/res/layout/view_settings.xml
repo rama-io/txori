@@ -247,7 +247,7 @@
                     
                     <com.rama.txori.widgets.WdRange
                         android:id="@+id/zoom"
-                        app:values="0.7,0.8,0.9,1,1.1,1.2,1.3,1.4,1.5"
+                        app:valuesArray="@array/ui_scale_steps"
                         style="@style/BlockFlow" />
 
                 </LinearLayout>

@@ -239,8 +239,7 @@ class SettingsAppearanceController(private val activity: SettingsActivity) {
 
         // Pre-select the button matching the saved scale. WdRange always selects
         // index 0 in its init block, so we override that with a post() click.
-        val steps =
-            listOf("0.7", "0.8", "0.9", "1", "1.1", "1.2", "1.3", "1.4", "1.5")
+        val steps = activity.resources.getStringArray(R.array.ui_scale_steps).toList()
         val matchIndex = steps.indexOfFirst { it.toFloatOrNull() == savedScale }
         if (matchIndex >= 0) {
             range.post {

@@ -19,6 +19,7 @@ abstract class CsActivity : android.app.Activity() {
     val prefs by lazy { PrefsManager.getInstance(this) }
     private var lastKnownAppLanguage: String? = null
     private var lastKnownTheme: String? = null
+    private var lastKnownUiScale: Float = -1f
 
     override fun attachBaseContext(newBase: Context) {
         val localeContext = LocaleHelper.wrapContext(newBase)
@@ -43,6 +44,7 @@ abstract class CsActivity : android.app.Activity() {
         prefs.initPrefs()
         lastKnownAppLanguage = prefs.getAppLanguage()
         lastKnownTheme = prefs.getTheme()
+        lastKnownUiScale = prefs.getUiScale()
 
         // Allow drawing behind system bars
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
@@ -75,6 +77,13 @@ abstract class CsActivity : android.app.Activity() {
         val currentTheme = prefs.getTheme()
         if (currentTheme != lastKnownTheme) {
             lastKnownTheme = currentTheme
+            recreate()
+            return
+        }
+
+        val currentUiScale = prefs.getUiScale()
+        if (currentUiScale != lastKnownUiScale) {
+            lastKnownUiScale = currentUiScale
             recreate()
             return
         }

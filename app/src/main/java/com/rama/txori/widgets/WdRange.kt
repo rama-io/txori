@@ -36,14 +36,21 @@ class WdRange @JvmOverloads constructor(
         attrs?.let {
             context.withStyledAttributes(it, R.styleable.WdRange) {
 
-                val valuesString =
-                    getString(R.styleable.WdRange_values)
-
-                val values = valuesString
-                    ?.split(",")
-                    ?.map { it.trim() }
-                    ?.filter { it.isNotEmpty() }
-                    ?: emptyList()
+                val values: List<String> = when {
+                    hasValue(R.styleable.WdRange_valuesArray) -> {
+                        val arrayRes = getResourceId(R.styleable.WdRange_valuesArray, 0)
+                        if (arrayRes != 0) context.resources.getStringArray(arrayRes).toList()
+                        else emptyList()
+                    }
+                    hasValue(R.styleable.WdRange_values) -> {
+                        getString(R.styleable.WdRange_values)
+                            ?.split(",")
+                            ?.map { it.trim() }
+                            ?.filter { it.isNotEmpty() }
+                            ?: emptyList()
+                    }
+                    else -> emptyList()
+                }
 
                 setValues(values)
             }

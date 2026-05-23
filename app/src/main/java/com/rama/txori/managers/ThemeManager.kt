@@ -29,6 +29,7 @@ object ThemeManager {
         val collapsible_header: Int,
         val task_frequency: Int,
         val progressbar: Int,
+        val progressbar_rest: Int
     )
 
     // Mako (default)
@@ -50,6 +51,7 @@ object ThemeManager {
         collapsible_header = 0xFF878787.toInt(),
         task_frequency = 0xFF71ACC7.toInt(),
         progressbar = 0xFF253F71.toInt(),
+        progressbar_rest = 0xFF4A6E3A.toInt(),
     )
 
     // Rama
@@ -68,9 +70,10 @@ object ThemeManager {
         button_1_selected = 0xFF62BF79.toInt(),
         button_2 = 0xFFb8e39d.toInt(),
         danger = 0xFFDC6364.toInt(),
-        collapsible_header = 0xff8cde285.toInt(),
+        collapsible_header = 0xff8cde85.toInt(),
         task_frequency = 0xFF7CCF8E.toInt(),
         progressbar = 0xFF355B36.toInt(),
+        progressbar_rest = 0xFF4D7A4E.toInt(),
     )
 
     // Catppuccin Mocha
@@ -92,6 +95,7 @@ object ThemeManager {
         collapsible_header = 0xFFB4BEFE.toInt(),
         task_frequency = 0xFF89DCEB.toInt(),
         progressbar = 0xFF394B70.toInt(),
+        progressbar_rest = 0xFF587D52.toInt(),
     )
 
 
@@ -114,6 +118,7 @@ object ThemeManager {
         collapsible_header = 0xFFBD93F9.toInt(),
         task_frequency = 0xFF8BE9FD.toInt(),
         progressbar = 0xFF44475A.toInt(),
+        progressbar_rest = 0xFF3E5F4A.toInt(),
     )
 
     // Mélange Dark
@@ -135,6 +140,7 @@ object ThemeManager {
         collapsible_header = 0xFFEBC06D.toInt(),
         task_frequency = 0xFF8CBBA3.toInt(),
         progressbar = 0xFF4A443D.toInt(),
+        progressbar_rest = 0xFF5A6650.toInt(),
     )
 
     // Tokyo Night
@@ -156,6 +162,7 @@ object ThemeManager {
         collapsible_header = 0xFF7AA2F7.toInt(),
         task_frequency = 0xFF73DACA.toInt(),
         progressbar = 0xFF2F3B63.toInt(),
+        progressbar_rest = 0xFF3B5A4F.toInt(),
     )
 
     fun paletteFor(theme: String, context: android.content.Context? = null): Palette =
@@ -196,6 +203,10 @@ object ThemeManager {
                 base.collapsible_header
             ),
             progressbar = get(PrefsManager.PrefKeys.APP_THEME_PROGRESS_BAR, base.progressbar),
+            progressbar_rest = get(
+                PrefsManager.PrefKeys.APP_THEME_PROGRESS_BAR_REST,
+                base.progressbar_rest
+            ),
             task_frequency = get(
                 PrefsManager.PrefKeys.APP_THEME_TASK_FREQUENCY,
                 base.task_frequency
@@ -375,6 +386,11 @@ object ThemeManager {
             MAKO.progressbar, RAMA.progressbar, CATPPUCCIN_MOCHA.progressbar,
             DRACULA.progressbar, MELANGE.progressbar, TOKYO_NIGHT.progressbar, custom.progressbar,
             context.resources.getColor(R.color.progress) -> palette.progressbar
+
+            // Rest Progress
+            MAKO.progressbar_rest, RAMA.progressbar_rest, CATPPUCCIN_MOCHA.progressbar_rest,
+            DRACULA.progressbar_rest, MELANGE.progressbar_rest, TOKYO_NIGHT.progressbar_rest, custom.progressbar_rest,
+            context.resources.getColor(R.color.progress_rest) -> palette.progressbar_rest
 
             // Task Frequency
             MAKO.task_frequency, RAMA.task_frequency, CATPPUCCIN_MOCHA.task_frequency,

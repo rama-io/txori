@@ -108,11 +108,6 @@
                             style="@style/ColorPickerBtn" />
 
                         <com.rama.txori.widgets.WdColorPicker
-                            android:id="@+id/bg_1"
-                            app:text="@string/colorpicker_theme_background_1"
-                            style="@style/ColorPickerBtn" />
-
-                        <com.rama.txori.widgets.WdColorPicker
                             android:id="@+id/progressbar"
                             app:text="@string/colorpicker_theme_progressbar"
                             style="@style/ColorPickerBtn" />
@@ -125,6 +120,11 @@
                         <com.rama.txori.widgets.WdColorPicker
                             android:id="@+id/disabled"
                             app:text="@string/colorpicker_theme_disabled"
+                            style="@style/ColorPickerBtn" />
+
+                        <com.rama.txori.widgets.WdColorPicker
+                            android:id="@+id/bg_1"
+                            app:text="@string/colorpicker_theme_background_1"
                             style="@style/ColorPickerBtn" />
 
                         <com.rama.txori.widgets.WdColorPicker
@@ -238,6 +238,19 @@
                     android:id="@+id/keep_screen_awake"
                     android:text="@string/checkbox_lock_screen_from_falling_asleep"
                     style="@style/Checkbox" />
+
+                <LinearLayout style="@style/VerticalListDivided_BG2">
+
+                    <TextView
+                        android:text="@string/label_zoom"
+                        style="@style/Text" />
+                    
+                    <com.rama.txori.widgets.WdRange
+                        android:id="@+id/zoom"
+                        app:valuesArray="@array/ui_scale_steps"
+                        style="@style/BlockFlow" />
+
+                </LinearLayout>
             </com.rama.txori.widgets.WdCollapsibleSection>
 
             <!--Language-->

@@ -40,6 +40,7 @@ class PrefsManager private constructor(context: Context) {
         const val APP_THEME_ACCENT_3 = "app:theme:accent_3"
         const val APP_THEME_DISABLED = "app:theme:disabled"
         const val APP_THEME_PROGRESS_BAR = "app:theme:progress"
+        const val APP_THEME_PROGRESS_BAR_REST = "app:theme:progress_rest"
         const val APP_THEME_TASK_FREQUENCY = "app:theme:task_frequency"
         const val APP_THEME_INPUT = "app:theme:input"
         const val APP_THEME_BUTTON_1 = "app:theme:button_1"
@@ -48,10 +49,16 @@ class PrefsManager private constructor(context: Context) {
         const val APP_THEME_DANGER = "app:theme:danger"
         const val APP_THEME_COLLAPSIBLE_HEADER = "app:theme:collapsible_header"
 
+        const val APP_TIMER = "app:timer"
+        const val ROULETTE_TIMER = "roulette:timer"
+        const val ROULETTE_LIST = "roulette:list"
+
         const val SETTINGS_SECTION_FONTS = "settings:section:fonts"
         const val SETTINGS_SECTION_SYSTEM = "settings:section:system"
         const val SETTINGS_SECTION_LANGUAGE = "settings:section:language"
         const val SETTINGS_SECTION_THEMES = "settings:section:themes"
+
+        const val APP_UI_SCALE = "app:ui_scale"
     }
 
     object FontStyle {
@@ -84,6 +91,11 @@ class PrefsManager private constructor(context: Context) {
                 .putBoolean(PrefKeys.SYSTEM_BAR_VISIBLE, false)
 
                 .putString(PrefKeys.APP_THEME_NAME, Theme.TOKYO_NIGHT)
+                .putFloat(PrefKeys.APP_UI_SCALE, 1f)
+
+                .putString(PrefKeys.APP_TIMER, "3000")
+                .putString(PrefKeys.ROULETTE_TIMER, "3000")
+                .putInt(PrefKeys.ROULETTE_LIST, -1)
 
                 .putBoolean(PrefKeys.SETTINGS_SECTION_FONTS, true)
                 .putBoolean(PrefKeys.SETTINGS_SECTION_SYSTEM, true)
@@ -131,6 +143,11 @@ class PrefsManager private constructor(context: Context) {
         prefs.edit().putString(PrefKeys.APP_LANGUAGE, language).apply()
     }
 
+    fun getUiScale(): Float =
+        prefs.getFloat(PrefKeys.APP_UI_SCALE, 1f)
+
+    fun setUiScale(scale: Float) =
+        prefs.edit().putFloat(PrefKeys.APP_UI_SCALE, scale).apply()
 
     // GENERIC HELPERS
 

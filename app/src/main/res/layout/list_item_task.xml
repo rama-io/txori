@@ -14,6 +14,12 @@
         android:layout_height="match_parent"
         android:background="@color/progress" />
 
+    <View
+        android:id="@+id/progress_rest_bg"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:background="@color/progress_rest" />
+
     <LinearLayout
         android:id="@+id/app_row"
         android:padding="12sp"

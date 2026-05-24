@@ -10,6 +10,7 @@
     <color name="accent_3">#abd68e</color>
     <color name="disabled">#888</color>
     <color name="progress">#253F71</color>
+    <color name="progress_rest">#4A6E3A</color>
     <color name="task_frequency">#71ACC7</color>
     <color name="button_1">#7D58A6</color>
     <color name="button_1_selected">#B083E4</color>

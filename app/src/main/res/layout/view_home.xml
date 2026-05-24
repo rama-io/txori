@@ -67,7 +67,7 @@
             </FrameLayout>
 
             <FrameLayout
-                android:id="@+id/skip_task"
+                android:id="@+id/next_task"
                 style="@style/BTN3">
 
                 <ImageView

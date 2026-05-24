@@ -13,7 +13,10 @@ import android.view.inputmethod.InputMethodManager
 import android.widget.Button
 import android.widget.EditText
 import android.widget.FrameLayout
+import android.widget.Toast
 import com.rama.txori.R
+import com.rama.txori.managers.PrefsManager
+import com.rama.txori.managers.SoundManager
 
 class TimerFragment : Fragment() {
 
@@ -42,6 +45,7 @@ class TimerFragment : Fragment() {
                 timerButton.text = getString(R.string.h1_timer_default)
                 isRunning = false
                 remainingMs = 0L
+                SoundManager.beepFinish()
                 updateButtons()
                 return
             }
@@ -89,6 +93,7 @@ class TimerFragment : Fragment() {
         addTimer.setOnClickListener { applyInput() }
         resetButton.setOnClickListener { resetTimer() }
 
+        loadPrefs()
         updateButtons()
 
         // Restore state after rotation
@@ -104,6 +109,23 @@ class TimerFragment : Fragment() {
                 updateButtons()
             }
         }
+    }
+
+    private fun loadPrefs() {
+        val prefs = PrefsManager.getInstance(activity)
+
+        val savedTimer = prefs.getString(
+            PrefsManager.PrefKeys.APP_TIMER,
+            "00:30:00"
+        ) ?: "00:30:00"
+
+        val digits = savedTimer.filter { it.isDigit() }.takeLast(6)
+
+        initialMs = digitsToMillis(digits)
+        remainingMs = initialMs
+
+        timerInput.setText(digits.trimStart('0'))
+        timerButton.text = formatDigits(digits)
     }
 
     private fun toggleTimer() {
@@ -155,9 +177,16 @@ class TimerFragment : Fragment() {
 
     private fun applyInput() {
         val digits = timerInput.text.toString().filter { it.isDigit() }.takeLast(6)
-        timerButton.text = formatDigits(digits)
+        val formatted = formatDigits(digits)
+        timerButton.text = formatted
         initialMs = digitsToMillis(digits)
         remainingMs = initialMs
+
+        PrefsManager.getInstance(activity)
+            .setString(PrefsManager.PrefKeys.APP_TIMER, formatted)
+        timerInput.clearFocus()
+        Toast.makeText(activity, getString(R.string.toast_saved_timer), Toast.LENGTH_LONG).show()
+
         updateButtons()
         setEditMode(false)
     }
@@ -180,10 +209,9 @@ class TimerFragment : Fragment() {
 
     private fun resetTimer() {
         handler.removeCallbacks(ticker)
-        isRunning = false
         remainingMs = initialMs
         timerButton.text = formatMillis(initialMs)
-        updateButtons()
+        startTimer()
     }
 
     private fun digitsToMillis(digits: String): Long {

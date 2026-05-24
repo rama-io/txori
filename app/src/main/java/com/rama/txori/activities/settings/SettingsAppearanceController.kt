@@ -14,6 +14,7 @@ import com.rama.txori.managers.ThemeManager
 import java.io.File
 import java.io.FileOutputStream
 import com.rama.txori.widgets.WdColorPicker
+import com.rama.txori.widgets.WdRange
 
 class SettingsAppearanceController(private val activity: SettingsActivity) {
 
@@ -23,6 +24,7 @@ class SettingsAppearanceController(private val activity: SettingsActivity) {
         setupFontStyle()
         setupTheme()
         setupCustomTheme()
+        setupUiScale()
     }
 
     fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -216,7 +218,29 @@ class SettingsAppearanceController(private val activity: SettingsActivity) {
             }
             prefs.setTheme(PrefsManager.Theme.CUSTOM)
             activity.recreate()
+        }
+    }
 
+    private fun setupUiScale() {
+        val range = activity.findViewById<WdRange>(R.id.zoom)
+
+        val savedScale = prefs.getUiScale()
+
+        range.onValueChanged = { value ->
+            val scale = value.toFloatOrNull() ?: 1f
+            if (scale != prefs.getUiScale()) {
+                prefs.setUiScale(scale)
+                activity.recreate()
+            }
+        }
+
+        val steps = activity.resources.getStringArray(R.array.ui_scale_steps).toList()
+        val matchIndex = steps.indexOfFirst { it.toFloatOrNull() == savedScale }
+        if (matchIndex >= 0) {
+            range.post {
+                val container = range.findViewById<android.widget.LinearLayout>(R.id.container)
+                (container?.getChildAt(matchIndex) as? android.widget.Button)?.performClick()
+            }
         }
     }
 }

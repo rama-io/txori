@@ -4,6 +4,7 @@ import android.content.Context
 import android.view.View
 import android.view.ViewGroup
 import android.widget.CheckBox
+import android.widget.ImageView
 import android.widget.RadioButton
 import android.widget.TextView
 import com.rama.txori.R
@@ -28,6 +29,7 @@ object ThemeManager {
         val collapsible_header: Int,
         val task_frequency: Int,
         val progressbar: Int,
+        val progressbar_rest: Int
     )
 
     // Mako (default)
@@ -49,6 +51,7 @@ object ThemeManager {
         collapsible_header = 0xFF878787.toInt(),
         task_frequency = 0xFF71ACC7.toInt(),
         progressbar = 0xFF253F71.toInt(),
+        progressbar_rest = 0xFF4A6E3A.toInt(),
     )
 
     // Rama
@@ -67,9 +70,10 @@ object ThemeManager {
         button_1_selected = 0xFF62BF79.toInt(),
         button_2 = 0xFFb8e39d.toInt(),
         danger = 0xFFDC6364.toInt(),
-        collapsible_header = 0xff8cde285.toInt(),
+        collapsible_header = 0xff8cde85.toInt(),
         task_frequency = 0xFF7CCF8E.toInt(),
         progressbar = 0xFF355B36.toInt(),
+        progressbar_rest = 0xFF4D7A4E.toInt(),
     )
 
     // Catppuccin Mocha
@@ -91,6 +95,7 @@ object ThemeManager {
         collapsible_header = 0xFFB4BEFE.toInt(),
         task_frequency = 0xFF89DCEB.toInt(),
         progressbar = 0xFF394B70.toInt(),
+        progressbar_rest = 0xFF587D52.toInt(),
     )
 
 
@@ -113,9 +118,10 @@ object ThemeManager {
         collapsible_header = 0xFFBD93F9.toInt(),
         task_frequency = 0xFF8BE9FD.toInt(),
         progressbar = 0xFF44475A.toInt(),
+        progressbar_rest = 0xFF3E5F4A.toInt(),
     )
 
-    // Melange Dark
+    // Mélange Dark
     private val MELANGE = Palette(
         h1 = 0xFFEBC06D.toInt(),
         foreground = 0xFFECE1D7.toInt(),
@@ -134,6 +140,7 @@ object ThemeManager {
         collapsible_header = 0xFFEBC06D.toInt(),
         task_frequency = 0xFF8CBBA3.toInt(),
         progressbar = 0xFF4A443D.toInt(),
+        progressbar_rest = 0xFF5A6650.toInt(),
     )
 
     // Tokyo Night
@@ -155,6 +162,7 @@ object ThemeManager {
         collapsible_header = 0xFF7AA2F7.toInt(),
         task_frequency = 0xFF73DACA.toInt(),
         progressbar = 0xFF2F3B63.toInt(),
+        progressbar_rest = 0xFF3B5A4F.toInt(),
     )
 
     fun paletteFor(theme: String, context: android.content.Context? = null): Palette =
@@ -195,6 +203,10 @@ object ThemeManager {
                 base.collapsible_header
             ),
             progressbar = get(PrefsManager.PrefKeys.APP_THEME_PROGRESS_BAR, base.progressbar),
+            progressbar_rest = get(
+                PrefsManager.PrefKeys.APP_THEME_PROGRESS_BAR_REST,
+                base.progressbar_rest
+            ),
             task_frequency = get(
                 PrefsManager.PrefKeys.APP_THEME_TASK_FREQUENCY,
                 base.task_frequency
@@ -204,7 +216,7 @@ object ThemeManager {
 
     fun applyTheme(context: Context, root: View) {
         val prefs = PrefsManager.getInstance(context)
-        val palette = paletteFor(prefs.getTheme(), context)
+        val palette = com.rama.txori.managers.ThemeManager.paletteFor(prefs.getTheme(), context)
         val typeface = FontManager.getTypeface(context, prefs.getFontStyle())
         applyRecursively(context, root, palette, typeface)
     }
@@ -212,7 +224,7 @@ object ThemeManager {
     private fun applyRecursively(
         context: Context,
         view: View,
-        palette: Palette,
+        palette: com.rama.txori.managers.ThemeManager.Palette,
         typeface: android.graphics.Typeface?
     ) {
         applyToView(context, view, palette, typeface)
@@ -226,9 +238,35 @@ object ThemeManager {
     private fun applyToView(
         context: Context,
         view: View,
-        palette: Palette,
+        palette: com.rama.txori.managers.ThemeManager.Palette,
         typeface: android.graphics.Typeface?
     ) {
+        // Icon tinting, ImageView src drawables use @color/* fill colors which don't
+        // update automatically when the palette changes. We apply an imageTintList so
+        // the color is remapped through the same mapColor logic used everywhere else.
+        if (view is ImageView) {
+            val currentTint = view.imageTintList?.defaultColor
+            if (currentTint != null) {
+                // Already has a tint, remap it to the new palette slot
+                val mapped =
+                    com.rama.txori.managers.ThemeManager.mapColor(context, currentTint, palette)
+                if (mapped != null) {
+                    view.imageTintList = android.content.res.ColorStateList.valueOf(mapped)
+                }
+            } else {
+                // No tint set yet, seed from the drawable's fill color resource so
+                // subsequent theme switches can remap it correctly.
+                val seedColor = resolveDrawableFillColor(context, view) ?: return
+                val mapped = com.rama.txori.managers.ThemeManager.mapColor(
+                    context,
+                    seedColor,
+                    palette
+                ) ?: seedColor
+                view.imageTintList = android.content.res.ColorStateList.valueOf(mapped)
+            }
+            return
+        }
+
         // Font + text color
         if (view is TextView) {
             typeface?.let { view.typeface = it }
@@ -248,17 +286,24 @@ object ThemeManager {
                 }
 
                 else -> {
-                    // Only remap if we recognise the color — don't blindly overwrite
+                    // Only remap if we recognise the color, don't blindly overwrite
                     // with foreground, as that would clobber clock/icon/header text colors
-                    val mapped = mapColor(context, view.currentTextColor, palette)
+                    val mapped = com.rama.txori.managers.ThemeManager.mapColor(
+                        context,
+                        view.currentTextColor,
+                        palette
+                    )
                     if (mapped != null) view.setTextColor(mapped)
                 }
             }
         }
 
         // Background
-        val currentColor = resolveDrawableColor(view.background ?: return) ?: return
-        val mapped = mapColor(context, currentColor, palette) ?: return
+        val currentColor = com.rama.txori.managers.ThemeManager.resolveDrawableColor(
+            view.background ?: return
+        ) ?: return
+        val mapped =
+            com.rama.txori.managers.ThemeManager.mapColor(context, currentColor, palette) ?: return
         view.setBackgroundColor(mapped)
     }
 
@@ -342,6 +387,11 @@ object ThemeManager {
             DRACULA.progressbar, MELANGE.progressbar, TOKYO_NIGHT.progressbar, custom.progressbar,
             context.resources.getColor(R.color.progress) -> palette.progressbar
 
+            // Rest Progress
+            MAKO.progressbar_rest, RAMA.progressbar_rest, CATPPUCCIN_MOCHA.progressbar_rest,
+            DRACULA.progressbar_rest, MELANGE.progressbar_rest, TOKYO_NIGHT.progressbar_rest, custom.progressbar_rest,
+            context.resources.getColor(R.color.progress_rest) -> palette.progressbar_rest
+
             // Task Frequency
             MAKO.task_frequency, RAMA.task_frequency, CATPPUCCIN_MOCHA.task_frequency,
             DRACULA.task_frequency, MELANGE.task_frequency, TOKYO_NIGHT.task_frequency, custom.task_frequency,
@@ -353,5 +403,17 @@ object ThemeManager {
 
     private fun resolveDrawableColor(drawable: android.graphics.drawable.Drawable): Int? {
         return if (drawable is android.graphics.drawable.ColorDrawable) drawable.color else null
+    }
+
+    /**
+     * Reads the tint color seeded by android:tint in the layout XML.
+     * Returns null if no tint has been set (icon will be skipped this pass).
+     */
+    private fun resolveDrawableFillColor(context: Context, view: ImageView): Int? {
+        // android:tint in XML is exposed as imageTintList, but we already handle
+        // the tintList != null case before calling this. This path is only reached
+        // when no tint is set at all, which shouldn't happen once the layouts are
+        // updated. Return null so we skip safely rather than guess.
+        return null
     }
 }

@@ -14,6 +14,7 @@ import com.rama.txori.managers.ThemeManager
 import java.io.File
 import java.io.FileOutputStream
 import com.rama.txori.widgets.WdColorPicker
+import com.rama.txori.widgets.WdRange
 
 class SettingsAppearanceController(private val activity: SettingsActivity) {
 
@@ -221,14 +222,10 @@ class SettingsAppearanceController(private val activity: SettingsActivity) {
     }
 
     private fun setupUiScale() {
-        val range = activity.findViewById<com.rama.txori.widgets.WdRange>(R.id.zoom)
+        val range = activity.findViewById<WdRange>(R.id.zoom)
 
         val savedScale = prefs.getUiScale()
 
-        // Set the listener BEFORE the pre-selection click, but guard with a value
-        // comparison so the initial performClick() never triggers a recreate().
-        // Without the guard: performClick() → onValueChanged → recreate() → setup()
-        // → performClick() → ... infinite loop.
         range.onValueChanged = { value ->
             val scale = value.toFloatOrNull() ?: 1f
             if (scale != prefs.getUiScale()) {
@@ -237,8 +234,6 @@ class SettingsAppearanceController(private val activity: SettingsActivity) {
             }
         }
 
-        // Pre-select the button matching the saved scale. WdRange always selects
-        // index 0 in its init block, so we override that with a post() click.
         val steps = activity.resources.getStringArray(R.array.ui_scale_steps).toList()
         val matchIndex = steps.indexOfFirst { it.toFloatOrNull() == savedScale }
         if (matchIndex >= 0) {

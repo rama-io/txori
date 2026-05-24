@@ -48,7 +48,7 @@ class PrefsManager private constructor(context: Context) {
         const val APP_THEME_BUTTON_2 = "app:theme:button_2"
         const val APP_THEME_DANGER = "app:theme:danger"
         const val APP_THEME_COLLAPSIBLE_HEADER = "app:theme:collapsible_header"
-        
+
         const val APP_TIMER = "app:timer"
         const val ROULETTE_TIMER = "roulette:timer"
         const val ROULETTE_LIST = "roulette:list"
@@ -91,7 +91,7 @@ class PrefsManager private constructor(context: Context) {
                 .putBoolean(PrefKeys.SYSTEM_BAR_VISIBLE, false)
 
                 .putString(PrefKeys.APP_THEME_NAME, Theme.TOKYO_NIGHT)
-                .putInt(PrefKeys.APP_UI_SCALE, 1)
+                .putFloat(PrefKeys.APP_UI_SCALE, 1f)
 
                 .putString(PrefKeys.APP_TIMER, "3000")
                 .putString(PrefKeys.ROULETTE_TIMER, "3000")

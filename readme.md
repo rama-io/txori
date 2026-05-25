@@ -31,6 +31,22 @@ access, and no external APIs.
 - **Timer**: Set countdown timers for structured work or breaks.
 - **Stopwatch**: Measure time freely for any activity.
 
+### Roulette
+
+Roulette rotates through a custom list of activities at a timer interval you choose.
+
+It's ideal for encouraging movement and healthy habits during long work sessions. Create lists tailored to your environment, whether you're in an office, working from home, studying, or exercising.
+
+Example activities include:
+- Drink water
+- Check your posture
+- Stand up and stretch
+- Look away from the screen
+- Do a few push-ups
+- Do a few squats
+
+The goal is to keep you moving and mindful throughout the day without disrupting your focus.
+
 ---
 
 ## Installation

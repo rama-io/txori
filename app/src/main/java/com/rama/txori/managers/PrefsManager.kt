@@ -52,6 +52,7 @@ class PrefsManager private constructor(context: Context) {
         const val APP_TIMER = "app:timer"
         const val ROULETTE_TIMER = "roulette:timer"
         const val ROULETTE_LIST = "roulette:list"
+        const val SESSION_COLLAPSED_IDS = "session:collapsed_ids"
 
         const val SETTINGS_SECTION_FONTS = "settings:section:fonts"
         const val SETTINGS_SECTION_SYSTEM = "settings:section:system"

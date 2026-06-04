@@ -1,6 +1,13 @@
 # Changelog
 
+## 8
+
+- Fix bug where rotating the phone would pause the counter in main screen
+- Fix bug where rotating the phone would reset the roulette screen
+- Add persistent memory for sessions that were collapsed
+
 ## 7
+
 - Add roulette view
 - Integrate rest duration into the task so the list get smaller and can be easily used with the roulette
 - Time is now globally using the HHMMSS format instead of seconds

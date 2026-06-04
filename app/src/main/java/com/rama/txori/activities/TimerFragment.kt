@@ -33,6 +33,7 @@ class TimerFragment : Fragment() {
     private var remainingMs = 0L
     private var isEditMode = false
     private var startTime = 0L
+    private var wasRunningOnDestroy = false
 
     private val handler = Handler(Looper.getMainLooper())
 
@@ -60,6 +61,11 @@ class TimerFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View = inflater.inflate(R.layout.view_timer, container, false)
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        retainInstance = true
+    }
+
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
         val snapshotRemaining = if (isRunning) {
@@ -69,7 +75,7 @@ class TimerFragment : Fragment() {
         }
         outState.putLong(KEY_INITIAL_MS, initialMs)
         outState.putLong(KEY_REMAINING_MS, snapshotRemaining.coerceAtLeast(0L))
-        outState.putBoolean(KEY_IS_RUNNING, isRunning)
+        outState.putBoolean(KEY_IS_RUNNING, isRunning || wasRunningOnDestroy)
         outState.putBoolean(KEY_IS_EDIT_MODE, isEditMode)
     }
 
@@ -95,19 +101,25 @@ class TimerFragment : Fragment() {
 
         loadPrefs()
         updateButtons()
-
-        // Restore state after rotation
+        
         if (savedInstanceState != null) {
+            // Process-death restore: fields were zeroed, read them from bundle.
             initialMs = savedInstanceState.getLong(KEY_INITIAL_MS, 0L)
             remainingMs = savedInstanceState.getLong(KEY_REMAINING_MS, 0L)
             isEditMode = savedInstanceState.getBoolean(KEY_IS_EDIT_MODE, false)
+            wasRunningOnDestroy = savedInstanceState.getBoolean(KEY_IS_RUNNING, false)
+        }
+
+        if (initialMs > 0L) {
             timerButton.text = formatMillis(remainingMs)
-            updateEditModeUI()
-            if (savedInstanceState.getBoolean(KEY_IS_RUNNING, false)) {
-                startTimer()
-            } else {
-                updateButtons()
-            }
+        }
+        updateEditModeUI()
+
+        if (wasRunningOnDestroy) {
+            wasRunningOnDestroy = false
+            startTimer()
+        } else {
+            updateButtons()
         }
     }
 
@@ -243,6 +255,12 @@ class TimerFragment : Fragment() {
     }
 
     override fun onDestroyView() {
+        wasRunningOnDestroy = isRunning
+        if (isRunning) {
+            remainingMs =
+                (remainingMs - (SystemClock.elapsedRealtime() - startTime)).coerceAtLeast(0L)
+            isRunning = false
+        }
         handler.removeCallbacks(ticker)
         super.onDestroyView()
     }

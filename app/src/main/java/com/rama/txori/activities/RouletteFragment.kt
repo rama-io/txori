@@ -47,6 +47,7 @@ class RouletteFragment : Fragment() {
     private var shuffledTasks = mutableListOf<Task>()
     private var currentIndex = 0
     private var waitingForComplete = false
+    private var wasRunningOnDestroy = false
 
     private val handler = Handler(Looper.getMainLooper())
 
@@ -75,6 +76,11 @@ class RouletteFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View = inflater.inflate(R.layout.view_roulette, container, false)
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        retainInstance = true
+    }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -99,10 +105,31 @@ class RouletteFragment : Fragment() {
         skipTaskBtn.setOnClickListener { nextTask() }
         finishBtn.setOnClickListener { finishRoulette() }
 
-        // Tap counter to mark task complete when waiting
         counterBtn.setOnClickListener {
             if (waitingForComplete) completeTask()
         }
+
+        syncUiAfterRotation()
+    }
+
+    private fun syncUiAfterRotation() {
+        if (!isStarted) return
+
+        showRunningSection()
+
+        if (currentIndex < shuffledTasks.size) {
+            currentTaskName.text = shuffledTasks[currentIndex].label
+        }
+
+        if (wasRunningOnDestroy) {
+            wasRunningOnDestroy = false
+            startTimer()
+        } else if (waitingForComplete) {
+            counterBtn.text = getString(R.string.h2_go)
+        } else {
+            counterBtn.text = formatMillis(remainingMs)
+        }
+        updateRunningUI()
     }
 
     override fun onHiddenChanged(hidden: Boolean) {
@@ -111,6 +138,12 @@ class RouletteFragment : Fragment() {
     }
 
     override fun onDestroyView() {
+        wasRunningOnDestroy = isRunning
+        if (isRunning) {
+            remainingMs =
+                (remainingMs - (SystemClock.elapsedRealtime() - startTime)).coerceAtLeast(0L)
+            isRunning = false
+        }
         handler.removeCallbacks(ticker)
         super.onDestroyView()
     }

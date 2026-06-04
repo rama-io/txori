@@ -12,6 +12,7 @@ import com.rama.txori.DatabaseHelper
 import com.rama.txori.R
 import com.rama.txori.SessionItem
 import com.rama.txori.Task
+import com.rama.txori.managers.PrefsManager
 import com.rama.txori.managers.ThemeManager
 
 class SessionAdapter(
@@ -32,9 +33,22 @@ class SessionAdapter(
     private var activeItemIndex: Int = -1
     private var activeProgress: Float = 0f
     private var activeRestProgress: Float = 0f
-    private val collapsedSessions: MutableSet<Long> = mutableSetOf()
+    private val collapsedSessions: MutableSet<Long> = loadCollapsedFromPrefs()
     private var isEditMode: Boolean = false
     private val playingSessions: MutableSet<Long> = mutableSetOf()
+
+    private fun loadCollapsedFromPrefs(): MutableSet<Long> {
+        val raw = PrefsManager.getInstance(context)
+            .getString(PrefsManager.PrefKeys.SESSION_COLLAPSED_IDS, "")
+        if (raw.isBlank()) return mutableSetOf()
+        return raw.split(",").mapNotNull { it.trim().toLongOrNull() }.toMutableSet()
+    }
+
+    private fun persistCollapsedToPrefs() {
+        val raw = collapsedSessions.joinToString(",")
+        PrefsManager.getInstance(context)
+            .setString(PrefsManager.PrefKeys.SESSION_COLLAPSED_IDS, raw)
+    }
 
     fun setEditMode(editing: Boolean) {
         isEditMode = editing
@@ -183,6 +197,7 @@ class SessionAdapter(
             } else {
                 collapsedSessions.add(header.sessionId)
             }
+            persistCollapsedToPrefs()
             notifyDataSetChanged()
         }
 
@@ -457,6 +472,7 @@ class SessionAdapter(
                 }
 
                 collapsedSessions.remove(header.sessionId)
+                persistCollapsedToPrefs()
                 notifyDataSetChanged()
                 onDataChanged()
                 dialog.dismiss()

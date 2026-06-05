@@ -1,8 +1,5 @@
 ![Preview](./docs/img/txori_header_1280x630.svg)
-
-<p align="center">
-  <img src="https://rama-io.github.io/img/badge_txori.svg">
-</p>
+![Badge](https://rama-io.github.io/img/badge_txori.svg)
 
 # Txori
 

@@ -95,11 +95,14 @@ class WorkoutManager(private var listener: Listener) {
     }
 
     fun repeatCurrentTask() {
-        if (currentItemIndex >= 0) loadTask(currentItemIndex)
+        if (currentItemIndex < 0) return
+        interruptRest()
+        loadTask(currentItemIndex)
     }
 
     fun skipTask() {
         cancelTaskTimer()
+        interruptRest()
         startFromIndex(currentItemIndex + 1)
     }
 
@@ -235,9 +238,11 @@ class WorkoutManager(private var listener: Listener) {
         listener.onRestStarted(index, durationMs)
         restTimer = object : CountDownTimer(durationMs, 100) {
             override fun onTick(millisUntilFinished: Long) {
-                val progress = (1f - millisUntilFinished.toFloat() / restDurationMs).coerceIn(0f, 1f)
+                val progress =
+                    (1f - millisUntilFinished.toFloat() / restDurationMs).coerceIn(0f, 1f)
                 listener.onRestTick(index, millisUntilFinished, progress)
             }
+
             override fun onFinish() {
                 listener.onRestFinished(index)
                 startFromIndex(index + 1)
@@ -247,6 +252,12 @@ class WorkoutManager(private var listener: Listener) {
 
     private fun cancelRestTimer() {
         restTimer?.cancel(); restTimer = null
+    }
+
+    private fun interruptRest() {
+        if (restTimer == null) return
+        cancelRestTimer()
+        listener.onRestFinished(currentItemIndex)
     }
 
     private fun cancelGlobalTimer() {

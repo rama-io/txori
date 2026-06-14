@@ -45,11 +45,19 @@ The goal is to keep you moving and mindful throughout the day without disrupting
 
 ## Installation
 
-- Available on **[F-Droid](https://f-droid.org/app/com.rama.txori)** for easy installation and
-  updates.
-- Download the latest APK from the **[Releases page](https://github.com/rama-io/txori/releases)** or
-  use **[Obtanium](https://github.com/ImranR98/Obtainium)** to get the newest version directly
-  from the github releases.
+<p>
+  <a href="https://apps.obtainium.imranr.dev/redirect?r=obtainium://add/https://github.com/rama-io/txori">
+    <img src="https://rama-io.github.io/img/obtainium.png" alt="Get txori From Obtainium">
+  </a>
+  &nbsp;
+  <a href="https://f-droid.org/app/com.rama.txori">
+    <img src="https://rama-io.github.io/img/fdroid.png" alt="Get txori From F-Droid">
+  </a>
+  &nbsp;
+  <a href="https://github.com/rama-io/txori/releases/latest">
+    <img src="https://rama-io.github.io/img/github.png" alt="Get txori From GitHub">
+  </a>
+</p>
 
 ---
 

@@ -59,7 +59,6 @@
     <style name="H1" parent="BlockFlow">
         <item name="android:textColor">@color/h1</item>
         <item name="android:textSize">@dimen/h1</item>
-        <item name="android:textStyle">bold</item>
     </style>
 
     <style name="H1_center" parent="H1">
@@ -69,7 +68,6 @@
     <style name="H2" parent="BlockFlow">
         <item name="android:textColor">@color/foreground</item>
         <item name="android:textSize">@dimen/h2</item>
-        <item name="android:textStyle">bold</item>
     </style>
 
     <style name="H2_center" parent="H2">
@@ -79,7 +77,6 @@
     <style name="H3" parent="BlockFlow">
         <item name="android:textColor">@color/foreground</item>
         <item name="android:textSize">@dimen/h3</item>
-        <item name="android:textStyle">bold</item>
     </style>
 
     <style name="Disclaimer" parent="BlockFlow">
@@ -98,7 +95,6 @@
         <item name="android:padding">16sp</item>
         <item name="android:textColor">@color/bg_1</item>
         <item name="android:textSize">@dimen/text</item>
-        <item name="android:textStyle">bold</item>
         <item name="android:textAllCaps">true</item>
         <item name="android:gravity">center</item>
     </style>
@@ -128,7 +124,6 @@
         <item name="android:textSize">@dimen/small</item>
         <item name="android:background">@color/button_2</item>
         <item name="android:textColor">@color/bg_1</item>
-        <item name="android:textStyle">bold</item>
         <item name="android:textAllCaps">true</item>
         <item name="android:gravity">center</item>
     </style>
@@ -174,7 +169,6 @@
     <style name="Separator">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">1dp</item>
-        <item name="android:textStyle">bold</item>
         <item name="android:background">@color/disabled</item>
         <item name="android:layout_marginTop">16sp</item>
         <item name="android:layout_marginBottom">16sp</item>

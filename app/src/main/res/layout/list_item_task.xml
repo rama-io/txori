@@ -81,7 +81,7 @@
                 android:layout_height="wrap_content"
                 android:text="1 / 1"
                 android:textSize="16sp"
-                android:textColor="@color/task_frequency" />
+                android:textColor="@color/suggestion" />
 
         </LinearLayout>
 

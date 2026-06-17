@@ -74,4 +74,5 @@ android {
 
 dependencies {
     implementation(libs.androidx.core.ktx)
+    implementation(project(":bohio"))
 }

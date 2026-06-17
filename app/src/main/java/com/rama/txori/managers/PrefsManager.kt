@@ -41,7 +41,7 @@ class PrefsManager private constructor(context: Context) {
         const val APP_THEME_DISABLED = "app:theme:disabled"
         const val APP_THEME_PROGRESS_BAR = "app:theme:progress"
         const val APP_THEME_PROGRESS_BAR_REST = "app:theme:progress_rest"
-        const val APP_THEME_TASK_FREQUENCY = "app:theme:task_frequency"
+
         const val APP_THEME_INPUT = "app:theme:input"
         const val APP_THEME_BUTTON_1 = "app:theme:button_1"
         const val APP_THEME_BUTTON_1_SELECTED = "app:theme:button_1_selected"

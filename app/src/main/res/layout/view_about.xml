@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/about_root"
     android:layout_height="match_parent"
     android:background="@color/bg_1"
     style="@style/VerticalListDivided">
@@ -44,49 +45,49 @@
                 android:text="@string/h2_app"
                 style="@style/H3" />
 
-            <com.rama.txori.widgets.WdLabel
+            <com.rama.bohio.widgets.WdLabel
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:icon="@drawable/icon_user"
                 android:text="@string/app_creator" />
 
-            <com.rama.txori.widgets.WdLabel
+            <com.rama.bohio.widgets.WdLabel
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:icon="@drawable/icon_seedlings"
                 android:text="@string/app_name" />
 
-            <com.rama.txori.widgets.WdLabel
+            <com.rama.bohio.widgets.WdLabel
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:icon="@drawable/icon_github"
                 android:text="@string/product_txori_url" />
 
-            <com.rama.txori.widgets.WdLabel
+            <com.rama.bohio.widgets.WdLabel
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:icon="@drawable/icon_octagon_check_solid"
                 android:text="@string/app_ads_desc" />
 
-            <com.rama.txori.widgets.WdLabel
+            <com.rama.bohio.widgets.WdLabel
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:icon="@drawable/icon_octagon_check_solid"
                 android:text="@string/app_background_tasks_desc" />
 
-            <com.rama.txori.widgets.WdLabel
+            <com.rama.bohio.widgets.WdLabel
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:icon="@drawable/icon_octagon_check_solid"
                 android:text="@string/app_trackers_desc" />
 
-            <com.rama.txori.widgets.WdLabel
+            <com.rama.bohio.widgets.WdLabel
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:icon="@drawable/icon_octagon_check_solid"
                 android:text="@string/app_offline_desc" />
 
-            <com.rama.txori.widgets.WdLabel
+            <com.rama.bohio.widgets.WdLabel
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:icon="@drawable/icon_octagon_check_solid"
@@ -96,25 +97,25 @@
                 android:text="@string/h2_icons"
                 style="@style/H3" />
 
-            <com.rama.txori.widgets.WdLabel
+            <com.rama.bohio.widgets.WdLabel
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:icon="@drawable/icon_user"
                 android:text="@string/product_hackernoon_creator" />
 
-            <com.rama.txori.widgets.WdLabel
+            <com.rama.bohio.widgets.WdLabel
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:icon="@drawable/icon_seedlings"
                 android:text="@string/product_hackernoon_name" />
 
-            <com.rama.txori.widgets.WdLabel
+            <com.rama.bohio.widgets.WdLabel
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:icon="@drawable/icon_github"
                 android:text="@string/product_hackernoon_url" />
 
-            <com.rama.txori.widgets.WdLabel
+            <com.rama.bohio.widgets.WdLabel
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:icon="@drawable/icon_octagon_check_solid"
@@ -124,25 +125,25 @@
                 android:text="@string/h2_fonts"
                 style="@style/H3" />
 
-            <com.rama.txori.widgets.WdLabel
+            <com.rama.bohio.widgets.WdLabel
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:icon="@drawable/icon_user"
                 android:text="@string/product_jersey_creator" />
 
-            <com.rama.txori.widgets.WdLabel
+            <com.rama.bohio.widgets.WdLabel
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:icon="@drawable/icon_seedlings"
                 android:text="@string/product_jersey_name" />
 
-            <com.rama.txori.widgets.WdLabel
+            <com.rama.bohio.widgets.WdLabel
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:icon="@drawable/icon_github"
                 android:text="@string/product_jersey_url" />
 
-            <com.rama.txori.widgets.WdLabel
+            <com.rama.bohio.widgets.WdLabel
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:icon="@drawable/icon_octagon_check_solid"
@@ -152,25 +153,25 @@
                 android:text="@string/h2_themes"
                 style="@style/H3" />
 
-            <com.rama.txori.widgets.WdLabel
+            <com.rama.bohio.widgets.WdLabel
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:icon="@drawable/icon_user"
                 android:text="@string/product_dracula_creator" />
 
-            <com.rama.txori.widgets.WdLabel
+            <com.rama.bohio.widgets.WdLabel
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:icon="@drawable/icon_seedlings"
                 android:text="@string/product_dracula_name" />
 
-            <com.rama.txori.widgets.WdLabel
+            <com.rama.bohio.widgets.WdLabel
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:icon="@drawable/icon_github"
                 android:text="@string/product_dracula_url" />
 
-            <com.rama.txori.widgets.WdLabel
+            <com.rama.bohio.widgets.WdLabel
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:icon="@drawable/icon_octagon_check_solid"
@@ -178,25 +179,25 @@
 
             <View style="@style/Separator" />
 
-            <com.rama.txori.widgets.WdLabel
+            <com.rama.bohio.widgets.WdLabel
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:icon="@drawable/icon_user"
                 android:text="@string/product_catppuccin_creator" />
 
-            <com.rama.txori.widgets.WdLabel
+            <com.rama.bohio.widgets.WdLabel
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:icon="@drawable/icon_seedlings"
                 android:text="@string/product_catppuccin_name" />
 
-            <com.rama.txori.widgets.WdLabel
+            <com.rama.bohio.widgets.WdLabel
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:icon="@drawable/icon_github"
                 android:text="@string/product_catppuccin_url" />
 
-            <com.rama.txori.widgets.WdLabel
+            <com.rama.bohio.widgets.WdLabel
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:icon="@drawable/icon_octagon_check_solid"
@@ -204,25 +205,25 @@
 
             <View style="@style/Separator" />
 
-            <com.rama.txori.widgets.WdLabel
+            <com.rama.bohio.widgets.WdLabel
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:icon="@drawable/icon_user"
                 android:text="@string/product_tokyo_creator" />
 
-            <com.rama.txori.widgets.WdLabel
+            <com.rama.bohio.widgets.WdLabel
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:icon="@drawable/icon_seedlings"
                 android:text="@string/product_tokyo_name" />
 
-            <com.rama.txori.widgets.WdLabel
+            <com.rama.bohio.widgets.WdLabel
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:icon="@drawable/icon_github"
                 android:text="@string/product_tokyo_url" />
 
-            <com.rama.txori.widgets.WdLabel
+            <com.rama.bohio.widgets.WdLabel
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:icon="@drawable/icon_octagon_check_solid"
@@ -230,25 +231,25 @@
 
             <View style="@style/Separator" />
 
-            <com.rama.txori.widgets.WdLabel
+            <com.rama.bohio.widgets.WdLabel
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:icon="@drawable/icon_user"
                 android:text="@string/product_melange_creator" />
 
-            <com.rama.txori.widgets.WdLabel
+            <com.rama.bohio.widgets.WdLabel
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:icon="@drawable/icon_seedlings"
                 android:text="@string/product_melange_name" />
 
-            <com.rama.txori.widgets.WdLabel
+            <com.rama.bohio.widgets.WdLabel
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:icon="@drawable/icon_github"
                 android:text="@string/product_melange_url" />
 
-            <com.rama.txori.widgets.WdLabel
+            <com.rama.bohio.widgets.WdLabel
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:icon="@drawable/icon_octagon_check_solid"

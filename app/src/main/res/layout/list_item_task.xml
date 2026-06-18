@@ -39,6 +39,7 @@
                 <ImageView
                     android:src="@drawable/px_edit"
                     android:contentDescription="@string/altdescr_edit_task"
+                    android:tint="@color/accent_2"
                     style="@style/Icon18" />
             </FrameLayout>
 
@@ -51,6 +52,7 @@
                 <ImageView
                     android:src="@drawable/px_chevron_up"
                     android:contentDescription="@string/altdescr_ascend"
+                    android:tint="@color/accent_1"
                     style="@style/Icon18" />
             </FrameLayout>
 
@@ -63,6 +65,7 @@
                 <ImageView
                     android:src="@drawable/px_chevron_down"
                     android:contentDescription="@string/altdescr_descend"
+                    android:tint="@color/accent_1"
                     style="@style/Icon18" />
             </FrameLayout>
 

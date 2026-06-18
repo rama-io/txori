@@ -14,10 +14,11 @@ import android.widget.ListView
 import android.widget.TextView
 import com.rama.txori.DatabaseHelper
 import com.rama.txori.R
+import com.rama.bohio.R as BohioR
 import com.rama.txori.SessionItem
 import com.rama.txori.adapters.SessionAdapter
 import com.rama.txori.managers.SoundManager
-import com.rama.txori.managers.ThemeManager
+import com.rama.bohio.managers.ThemeManager
 import com.rama.txori.managers.WorkoutManager
 
 class SessionFragment : Fragment(), WorkoutManager.Listener {
@@ -136,7 +137,7 @@ class SessionFragment : Fragment(), WorkoutManager.Listener {
         globalControllers.visibility = View.VISIBLE
         editButton.visibility = if (workout.isRunning) View.GONE else View.VISIBLE
         playPauseIcon.setImageResource(
-            if (workout.isRunning) R.drawable.icon_pause else R.drawable.icon_play
+            if (workout.isRunning) BohioR.drawable.px_pause else BohioR.drawable.px_play
         )
     }
 
@@ -185,7 +186,7 @@ class SessionFragment : Fragment(), WorkoutManager.Listener {
     override fun onPlayingStateChanged(sessionId: Long, playing: Boolean) {
         adapter.setGroupPlayingState(sessionId, playing)
         playPauseIcon.setImageResource(
-            if (playing) R.drawable.icon_pause else R.drawable.icon_play
+            if (playing) BohioR.drawable.px_pause else BohioR.drawable.px_play
         )
         editButton.visibility = if (playing) View.GONE else View.VISIBLE
     }
@@ -196,7 +197,7 @@ class SessionFragment : Fragment(), WorkoutManager.Listener {
         nextTaskView.text = getString(R.string.h2_next_placeholder)
         adapter.setActiveItemIndex(-1)
         adapter.setGroupPlayingState(sessionId, false)
-        playPauseIcon.setImageResource(R.drawable.icon_play)
+        playPauseIcon.setImageResource(BohioR.drawable.px_play)
         globalControllers.visibility = View.GONE
         editButton.visibility = View.VISIBLE
     }
@@ -207,7 +208,7 @@ class SessionFragment : Fragment(), WorkoutManager.Listener {
         nextTaskView.text = getString(R.string.h2_next_placeholder)
         adapter.setActiveItemIndex(-1)
         adapter.setGroupPlayingState(sessionId, false)
-        playPauseIcon.setImageResource(R.drawable.icon_play)
+        playPauseIcon.setImageResource(BohioR.drawable.px_play)
         globalControllers.visibility = View.GONE
     }
 
@@ -237,7 +238,8 @@ class SessionFragment : Fragment(), WorkoutManager.Listener {
 
     private fun updateTimerDisplay(ms: Long) {
         val total = (ms / 1000).coerceAtLeast(0)
-        timerView.text = String.format("%02d:%02d:%02d", total / 3600, (total % 3600) / 60, total % 60)
+        timerView.text =
+            String.format("%02d:%02d:%02d", total / 3600, (total % 3600) / 60, total % 60)
     }
 
     private fun showAddGroupDialog() {

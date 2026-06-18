@@ -17,7 +17,7 @@
             android:padding="12sp">
 
             <ImageView
-                android:src="@drawable/icon_cog"
+                android:src="@drawable/px_cog"
                 android:tint="@color/foreground"
                 android:contentDescription="@string/altdescr_open_settings"
                 style="@style/Icon24" />

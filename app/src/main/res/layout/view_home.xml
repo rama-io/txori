@@ -40,7 +40,7 @@
                 style="@style/BTN3">
 
                 <ImageView
-                    android:src="@drawable/icon_refresh"
+                    android:src="@drawable/px_refresh"
                     android:contentDescription="@string/altdescr_repeat_task"
                     style="@style/Icon24" />
             </FrameLayout>
@@ -50,7 +50,7 @@
                 style="@style/BTN3">
 
                 <ImageView
-                    android:src="@drawable/icon_30_timer"
+                    android:src="@drawable/px_timer_30"
                     android:contentDescription="@string/altdescr_increase_duration"
                     style="@style/Icon24" />
             </FrameLayout>
@@ -61,7 +61,7 @@
 
                 <ImageView
                     android:id="@+id/play_pause_icon"
-                    android:src="@drawable/icon_play"
+                    android:src="@drawable/px_play"
                     android:contentDescription="@string/altdescr_play_pause"
                     style="@style/Icon24" />
             </FrameLayout>
@@ -71,7 +71,7 @@
                 style="@style/BTN3">
 
                 <ImageView
-                    android:src="@drawable/icon_next"
+                    android:src="@drawable/px_next"
                     android:contentDescription="@string/altdescr_skip_task"
                     style="@style/Icon24" />
             </FrameLayout>

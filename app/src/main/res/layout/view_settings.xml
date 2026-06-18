@@ -34,6 +34,11 @@
                     style="@style/RadioGroup">
 
                     <RadioButton
+                        android:id="@+id/theme_teyin"
+                        android:text="@string/product_teyin"
+                        style="@style/Radio" />
+
+                    <RadioButton
                         android:id="@+id/theme_mako"
                         android:text="@string/radio_theme_mako"
                         style="@style/Radio" />
@@ -46,6 +51,11 @@
                     <RadioButton
                         android:id="@+id/theme_catppuccin_mocha"
                         android:text="@string/product_catppuccin_name"
+                        style="@style/Radio" />
+
+                    <RadioButton
+                        android:id="@+id/theme_catppuccin_latte"
+                        android:text="@string/product_catppuccin_latte_name"
                         style="@style/Radio" />
 
                     <RadioButton

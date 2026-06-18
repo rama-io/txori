@@ -150,7 +150,7 @@ class RouletteFragment : Fragment() {
 
     private fun loadPrefs() {
         val prefs = PrefsManager.getInstance(activity)
-        val savedTimer = prefs.getString(PrefsManager.PrefKeys.ROULETTE_TIMER, "00:00:00")
+        val savedTimer = prefs.getString(PrefsManager.FileKeys.ROULETTE_TIMER, "00:00:00")
         timerInput.setText(savedTimer.filter { it.isDigit() }.trimStart('0'))
         timerMs = digitsToMillis(savedTimer.filter { it.isDigit() }.takeLast(6))
     }
@@ -160,7 +160,7 @@ class RouletteFragment : Fragment() {
         val formatted = formatDigits(digits)
         timerMs = digitsToMillis(digits)
         PrefsManager.getInstance(activity)
-            .setString(PrefsManager.PrefKeys.ROULETTE_TIMER, formatted)
+            .setString(PrefsManager.FileKeys.ROULETTE_TIMER, formatted)
         timerInput.clearFocus()
         Toast.makeText(activity, getString(R.string.toast_saved_timer), Toast.LENGTH_LONG).show()
     }
@@ -171,7 +171,7 @@ class RouletteFragment : Fragment() {
         db.close()
 
         val savedId = PrefsManager.getInstance(activity)
-            .prefs.getInt(PrefsManager.PrefKeys.ROULETTE_LIST, -1).toLong()
+            .prefs.getInt(PrefsManager.FileKeys.ROULETTE_LIST, -1).toLong()
 
         val defaultId = when {
             savedId != -1L -> savedId
@@ -195,7 +195,7 @@ class RouletteFragment : Fragment() {
             val rb = group.findViewById<RadioButton>(checkedId) ?: return@setOnCheckedChangeListener
             val sessionId = rb.tag as Long
             PrefsManager.getInstance(activity).prefs.edit()
-                .putInt(PrefsManager.PrefKeys.ROULETTE_LIST, sessionId.toInt())
+                .putInt(PrefsManager.FileKeys.ROULETTE_LIST, sessionId.toInt())
                 .apply()
         }
     }

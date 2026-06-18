@@ -101,7 +101,7 @@ class TimerFragment : Fragment() {
 
         loadPrefs()
         updateButtons()
-        
+
         if (savedInstanceState != null) {
             // Process-death restore: fields were zeroed, read them from bundle.
             initialMs = savedInstanceState.getLong(KEY_INITIAL_MS, 0L)
@@ -127,7 +127,7 @@ class TimerFragment : Fragment() {
         val prefs = PrefsManager.getInstance(activity)
 
         val savedTimer = prefs.getString(
-            PrefsManager.PrefKeys.APP_TIMER,
+            PrefsManager.FileKeys.APP_TIMER,
             "00:30:00"
         ) ?: "00:30:00"
 
@@ -195,7 +195,7 @@ class TimerFragment : Fragment() {
         remainingMs = initialMs
 
         PrefsManager.getInstance(activity)
-            .setString(PrefsManager.PrefKeys.APP_TIMER, formatted)
+            .setString(PrefsManager.FileKeys.APP_TIMER, formatted)
         timerInput.clearFocus()
         Toast.makeText(activity, getString(R.string.toast_saved_timer), Toast.LENGTH_LONG).show()
 

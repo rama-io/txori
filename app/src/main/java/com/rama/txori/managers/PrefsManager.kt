@@ -7,7 +7,7 @@ import com.rama.bohio.managers.PrefsManager as BohioPrefsManager
 
 class PrefsManager private constructor(context: Context) : BohioPrefsManager(context) {
 
-    override val defaultTheme: String = PrefTheme.TEYIN
+    override val defaultTheme: String = PrefTheme.DRACULA
 
     // Local preference keys
     object FileKeys {

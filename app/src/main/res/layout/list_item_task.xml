@@ -12,13 +12,13 @@
         android:id="@+id/progress_bg"
         android:layout_width="0dp"
         android:layout_height="match_parent"
-        android:background="@color/progress" />
+        android:background="@color/progressbar" />
 
     <View
         android:id="@+id/progress_rest_bg"
         android:layout_width="0dp"
         android:layout_height="match_parent"
-        android:background="@color/progress_rest" />
+        android:background="@color/progressbar_2" />
 
     <LinearLayout
         android:id="@+id/app_row"
@@ -37,8 +37,9 @@
                 android:padding="12sp">
 
                 <ImageView
-                    android:src="@drawable/icon_edit"
+                    android:src="@drawable/px_edit"
                     android:contentDescription="@string/altdescr_edit_task"
+                    android:tint="@color/accent_2"
                     style="@style/Icon18" />
             </FrameLayout>
 
@@ -49,8 +50,9 @@
                 android:padding="12sp">
 
                 <ImageView
-                    android:src="@drawable/icon_chevron_up_solid"
+                    android:src="@drawable/px_chevron_up"
                     android:contentDescription="@string/altdescr_ascend"
+                    android:tint="@color/accent_1"
                     style="@style/Icon18" />
             </FrameLayout>
 
@@ -61,8 +63,9 @@
                 android:padding="12sp">
 
                 <ImageView
-                    android:src="@drawable/icon_chevron_down_solid"
+                    android:src="@drawable/px_chevron_down"
                     android:contentDescription="@string/altdescr_descend"
+                    android:tint="@color/accent_1"
                     style="@style/Icon18" />
             </FrameLayout>
 
@@ -81,7 +84,7 @@
                 android:layout_height="wrap_content"
                 android:text="1 / 1"
                 android:textSize="16sp"
-                android:textColor="@color/task_frequency" />
+                android:textColor="@color/suggestion" />
 
         </LinearLayout>
 

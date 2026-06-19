@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.widget.FrameLayout
 import android.widget.LinearLayout
 import com.rama.txori.R
+import com.rama.bohio.R as BohioR
 
 class WdNavbar @JvmOverloads constructor(
     context: Context,
@@ -19,8 +20,8 @@ class WdNavbar @JvmOverloads constructor(
     private val stopwatchBtn: FrameLayout
     private val timerBtn: FrameLayout
     private val rouletteBtn: FrameLayout
-    private val selectedColor = resources.getColor(R.color.button_1_selected)
-    private val inactiveColor = resources.getColor(R.color.button_1)
+    private val selectedColor = resources.getColor(BohioR.color.button_1_selected)
+    private val inactiveColor = resources.getColor(BohioR.color.button_1)
 
     var onNavigate: ((Page) -> Unit)? = null
 

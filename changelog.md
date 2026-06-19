@@ -1,5 +1,13 @@
 # Changelog
 
+## 10
+
+- Migrate common assets to Bohio
+
+## 9
+
+- Fix skipping rest timer bug
+
 ## 8
 
 - Fix bug where rotating the phone would pause the counter in main screen

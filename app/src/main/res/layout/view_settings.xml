@@ -22,7 +22,7 @@
                 style="@style/H2" />
 
             <!--Themes-->
-            <com.rama.txori.widgets.WdCollapsibleSection
+            <com.rama.bohio.widgets.WdCollapsibleSection
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:key="SETTINGS_SECTION_THEMES"
@@ -32,6 +32,11 @@
                 <RadioGroup
                     android:id="@+id/themes_group"
                     style="@style/RadioGroup">
+
+                    <RadioButton
+                        android:id="@+id/theme_teyin"
+                        android:text="@string/product_teyin"
+                        style="@style/Radio" />
 
                     <RadioButton
                         android:id="@+id/theme_mako"
@@ -46,6 +51,11 @@
                     <RadioButton
                         android:id="@+id/theme_catppuccin_mocha"
                         android:text="@string/product_catppuccin_name"
+                        style="@style/Radio" />
+
+                    <RadioButton
+                        android:id="@+id/theme_catppuccin_latte"
+                        android:text="@string/product_catppuccin_latte_name"
                         style="@style/Radio" />
 
                     <RadioButton
@@ -80,84 +90,84 @@
                         android:focusableInTouchMode="true"
                         style="@style/VerticalListDivided_BG2">
 
-                        <com.rama.txori.widgets.WdColorPicker
+                        <com.rama.bohio.widgets.WdColorPicker
                             android:id="@+id/h1"
                             app:text="@string/colorpicker_theme_h1"
                             style="@style/ColorPickerBtn" />
 
-                        <com.rama.txori.widgets.WdColorPicker
+                        <com.rama.bohio.widgets.WdColorPicker
                             android:id="@+id/foreground"
                             app:text="@string/colorpicker_theme_foreground"
                             style="@style/ColorPickerBtn" />
 
-                        <com.rama.txori.widgets.WdColorPicker
+                        <com.rama.bohio.widgets.WdColorPicker
                             android:id="@+id/collapsible_header"
                             app:text="@string/colorpicker_theme_collapsible_header"
                             style="@style/ColorPickerBtn" />
 
-                        <com.rama.txori.widgets.WdColorPicker
+                        <com.rama.bohio.widgets.WdColorPicker
                             android:id="@+id/icons"
                             android:visibility="gone"
                             app:text="@string/colorpicker_theme_icons"
                             style="@style/ColorPickerBtn" />
 
-                        <com.rama.txori.widgets.WdColorPicker
+                        <com.rama.bohio.widgets.WdColorPicker
                             android:id="@+id/accent"
                             android:visibility="gone"
                             app:text="@string/colorpicker_theme_accent"
                             style="@style/ColorPickerBtn" />
 
-                        <com.rama.txori.widgets.WdColorPicker
+                        <com.rama.bohio.widgets.WdColorPicker
                             android:id="@+id/progressbar"
                             app:text="@string/colorpicker_theme_progressbar"
                             style="@style/ColorPickerBtn" />
 
-                        <com.rama.txori.widgets.WdColorPicker
+                        <com.rama.bohio.widgets.WdColorPicker
                             android:id="@+id/task_frequency"
                             app:text="@string/colorpicker_theme_task_frequency"
                             style="@style/ColorPickerBtn" />
 
-                        <com.rama.txori.widgets.WdColorPicker
+                        <com.rama.bohio.widgets.WdColorPicker
                             android:id="@+id/disabled"
                             app:text="@string/colorpicker_theme_disabled"
                             style="@style/ColorPickerBtn" />
 
-                        <com.rama.txori.widgets.WdColorPicker
+                        <com.rama.bohio.widgets.WdColorPicker
                             android:id="@+id/bg_1"
                             app:text="@string/colorpicker_theme_background_1"
                             style="@style/ColorPickerBtn" />
 
-                        <com.rama.txori.widgets.WdColorPicker
+                        <com.rama.bohio.widgets.WdColorPicker
                             android:id="@+id/bg_2"
                             app:text="@string/colorpicker_theme_background_2"
                             style="@style/ColorPickerBtn" />
 
-                        <com.rama.txori.widgets.WdColorPicker
+                        <com.rama.bohio.widgets.WdColorPicker
                             android:id="@+id/bg_3"
                             app:text="@string/colorpicker_theme_background_3"
                             style="@style/ColorPickerBtn" />
 
-                        <com.rama.txori.widgets.WdColorPicker
+                        <com.rama.bohio.widgets.WdColorPicker
                             android:id="@+id/input"
                             app:text="@string/colorpicker_theme_input_background"
                             style="@style/ColorPickerBtn" />
 
-                        <com.rama.txori.widgets.WdColorPicker
+                        <com.rama.bohio.widgets.WdColorPicker
                             android:id="@+id/btn_1"
                             app:text="@string/colorpicker_theme_button_1_background"
                             style="@style/ColorPickerBtn" />
 
-                        <com.rama.txori.widgets.WdColorPicker
+                        <com.rama.bohio.widgets.WdColorPicker
                             android:id="@+id/btn_1_selected"
                             app:text="@string/colorpicker_theme_button_1_background_selected"
                             style="@style/ColorPickerBtn" />
 
-                        <com.rama.txori.widgets.WdColorPicker
+                        <com.rama.bohio.widgets.WdColorPicker
                             android:id="@+id/btn_2"
                             app:text="@string/colorpicker_theme_button_2_background"
                             style="@style/ColorPickerBtn" />
 
-                        <com.rama.txori.widgets.WdColorPicker
+                        <com.rama.bohio.widgets.WdColorPicker
                             android:id="@+id/danger"
                             app:text="@string/colorpicker_theme_danger"
                             style="@style/ColorPickerBtn" />
@@ -168,10 +178,10 @@
                             style="@style/BTN2" />
                     </LinearLayout>
                 </LinearLayout>
-            </com.rama.txori.widgets.WdCollapsibleSection>
+            </com.rama.bohio.widgets.WdCollapsibleSection>
 
             <!--Fonts-->
-            <com.rama.txori.widgets.WdCollapsibleSection
+            <com.rama.bohio.widgets.WdCollapsibleSection
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:key="SETTINGS_SECTION_FONTS"
@@ -219,22 +229,22 @@
 
                 </LinearLayout>
 
-            </com.rama.txori.widgets.WdCollapsibleSection>
+            </com.rama.bohio.widgets.WdCollapsibleSection>
 
             <!--System-->
-            <com.rama.txori.widgets.WdCollapsibleSection
+            <com.rama.bohio.widgets.WdCollapsibleSection
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:key="SETTINGS_SECTION_SYSTEM"
                 app:header="@string/h2_system"
                 app:defaultExpanded="true">
 
-                <com.rama.txori.widgets.WdCheckbox
+                <com.rama.bohio.widgets.WdCheckbox
                     android:id="@+id/show_system_bar"
                     android:text="@string/checkbox_show_system_bar"
                     style="@style/Checkbox" />
 
-                <com.rama.txori.widgets.WdCheckbox
+                <com.rama.bohio.widgets.WdCheckbox
                     android:id="@+id/keep_screen_awake"
                     android:text="@string/checkbox_lock_screen_from_falling_asleep"
                     style="@style/Checkbox" />
@@ -244,17 +254,17 @@
                     <TextView
                         android:text="@string/label_zoom"
                         style="@style/Text" />
-                    
-                    <com.rama.txori.widgets.WdRange
+
+                    <com.rama.bohio.widgets.WdRange
                         android:id="@+id/zoom"
                         app:valuesArray="@array/ui_scale_steps"
                         style="@style/BlockFlow" />
 
                 </LinearLayout>
-            </com.rama.txori.widgets.WdCollapsibleSection>
+            </com.rama.bohio.widgets.WdCollapsibleSection>
 
             <!--Language-->
-            <com.rama.txori.widgets.WdCollapsibleSection
+            <com.rama.bohio.widgets.WdCollapsibleSection
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:key="SETTINGS_SECTION_LANGUAGE"
@@ -264,7 +274,7 @@
                 <RadioGroup
                     android:id="@+id/language_group"
                     style="@style/RadioGroup" />
-            </com.rama.txori.widgets.WdCollapsibleSection>
+            </com.rama.bohio.widgets.WdCollapsibleSection>
         </LinearLayout>
     </ScrollView>
 

@@ -7,7 +7,7 @@ import android.view.View
 import android.widget.FrameLayout
 import com.rama.txori.CsActivity
 import com.rama.txori.R
-import com.rama.txori.managers.ThemeManager
+import com.rama.bohio.managers.ThemeManager
 import com.rama.txori.widgets.WdNavbar
 
 class MainActivity : CsActivity() {
@@ -84,7 +84,7 @@ class MainActivity : CsActivity() {
     override fun onResume() {
         super.onResume()
         if (prefs.getBoolean(
-                com.rama.txori.managers.PrefsManager.PrefKeys.SYSTEM_PREVENT_SLEEP,
+                com.rama.bohio.objects.PrefKeys.SYSTEM_PREVENT_SLEEP,
                 false
             )
         ) {
@@ -112,10 +112,6 @@ class MainActivity : CsActivity() {
         currentPage = page
         navbar.setActivePage(page)
         ThemeManager.applyTheme(this, findViewById(R.id.root))
-    }
-
-    fun setNavbarVisible(visible: Boolean) {
-        navbar.visibility = if (visible) View.VISIBLE else View.GONE
     }
 
     companion object {

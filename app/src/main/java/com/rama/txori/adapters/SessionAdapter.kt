@@ -10,10 +10,11 @@ import android.view.ViewGroup
 import android.widget.*
 import com.rama.txori.DatabaseHelper
 import com.rama.txori.R
+import com.rama.bohio.R as BohioR
 import com.rama.txori.SessionItem
 import com.rama.txori.Task
 import com.rama.txori.managers.PrefsManager
-import com.rama.txori.managers.ThemeManager
+import com.rama.bohio.managers.ThemeManager
 
 class SessionAdapter(
     private val context: Context,
@@ -39,7 +40,7 @@ class SessionAdapter(
 
     private fun loadCollapsedFromPrefs(): MutableSet<Long> {
         val raw = PrefsManager.getInstance(context)
-            .getString(PrefsManager.PrefKeys.SESSION_COLLAPSED_IDS, "")
+            .getString(PrefsManager.FileKeys.SESSION_COLLAPSED_IDS, "")
         if (raw.isBlank()) return mutableSetOf()
         return raw.split(",").mapNotNull { it.trim().toLongOrNull() }.toMutableSet()
     }
@@ -47,7 +48,7 @@ class SessionAdapter(
     private fun persistCollapsedToPrefs() {
         val raw = collapsedSessions.joinToString(",")
         PrefsManager.getInstance(context)
-            .setString(PrefsManager.PrefKeys.SESSION_COLLAPSED_IDS, raw)
+            .setString(PrefsManager.FileKeys.SESSION_COLLAPSED_IDS, raw)
     }
 
     fun setEditMode(editing: Boolean) {
@@ -277,9 +278,9 @@ class SessionAdapter(
         view.findViewById<ImageView>(R.id.start_group_icon)
             .setImageResource(
                 if (playingSessions.contains(header.sessionId))
-                    R.drawable.icon_pause
+                    BohioR.drawable.px_pause
                 else
-                    R.drawable.icon_play
+                    BohioR.drawable.px_play
             )
 
         val resetGroupButton = view.findViewById<FrameLayout>(R.id.reset_group)
@@ -546,7 +547,11 @@ class SessionAdapter(
             // Reload tasks from DB so the new task carries its real stepId.
             // Without it, swapStepOrder queries id=0 and silently fails.
             val freshTasks = dbHelper.getSessionTasks(db, targetSessionId)
-            val newTask = freshTasks.lastOrNull() ?: Task(label = label, duration = duration, restDuration = restDuration)
+            val newTask = freshTasks.lastOrNull() ?: Task(
+                label = label,
+                duration = duration,
+                restDuration = restDuration
+            )
 
             // Find the correct insert position for the target session
             val targetHeaderIdx = items.indexOfFirst {
@@ -689,5 +694,10 @@ class SessionAdapter(
     }
 
     private fun formatGroupTime(totalSeconds: Int): String =
-        String.format("%02d:%02d:%02d", totalSeconds / 3600, (totalSeconds % 3600) / 60, totalSeconds % 60)
+        String.format(
+            "%02d:%02d:%02d",
+            totalSeconds / 3600,
+            (totalSeconds % 3600) / 60,
+            totalSeconds % 60
+        )
 }

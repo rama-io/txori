@@ -8,8 +8,9 @@
         style="@style/BTN1">
 
         <ImageView
-            android:src="@drawable/icon_bullet_list_solid"
+            android:src="@drawable/px_bullet_list"
             android:contentDescription="@string/altdescr_home_nav"
+            android:tint="@color/bg_1"
             style="@style/Icon24" />
     </FrameLayout>
 
@@ -19,8 +20,9 @@
         style="@style/BTN1">
 
         <ImageView
-            android:src="@drawable/icon_stopwatch"
+            android:src="@drawable/px_stopwatch"
             android:contentDescription="@string/altdescr_stopwatch_nav"
+            android:tint="@color/bg_1"
             style="@style/Icon24" />
     </FrameLayout>
 
@@ -30,8 +32,9 @@
         style="@style/BTN1">
 
         <ImageView
-            android:src="@drawable/icon_timer_solid"
+            android:src="@drawable/px_timer"
             android:contentDescription="@string/altdescr_timer_nav"
+            android:tint="@color/bg_1"
             style="@style/Icon24" />
     </FrameLayout>
 
@@ -41,8 +44,9 @@
         style="@style/BTN1">
 
         <ImageView
-            android:src="@drawable/icon_shuffle"
+            android:src="@drawable/px_shuffle"
             android:contentDescription="@string/altdescr_shuffle_nav"
+            android:tint="@color/bg_1"
             style="@style/Icon24" />
     </FrameLayout>
 </LinearLayout>

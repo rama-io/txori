@@ -1,10 +1,10 @@
 package com.rama.txori.activities.settings
 
 import android.view.View
+import com.rama.bohio.objects.PrefKeys
 import com.rama.txori.R
 import com.rama.txori.activities.SettingsActivity
-import com.rama.txori.managers.PrefsManager.PrefKeys
-import com.rama.txori.widgets.WdCheckbox
+import com.rama.bohio.widgets.WdCheckbox
 
 class SettingsCheckboxController(private val activity: SettingsActivity) {
 

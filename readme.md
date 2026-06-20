@@ -68,13 +68,37 @@ The goal is to keep you moving and mindful throughout the day without disrupting
 
 ---
 
-## Tested Devices
+## Tests
 
-| Device       | OS         | Year | Status     |
-|--------------|------------|------|------------|
-| Pixel 8 Pro  | Android 16 | 2026 | ✅ Verified |
-| Pixel 6      | GrapheneOS | 2026 | ✅ Verified |
-| Samsung On 5 | Android 6  | 2015 | ✅ Verified |
+### Focus Group
+
+| Device | Version | Start/Pause Tasks | Skip Task | Add 30s Timer | Reload Task | Add Task | Add Group |
+| - | - | - | - | - | - | - | - |
+| Pixel 9 Pro Fold | Android 16 / API 36 | Y | Y | Y | Y | Y | Y |
+| Nexus 5 | Android 5 / API 21 | Y | Y | Y | Y | Y | Y |
+
+### Stopwatch and Timer
+
+| Device | Version | Start/Pause Stopwatch | Reset Stopwatch | Start/Pause Timer | Reset timer | Edit Timer |
+| - | - | - | - | - | - | - |
+| Pixel 9 Pro Fold | Android 16 / API 36 | Y | Y | Y | Y | Y |
+| Nexus 5 | Android 5 / API 21 | Y | Y | Y | Y | Y |
+
+### Roulette
+
+| Device | Version | Start/Pause Roulette | Skip Roulette Task | Finish Roulette | Edit Roulette Timer |
+| - | - | - | - | - | - |
+| Pixel 9 Pro Fold | Android 16 / API 36 | Y | Y | Y | Y |
+| Nexus 5 | Android 5 / API 21 | Y | Y | Y | Y |
+
+
+<!-- | Pixel 9 | Android 15 / API 35 | Y | Y | Y | Y | Y |
+| Pixel 8 | Android 14 / API 34 | Y | Y | Y | Y | Y |
+| Pixel 7 | Android 13 / API 33 | Y | Y | Y | Y | Y |
+| Pixel 6 | Android 12 / API 31 | Y | Y | Y | Y | Y |
+| Pixel 4 | Android 10 / API 29 | Y | Y | N | N | N |
+| Pixel 2 | Android 8 / API 27 | Y | Y | Y | Y | Y |
+| Pixel | Android 7 / API 25 | Y | Y | Y | N | Y | -->
 
 ---
 

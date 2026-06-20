@@ -8,7 +8,9 @@ abstract class CsActivity : BohioActivity() {
     val prefs by lazy { PrefsManager.getInstance(this) }
 
     override fun attachBaseContext(newBase: Context) {
-        PrefsManager.getInstance(newBase.applicationContext)
+        PrefsManager.getInstance(newBase.applicationContext).also {
+            it.initPrefs()
+        }
         super.attachBaseContext(newBase)
     }
 }

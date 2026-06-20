@@ -1,5 +1,9 @@
 # Changelog
 
+## 11
+
+- Fix app padding
+
 ## 10
 
 - Migrate common assets to Bohio

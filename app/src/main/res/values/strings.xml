@@ -1,8 +1,4 @@
 <resources>
-    <!-- Activities -->
-    <string name="activity_settings_label">Settings</string>
-    <string name="activity_about_label">About</string>
-
     <!-- H1 -->
     <string name="h1_timer_default">00:00:00</string>
     <string name="h1_timer_zero">00:00</string>
@@ -18,16 +14,9 @@
     <string name="h2_edit_task">Edit task</string>
     <string name="h2_add_new_task">Add new task</string>
     <string name="h2_add_new_group">Add new group</string>
-    <string name="h2_color_picker">Pick a Color</string>
     <string name="h2_edit_group">Edit Group</string>
 
     <!-- H3 -->
-    <string name="h2_icons">Icons</string>
-    <string name="h2_fonts">Fonts</string>
-    <string name="h2_themes">Themes</string>
-    <string name="h2_language">Language</string>
-    <string name="h2_system">System</string>
-    <string name="h2_app">App</string>
     <string name="h3_lists">Lists</string>
     <string name="h3_timer">Timer</string>
 
@@ -47,28 +36,16 @@
     <string name="btn_update_task">Update task</string>
     <string name="btn_delete_task">Delete task</string>
     <string name="btn_create">Create</string>
-    <string name="btn_go_back">Go Back</string>
-    <string name="btn_apply">Apply</string>
     <string name="btn_about_txori">About Txori</string>
-    <string name="btn_cancel">Cancel</string>
     <string name="btn_delete_group">Delete group</string>
-    <string name="btn_save">Save</string>
-    <string name="btn_join_discord">Join Discord</string>
-    <string name="btn_theme_apply_custom">Apply Custom Theme</string>
     <string name="btn_add_group">+ Add New Group</string>
     <string name="btn_finish">Finish</string>
+    <string name="btn_save">Save</string> <!-- TODO common -->
 
     <!-- Radio -->
     <string name="radio_default_system">Default (System)</string>
-    <string name="radio_language_system_default">System Default (fallback to English)</string>
-    <string name="radio_language_english" translatable="false">English</string>
-    <string name="radio_font_custom">Custom font</string>
-    <string name="radio_theme_rama">Rama</string>
-    <string name="radio_theme_mako">Mako</string>
-    <string name="radio_theme_custom">Custom</string>
 
     <!-- Checkbox -->
-    <string name="checkbox_show_system_bar">Show system bar</string>
     <string name="checkbox_lock_screen_from_falling_asleep">Keep screen awake</string>
 
     <!-- InputLabel -->
@@ -85,7 +62,6 @@
     <!-- Toasts -->
     <string name="toast_name_empty">Name cannot be empty</string>
     <string name="toast_label_empty">Label cannot be empty</string>
-    <string name="toast_invalid_color">Invalid color</string>
     <string name="toast_saved_timer">Timer saved</string>
 
     <!-- AltDescription -->
@@ -111,9 +87,5 @@
     <!-- APP -->
     <string name="app_name" translatable="false">@string/product_txori</string>
     <string name="app_desc">A minimal, privacy-first focus session app designed to help you stay present and intentional with your time.</string>
-    <string name="app_background_tasks_desc">No Background Tasks</string>
-    <string name="app_ads_desc">No Ads</string>
-    <string name="app_trackers_desc">No Trackers</string>
-    <string name="app_offline_desc">Works Offline</string>
 </resources>
 

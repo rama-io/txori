@@ -26,7 +26,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:key="SETTINGS_SECTION_THEMES"
-                app:header="@string/h2_themes"
+                app:header="@string/h3_themes"
                 app:defaultExpanded="true">
 
                 <RadioGroup
@@ -40,12 +40,12 @@
 
                     <RadioButton
                         android:id="@+id/theme_mako"
-                        android:text="@string/radio_theme_mako"
+                        android:text="@string/product_mako"
                         style="@style/Radio" />
 
                     <RadioButton
                         android:id="@+id/theme_rama"
-                        android:text="@string/radio_theme_rama"
+                        android:text="@string/product_rama"
                         style="@style/Radio" />
 
                     <RadioButton
@@ -195,7 +195,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:key="SETTINGS_SECTION_FONTS"
-                app:header="@string/h2_fonts"
+                app:header="@string/h3_fonts"
                 app:defaultExpanded="true">
 
                 <RadioGroup
@@ -246,7 +246,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:key="SETTINGS_SECTION_SYSTEM"
-                app:header="@string/h2_system"
+                app:header="@string/h3_system"
                 app:defaultExpanded="true">
 
                 <com.rama.bohio.widgets.WdCheckbox
@@ -278,7 +278,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:key="SETTINGS_SECTION_LANGUAGE"
-                app:header="@string/h2_language"
+                app:header="@string/h3_language"
                 app:defaultExpanded="true">
 
                 <RadioGroup

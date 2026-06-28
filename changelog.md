@@ -1,5 +1,14 @@
 # Changelog
 
+## 12
+
+- Fix color picker
+- Fix choose custom font button visibility
+- Fix expanded sections on settings not keeping state
+- Add Mono Dark theme
+- Add Mono Light theme
+- Migrating common assets to bohio
+
 ## 11
 
 - Fix app padding

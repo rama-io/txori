@@ -1,12 +1,8 @@
 *.iml
 .gradle
+.kotlin/
 /local.properties
-/.idea/caches
-/.idea/libraries
-/.idea/modules.xml
-/.idea/workspace.xml
-/.idea/navEditor.xml
-/.idea/assetWizardSettings.xml
+.idea/
 .DS_Store
 /build
 /captures
@@ -24,6 +20,10 @@ keystore.properties
 *.aab
 *.apks
 *.xapk
+*.dm
 
 # Gradle output metadata
 **/output-metadata.json
+
+# Extensions may create this...
+.vscode/

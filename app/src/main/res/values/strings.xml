@@ -56,7 +56,6 @@
     <string name="btn_join_discord">Join Discord</string>
     <string name="btn_theme_apply_custom">Apply Custom Theme</string>
     <string name="btn_add_group">+ Add New Group</string>
-    <string name="btn_font_custom_pick">Choose Font file</string>
     <string name="btn_finish">Finish</string>
 
     <!-- Radio -->

@@ -59,26 +59,6 @@
     <string name="btn_font_custom_pick">Choose Font file</string>
     <string name="btn_finish">Finish</string>
 
-    <!-- ColorPicker -->
-    <string name="colorpicker_theme_foreground">Foreground</string>
-    <string name="colorpicker_theme_collapsible_header">Collapsible Header</string>
-    <string name="colorpicker_theme_h1">H1</string>
-    <string name="colorpicker_theme_icons">Icons</string>
-    <string name="colorpicker_theme_accent">Accent</string>
-    <string name="colorpicker_theme_background_1">Background 1</string>
-    <string name="colorpicker_theme_background_2">Background 2</string>
-    <string name="colorpicker_theme_background_3">Background 3</string>
-    <string name="colorpicker_theme_input_background">Input Background</string>
-    <string name="colorpicker_theme_button_1_background">Button 1 Background</string>
-    <string name="colorpicker_theme_button_1_background_selected">Button 1 Selected Background</string>
-    <string name="colorpicker_theme_button_2_background">Button 2 Background</string>
-    <string name="colorpicker_theme_danger">Danger</string>
-    <string name="colorpicker_theme_disabled">Disabled</string>
-    <string name="colorpicker_theme_task_frequency">Task Frequency</string>
-    <string name="colorpicker_theme_progressbar">Progress Bar</string>
-    <!-- FilePicker -->
-    <string name="filepicker_font_custom_none">No font selected</string>
-
     <!-- Radio -->
     <string name="radio_default_system">Default (System)</string>
     <string name="radio_language_system_default">System Default (fallback to English)</string>

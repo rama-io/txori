@@ -113,7 +113,7 @@ class SettingsAppearanceController(private val activity: SettingsActivity) {
         val label = activity.findViewById<TextView>(R.id.font_custom_name_label)
         val path = prefs.getCustomFontPath()
         label.text =
-            if (path.isNotBlank()) File(path).name else activity.getString(R.string.filepicker_font_custom_none)
+            if (path.isNotBlank()) File(path).name else activity.getString(BohioR.string.filepicker_font_custom_none)
     }
 
     private fun setupTheme() {

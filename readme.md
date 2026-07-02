@@ -47,15 +47,15 @@ The goal is to keep you moving and mindful throughout the day without disrupting
 
 <p>
   <a href="https://apps.obtainium.imranr.dev/redirect?r=obtainium://add/https://github.com/rama-io/txori">
-    <img src="https://rama-io.github.io/img/obtainium.png" alt="Get txori From Obtainium">
+    <img src="https://rama-io.github.io/img/obtainium.svg" alt="Get txori From Obtainium">
   </a>
   &nbsp;
   <a href="https://f-droid.org/app/com.rama.txori">
-    <img src="https://rama-io.github.io/img/fdroid.png" alt="Get txori From F-Droid">
+    <img src="https://rama-io.github.io/img/fdroid.svg" alt="Get txori From F-Droid">
   </a>
   &nbsp;
   <a href="https://github.com/rama-io/txori/releases/latest">
-    <img src="https://rama-io.github.io/img/github.png" alt="Get txori From GitHub">
+    <img src="https://rama-io.github.io/img/github.svg" alt="Get txori From GitHub">
   </a>
 </p>
 

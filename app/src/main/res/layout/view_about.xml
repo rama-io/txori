@@ -48,12 +48,6 @@
             <com.rama.bohio.widgets.WdLabel
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:icon="@drawable/px_user"
-                android:text="@string/app_creator" />
-
-            <com.rama.bohio.widgets.WdLabel
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
                 android:icon="@drawable/px_seedlings"
                 android:text="@string/app_name" />
 
@@ -96,6 +90,20 @@
             <TextView
                 android:text="@string/h3_contributors"
                 style="@style/H3" />
+
+            <com.rama.bohio.widgets.WdLabel
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:icon="@drawable/px_user"
+                android:text="@string/app_creator" />
+
+            <com.rama.bohio.widgets.WdLabel
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:icon="@drawable/px_github"
+                android:text="@string/app_creator_url" />
+
+            <View style="@style/Separator" />
 
             <com.rama.bohio.widgets.WdLabel
                 android:layout_width="match_parent"

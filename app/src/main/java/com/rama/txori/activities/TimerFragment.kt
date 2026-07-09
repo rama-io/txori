@@ -24,7 +24,6 @@ class TimerFragment : Fragment() {
     private lateinit var editView: FrameLayout
     private lateinit var timerInput: EditText
     private lateinit var addTimer: Button
-    private lateinit var startButton: Button
     private lateinit var resetButton: Button
     private lateinit var editModeButton: Button
 
@@ -86,7 +85,6 @@ class TimerFragment : Fragment() {
         editView = view.findViewById(R.id.edit_view)
         timerInput = view.findViewById(R.id.timer_input)
         addTimer = view.findViewById(R.id.add_timer)
-        startButton = view.findViewById(R.id.start_timer)
         resetButton = view.findViewById(R.id.reset_timer)
         editModeButton = view.findViewById(R.id.edit_mode)
 
@@ -95,7 +93,6 @@ class TimerFragment : Fragment() {
         editModeButton.setOnClickListener { setEditMode(!isEditMode) }
         timerButton.setOnClickListener { toggleTimer() }
         timerButton.setOnLongClickListener { resetTimer(); true }
-        startButton.setOnClickListener { toggleTimer() }
         addTimer.setOnClickListener { applyInput() }
         resetButton.setOnClickListener { resetTimer() }
 
@@ -142,21 +139,12 @@ class TimerFragment : Fragment() {
 
     private fun toggleTimer() {
         if (isRunning) pauseTimer() else startTimer()
-        startButton.setText(if (isRunning) getString(R.string.btn_timer_pause) else getString(R.string.btn_timer_start))
     }
 
     private fun updateButtons() {
         val hasTimer = initialMs > 0L
-        val canStart = remainingMs > 0L
-        val hasTimerActive = remainingMs > 0L
-        val showNavbar = !isRunning || remainingMs <= 0L || isEditMode
-
-        startButton.visibility =
-            if (hasTimer && !isEditMode && hasTimerActive) View.VISIBLE else View.GONE
         resetButton.visibility =
             if (hasTimer && !isEditMode) View.VISIBLE else View.GONE
-        startButton.setText(if (isRunning) getString(R.string.btn_timer_pause) else getString(R.string.btn_timer_start))
-        startButton.isEnabled = canStart || isRunning
     }
 
     private fun updateEditModeUI() {

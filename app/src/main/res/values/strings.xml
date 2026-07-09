@@ -24,11 +24,7 @@
     <string name="btn_next">Next</string>
     <string name="btn_start_roulette">Start roulette</string>
     <string name="btn_timer_save">Save timer</string>
-    <string name="btn_timer_start">Start timer</string>
-    <string name="btn_timer_pause">Pause timer</string>
     <string name="btn_timer_reset">Reset timer</string>
-    <string name="btn_stopwatch_start">Start stopwatch</string>
-    <string name="btn_stopwatch_pause">Pause stopwatch</string>
     <string name="btn_stopwatch_reset">Reset Stopwatch</string>
     <string name="btn_switch_to_edit_mode">Switch to Edit Mode</string>
     <string name="btn_switch_to_work_mode">Switch to Work Mode</string>

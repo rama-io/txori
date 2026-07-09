@@ -14,11 +14,6 @@
     <LinearLayout style="@style/VerticalListDivided">
 
         <Button
-            android:id="@+id/start_stopwatch"
-            android:text="@string/btn_stopwatch_start"
-            style="@style/BTN2" />
-
-        <Button
             android:id="@+id/reset_counter"
             android:text="@string/btn_stopwatch_reset"
             style="@style/BTN2" />

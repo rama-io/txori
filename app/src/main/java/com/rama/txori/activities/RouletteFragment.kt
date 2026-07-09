@@ -34,7 +34,6 @@ class RouletteFragment : Fragment() {
     private lateinit var counterBtn: Button
     private lateinit var currentTaskName: TextView
     private lateinit var startRouletteBtn: Button
-    private lateinit var playPauseBtn: Button
     private lateinit var skipTaskBtn: Button
     private lateinit var finishBtn: Button
 
@@ -92,7 +91,6 @@ class RouletteFragment : Fragment() {
         counterBtn = view.findViewById(R.id.counter_btn)
         currentTaskName = view.findViewById(R.id.current_roulette_task_name)
         startRouletteBtn = view.findViewById(R.id.start_roulette)
-        playPauseBtn = view.findViewById(R.id.play_pause_btn)
         skipTaskBtn = view.findViewById(R.id.next_task)
         finishBtn = view.findViewById(R.id.finish_roulette)
 
@@ -101,13 +99,23 @@ class RouletteFragment : Fragment() {
 
         saveTimerButton.setOnClickListener { saveTimer() }
         startRouletteBtn.setOnClickListener { startRoulette() }
-        playPauseBtn.setOnClickListener { togglePlayPause() }
-        skipTaskBtn.setOnClickListener { nextTask() }
-        finishBtn.setOnClickListener { finishRoulette() }
 
         counterBtn.setOnClickListener {
-            if (waitingForComplete) completeTask()
+            if (waitingForComplete) {
+                completeTask()
+            } else {
+                togglePlayPause()
+            }
         }
+        runningSection.setOnClickListener {
+            if (waitingForComplete) {
+                completeTask()
+            } else {
+                togglePlayPause()
+            }
+        }
+        skipTaskBtn.setOnClickListener { nextTask() }
+        finishBtn.setOnClickListener { finishRoulette() }
 
         syncUiAfterRotation()
     }
@@ -300,26 +308,16 @@ class RouletteFragment : Fragment() {
         runningSection.visibility = View.GONE
         chooseListSection.visibility = View.VISIBLE
         startRouletteBtn.visibility = View.VISIBLE
-        playPauseBtn.visibility = View.GONE
         skipTaskBtn.visibility = View.GONE
         finishBtn.visibility = View.GONE
     }
 
     private fun updateRunningUI() {
         startRouletteBtn.visibility = View.GONE
-        playPauseBtn.visibility = View.VISIBLE
         skipTaskBtn.visibility = View.VISIBLE
 
         if (waitingForComplete) {
-            playPauseBtn.text = getString(R.string.btn_timer_start)
             counterBtn.text = getString(R.string.h2_go)
-            playPauseBtn.visibility = View.GONE
-        } else {
-            playPauseBtn.visibility = View.VISIBLE
-            playPauseBtn.text = if (isRunning)
-                getString(R.string.btn_timer_pause)
-            else
-                getString(R.string.btn_timer_start)
         }
     }
 

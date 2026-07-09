@@ -21,7 +21,7 @@ import com.rama.txori.managers.SoundManager
 import com.rama.bohio.managers.ThemeManager
 import com.rama.txori.managers.WorkoutManager
 
-class SessionFragment : Fragment(), WorkoutManager.Listener {
+class SessionFragment : Fragment(), WorkoutManager.Listener, EditModeToggle {
 
     private lateinit var listView: ListView
     private lateinit var adapter: SessionAdapter
@@ -32,8 +32,11 @@ class SessionFragment : Fragment(), WorkoutManager.Listener {
     private lateinit var timerView: TextView
     private lateinit var nextTaskView: TextView
     private lateinit var globalControllers: LinearLayout
-    private lateinit var editButton: Button
+    private lateinit var addGroupButton: Button
+    private lateinit var timeContainer: View
     private lateinit var playPauseIcon: ImageView
+
+    private var isEditMode = false
 
     private val items: MutableList<SessionItem> = mutableListOf()
     private lateinit var workout: WorkoutManager
@@ -59,7 +62,8 @@ class SessionFragment : Fragment(), WorkoutManager.Listener {
         timerView = view.findViewById(R.id.current_task_timer)
         nextTaskView = view.findViewById(R.id.next_task_name)
         globalControllers = view.findViewById(R.id.controllers)
-        editButton = view.findViewById(R.id.edit_button)
+        addGroupButton = view.findViewById(R.id.add_group_button)
+        timeContainer = view.findViewById(R.id.time_container)
         playPauseIcon = view.findViewById(R.id.play_pause_icon)
 
         SoundManager.init()
@@ -94,33 +98,44 @@ class SessionFragment : Fragment(), WorkoutManager.Listener {
         view.findViewById<View>(R.id.start_task).setOnClickListener { workout.togglePlayPause() }
         view.findViewById<View>(R.id.next_task).setOnClickListener { workout.skipTask() }
 
-        val addGroupButton = view.findViewById<Button>(R.id.add_group_button)
-        val workButton = view.findViewById<Button>(R.id.work_button)
-        val timeContainer = view.findViewById<View>(R.id.time_container)
-
         addGroupButton.setOnClickListener { showAddGroupDialog() }
 
-        editButton.setOnClickListener {
-            addGroupButton.visibility = View.VISIBLE
-            workButton.visibility = View.VISIBLE
-            editButton.visibility = View.GONE
-            timeContainer.visibility = View.GONE
-            adapter.stopAllPlaying()
-            adapter.setEditMode(true)
-            workout.stopAndClear()
-        }
-
-        workButton.setOnClickListener {
-            addGroupButton.visibility = View.GONE
-            workButton.visibility = View.GONE
-            editButton.visibility = View.VISIBLE
-            timeContainer.visibility = View.VISIBLE
-            adapter.setEditMode(false)
-        }
+        // Restore edit-mode UI in case this view was recreated (e.g. rotation)
+        // while the retained fragment instance was already in edit mode.
+        addGroupButton.visibility = if (isEditMode) View.VISIBLE else View.GONE
+        timeContainer.visibility = if (isEditMode) View.GONE else View.VISIBLE
 
         // After rotation the views are blank but the workout may still be running.
         // Re-drive the UI to match the current workout state.
         syncUiToWorkoutState()
+    }
+
+    override fun onEditButtonClicked() {
+        addGroupButton.visibility = View.VISIBLE
+        timeContainer.visibility = View.GONE
+        adapter.stopAllPlaying()
+        adapter.setEditMode(true)
+        workout.stopAndClear()
+        isEditMode = true
+        syncEditButtons()
+    }
+
+    override fun onCloseButtonClicked() {
+        addGroupButton.visibility = View.GONE
+        timeContainer.visibility = View.VISIBLE
+        adapter.setEditMode(false)
+        isEditMode = false
+        syncEditButtons()
+    }
+
+    override fun syncTopBarButtons(host: MainActivity) {
+        val isRunning = ::workout.isInitialized && workout.isRunning
+        host.setEditButtonVisible(!isEditMode && !isRunning)
+        host.setCloseButtonVisible(isEditMode)
+    }
+
+    private fun syncEditButtons() {
+        (activity as? MainActivity)?.let { syncTopBarButtons(it) }
     }
 
     private fun syncUiToWorkoutState() {
@@ -135,7 +150,7 @@ class SessionFragment : Fragment(), WorkoutManager.Listener {
         adapter.setActiveItemIndex(idx)
         adapter.setGroupPlayingState(workout.activeSessionId, workout.isRunning)
         globalControllers.visibility = View.VISIBLE
-        editButton.visibility = if (workout.isRunning) View.GONE else View.VISIBLE
+        syncEditButtons()
         playPauseIcon.setImageResource(
             if (workout.isRunning) BohioR.drawable.px_pause else BohioR.drawable.px_play
         )
@@ -188,7 +203,7 @@ class SessionFragment : Fragment(), WorkoutManager.Listener {
         playPauseIcon.setImageResource(
             if (playing) BohioR.drawable.px_pause else BohioR.drawable.px_play
         )
-        editButton.visibility = if (playing) View.GONE else View.VISIBLE
+        syncEditButtons()
     }
 
     override fun onGroupFinished(sessionId: Long) {
@@ -199,7 +214,7 @@ class SessionFragment : Fragment(), WorkoutManager.Listener {
         adapter.setGroupPlayingState(sessionId, false)
         playPauseIcon.setImageResource(BohioR.drawable.px_play)
         globalControllers.visibility = View.GONE
-        editButton.visibility = View.VISIBLE
+        syncEditButtons()
     }
 
     override fun onGroupReset(sessionId: Long) {

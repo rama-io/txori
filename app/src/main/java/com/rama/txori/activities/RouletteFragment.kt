@@ -23,7 +23,7 @@ import com.rama.txori.Task
 import com.rama.txori.managers.PrefsManager
 import com.rama.txori.managers.SoundManager
 
-class RouletteFragment : Fragment() {
+class RouletteFragment : Fragment(), EditModeToggle {
 
     // Views
     private lateinit var chooseListSection: ScrollView
@@ -35,7 +35,6 @@ class RouletteFragment : Fragment() {
     private lateinit var currentTaskName: TextView
     private lateinit var startRouletteBtn: Button
     private lateinit var skipTaskBtn: Button
-    private lateinit var finishBtn: Button
 
     // State
     private var isRunning = false
@@ -92,7 +91,6 @@ class RouletteFragment : Fragment() {
         currentTaskName = view.findViewById(R.id.current_roulette_task_name)
         startRouletteBtn = view.findViewById(R.id.start_roulette)
         skipTaskBtn = view.findViewById(R.id.next_task)
-        finishBtn = view.findViewById(R.id.finish_roulette)
 
         loadPrefs()
         populateSessionList()
@@ -115,7 +113,6 @@ class RouletteFragment : Fragment() {
             }
         }
         skipTaskBtn.setOnClickListener { nextTask() }
-        finishBtn.setOnClickListener { finishRoulette() }
 
         syncUiAfterRotation()
     }
@@ -300,7 +297,7 @@ class RouletteFragment : Fragment() {
     private fun showRunningSection() {
         chooseListSection.visibility = View.GONE
         runningSection.visibility = View.VISIBLE
-        finishBtn.visibility = View.VISIBLE
+        syncTopBar()
         updateRunningUI()
     }
 
@@ -309,7 +306,7 @@ class RouletteFragment : Fragment() {
         chooseListSection.visibility = View.VISIBLE
         startRouletteBtn.visibility = View.VISIBLE
         skipTaskBtn.visibility = View.GONE
-        finishBtn.visibility = View.GONE
+        syncTopBar()
     }
 
     private fun updateRunningUI() {
@@ -337,5 +334,18 @@ class RouletteFragment : Fragment() {
     private fun formatMillis(ms: Long): String {
         val total = ms / 1000
         return "%02d:%02d:%02d".format(total / 3600, (total % 3600) / 60, total % 60)
+    }
+
+    override fun onCloseButtonClicked() {
+        finishRoulette()
+    }
+
+    override fun syncTopBarButtons(host: MainActivity) {
+        host.setEditButtonVisible(false)
+        host.setCloseButtonVisible(isStarted)
+    }
+
+    private fun syncTopBar() {
+        (activity as? MainActivity)?.let { syncTopBarButtons(it) }
     }
 }

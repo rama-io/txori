@@ -42,10 +42,5 @@
             android:text="@string/btn_timer_reset"
             style="@style/BTN2" />
 
-        <Button
-            android:id="@+id/edit_mode"
-            android:text="@string/btn_switch_to_edit_mode"
-            style="@style/BTN2" />
-
     </LinearLayout>
 </LinearLayout>

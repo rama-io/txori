@@ -81,11 +81,5 @@
             android:text="@string/btn_next"
             style="@style/BTN2" />
 
-        <Button
-            android:id="@+id/finish_roulette"
-            android:visibility="gone"
-            android:text="@string/btn_finish"
-            style="@style/BTN2" />
-
     </LinearLayout>
 </LinearLayout>

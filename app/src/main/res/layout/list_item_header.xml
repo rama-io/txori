@@ -11,7 +11,7 @@
 
         <ImageView
             android:src="@drawable/px_edit"
-            android:contentDescription="@string/altdescr_edit_session"
+            android:contentDescription="@string/altdescr_edit"
             android:tint="@color/accent_2"
             style="@style/Icon18" />
     </FrameLayout>

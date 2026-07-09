@@ -5,9 +5,42 @@
     android:layout_height="match_parent"
     style="@style/VerticalListDivided">
 
-    <LinearLayout
-        android:gravity="end"
-        style="@style/HorizontalListDivided">
+    <LinearLayout style="@style/HorizontalListDivided">
+
+        <FrameLayout
+            android:id="@+id/close_btn"
+            android:visibility="gone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@color/bg_1"
+            android:padding="12sp">
+
+            <ImageView
+                android:src="@drawable/px_times"
+                android:tint="@color/foreground"
+                android:contentDescription="@string/altdescr_close"
+                style="@style/Icon24" />
+        </FrameLayout>
+
+        <FrameLayout
+            android:id="@+id/edit_btn"
+            android:visibility="gone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@color/bg_1"
+            android:padding="12sp">
+
+            <ImageView
+                android:src="@drawable/px_edit"
+                android:tint="@color/foreground"
+                android:contentDescription="@string/altdescr_edit"
+                style="@style/Icon24" />
+        </FrameLayout>
+
+        <FrameLayout
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_weight="1" />
 
         <FrameLayout
             android:id="@+id/open_settings"

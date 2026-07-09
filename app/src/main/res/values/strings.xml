@@ -71,13 +71,13 @@
     <string name="altdescr_skip_task">Skip task</string>
     <string name="altdescr_reset_group">Reset group</string>
     <string name="altdescr_start_group">Start group</string>
-    <string name="altdescr_edit_session">Edit group</string>
     <string name="altdescr_add_task">Add task</string>
-    <string name="altdescr_edit_task">Edit task</string>
+    <string name="altdescr_edit">Edit</string>
     <string name="altdescr_ascend">Move up</string>
     <string name="altdescr_descend">Move down</string>
     <string name="altdescr_save">Save</string>
     <string name="altdescr_shuffle_nav">Shuffle</string>
+    <string name="altdescr_close">Close</string>
 
     <!-- APP -->
     <string name="app_name" translatable="false">@string/product_txori</string>

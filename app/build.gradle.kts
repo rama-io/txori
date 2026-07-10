@@ -80,7 +80,11 @@ android {
 androidComponents {
     onVariants { variant ->
         variant.outputs.forEach { output ->
-            output.outputFileName.set("txori_${variant.name}.apk")
+            output.outputFileName.set(
+                output.versionName.map { name ->
+                    "txori_${name}.apk"
+                }
+            )
         }
     }
 }

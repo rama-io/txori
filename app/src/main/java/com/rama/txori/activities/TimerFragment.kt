@@ -135,7 +135,23 @@ class TimerFragment : Fragment(), EditModeToggle {
     }
 
     private fun toggleTimer() {
-        if (isRunning) pauseTimer() else startTimer()
+        when {
+            initialMs <= 0L -> {
+                resetTimer()
+            }
+
+            isRunning -> {
+                pauseTimer()
+            }
+
+            remainingMs <= 0L -> {
+                resetTimer()
+            }
+
+            else -> {
+                startTimer()
+            }
+        }
     }
 
     private fun updateButtons() {

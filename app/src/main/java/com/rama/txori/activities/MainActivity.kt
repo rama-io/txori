@@ -13,6 +13,8 @@ import com.rama.txori.widgets.WdNavbar
 class MainActivity : CsActivity() {
 
     private lateinit var navbar: WdNavbar
+    private lateinit var editBtn: FrameLayout
+    private lateinit var closeBtn: FrameLayout
     private var currentPage: WdNavbar.Page = WdNavbar.Page.HOME
 
     private fun fragmentForPage(page: WdNavbar.Page): Fragment =
@@ -39,6 +41,18 @@ class MainActivity : CsActivity() {
         openSettingsBtn.setOnClickListener {
             startActivity(Intent(this, SettingsActivity::class.java))
             true
+        }
+
+        editBtn = findViewById(R.id.edit_btn)
+        editBtn.setOnClickListener {
+            val fragment = fragmentManager.findFragmentByTag(currentPage.name)
+            (fragment as? EditModeToggle)?.onEditButtonClicked()
+        }
+
+        closeBtn = findViewById(R.id.close_btn)
+        closeBtn.setOnClickListener {
+            val fragment = fragmentManager.findFragmentByTag(currentPage.name)
+            (fragment as? EditModeToggle)?.onCloseButtonClicked()
         }
 
         if (savedInstanceState == null) {
@@ -111,7 +125,18 @@ class MainActivity : CsActivity() {
 
         currentPage = page
         navbar.setActivePage(page)
+        setEditButtonVisible(false)
+        setCloseButtonVisible(false)
+        (fragmentManager.findFragmentByTag(page.name) as? EditModeToggle)?.syncTopBarButtons(this)
         ThemeManager.applyTheme(this, findViewById(R.id.root))
+    }
+
+    fun setEditButtonVisible(visible: Boolean) {
+        editBtn.visibility = if (visible) View.VISIBLE else View.GONE
+    }
+
+    fun setCloseButtonVisible(visible: Boolean) {
+        closeBtn.visibility = if (visible) View.VISIBLE else View.GONE
     }
 
     companion object {

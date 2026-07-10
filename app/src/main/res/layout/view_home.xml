@@ -94,15 +94,4 @@
         android:text="@string/btn_add_group"
         style="@style/BTN2" />
 
-    <Button
-        android:id="@+id/edit_button"
-        android:text="@string/btn_switch_to_edit_mode"
-        style="@style/BTN2" />
-
-    <Button
-        android:id="@+id/work_button"
-        android:visibility="gone"
-        android:text="@string/btn_switch_to_work_mode"
-        style="@style/BTN2" />
-
 </LinearLayout>

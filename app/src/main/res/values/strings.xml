@@ -24,14 +24,8 @@
     <string name="btn_next">Next</string>
     <string name="btn_start_roulette">Start roulette</string>
     <string name="btn_timer_save">Save timer</string>
-    <string name="btn_timer_start">Start timer</string>
-    <string name="btn_timer_pause">Pause timer</string>
     <string name="btn_timer_reset">Reset timer</string>
-    <string name="btn_stopwatch_start">Start stopwatch</string>
-    <string name="btn_stopwatch_pause">Pause stopwatch</string>
     <string name="btn_stopwatch_reset">Reset Stopwatch</string>
-    <string name="btn_switch_to_edit_mode">Switch to Edit Mode</string>
-    <string name="btn_switch_to_work_mode">Switch to Work Mode</string>
     <string name="btn_create_task">Create Task</string>
     <string name="btn_update_task">Update task</string>
     <string name="btn_delete_task">Delete task</string>
@@ -39,7 +33,6 @@
     <string name="btn_about_txori">About Txori</string>
     <string name="btn_delete_group">Delete group</string>
     <string name="btn_add_group">+ Add New Group</string>
-    <string name="btn_finish">Finish</string>
     <string name="btn_save">Save</string> <!-- TODO common -->
 
     <!-- Radio -->
@@ -75,13 +68,13 @@
     <string name="altdescr_skip_task">Skip task</string>
     <string name="altdescr_reset_group">Reset group</string>
     <string name="altdescr_start_group">Start group</string>
-    <string name="altdescr_edit_session">Edit group</string>
     <string name="altdescr_add_task">Add task</string>
-    <string name="altdescr_edit_task">Edit task</string>
+    <string name="altdescr_edit">Edit</string>
     <string name="altdescr_ascend">Move up</string>
     <string name="altdescr_descend">Move down</string>
     <string name="altdescr_save">Save</string>
     <string name="altdescr_shuffle_nav">Shuffle</string>
+    <string name="altdescr_close">Close</string>
 
     <!-- APP -->
     <string name="app_name" translatable="false">@string/product_txori</string>

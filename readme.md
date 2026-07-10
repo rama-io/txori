@@ -47,15 +47,15 @@ The goal is to keep you moving and mindful throughout the day without disrupting
 
 <p>
   <a href="https://apps.obtainium.imranr.dev/redirect?r=obtainium://add/https://github.com/rama-io/txori">
-    <img src="https://rama-io.github.io/img/obtainium.png" alt="Get txori From Obtainium">
+    <img src="https://rama-io.github.io/img/obtainium.svg" alt="Get txori From Obtainium">
   </a>
   &nbsp;
   <a href="https://f-droid.org/app/com.rama.txori">
-    <img src="https://rama-io.github.io/img/fdroid.png" alt="Get txori From F-Droid">
+    <img src="https://rama-io.github.io/img/fdroid.svg" alt="Get txori From F-Droid">
   </a>
   &nbsp;
   <a href="https://github.com/rama-io/txori/releases/latest">
-    <img src="https://rama-io.github.io/img/github.png" alt="Get txori From GitHub">
+    <img src="https://rama-io.github.io/img/github.svg" alt="Get txori From GitHub">
   </a>
 </p>
 
@@ -90,15 +90,6 @@ The goal is to keep you moving and mindful throughout the day without disrupting
 | - | - | - | - | - | - |
 | Pixel 9 Pro Fold | Android 16 / API 36 | Y | Y | Y | Y |
 | Nexus 5 | Android 5 / API 21 | Y | Y | Y | Y |
-
-
-<!-- | Pixel 9 | Android 15 / API 35 | Y | Y | Y | Y | Y |
-| Pixel 8 | Android 14 / API 34 | Y | Y | Y | Y | Y |
-| Pixel 7 | Android 13 / API 33 | Y | Y | Y | Y | Y |
-| Pixel 6 | Android 12 / API 31 | Y | Y | Y | Y | Y |
-| Pixel 4 | Android 10 / API 29 | Y | Y | N | N | N |
-| Pixel 2 | Android 8 / API 27 | Y | Y | Y | Y | Y |
-| Pixel | Android 7 / API 25 | Y | Y | Y | N | Y | -->
 
 ---
 

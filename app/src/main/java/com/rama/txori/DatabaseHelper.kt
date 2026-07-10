@@ -234,8 +234,14 @@ class DatabaseHelper(context: Context) :
         val orderB = if (cursorB.moveToFirst()) cursorB.getInt(0) else return
         cursorB.close()
 
-        db.execSQL("UPDATE session_steps SET step_order = ? WHERE id = ?", arrayOf(orderB, stepIdA))
-        db.execSQL("UPDATE session_steps SET step_order = ? WHERE id = ?", arrayOf(orderA, stepIdB))
+        db.execSQL(
+            "UPDATE session_steps SET step_order = ? WHERE id = ?",
+            arrayOf<Any>(orderB, stepIdA)
+        )
+        db.execSQL(
+            "UPDATE session_steps SET step_order = ? WHERE id = ?",
+            arrayOf<Any>(orderA, stepIdB)
+        )
     }
 
     /** Swap session_order of two adjacent sessions. */
@@ -256,11 +262,11 @@ class DatabaseHelper(context: Context) :
 
         db.execSQL(
             "UPDATE sessions SET session_order = ? WHERE id = ?",
-            arrayOf(orderB, sessionIdA)
+            arrayOf<Any>(orderB, sessionIdA)
         )
         db.execSQL(
             "UPDATE sessions SET session_order = ? WHERE id = ?",
-            arrayOf(orderA, sessionIdB)
+            arrayOf<Any>(orderA, sessionIdB)
         )
     }
 

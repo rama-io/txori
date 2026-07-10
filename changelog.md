@@ -1,5 +1,11 @@
 # Changelog
 
+## 13
+
+- Fix settings section state
+- API support increase to 37 / Android 17
+- Adding rest of contributors
+
 ## 12
 
 - Fix color picker

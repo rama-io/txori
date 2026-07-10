@@ -48,12 +48,6 @@
             <com.rama.bohio.widgets.WdLabel
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:icon="@drawable/px_user"
-                android:text="@string/app_creator" />
-
-            <com.rama.bohio.widgets.WdLabel
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
                 android:icon="@drawable/px_seedlings"
                 android:text="@string/app_name" />
 
@@ -92,6 +86,50 @@
                 android:layout_height="wrap_content"
                 android:icon="@drawable/px_octagon_check"
                 android:text="@string/license_gpl3" />
+
+            <TextView
+                android:text="@string/h3_contributors"
+                style="@style/H3" />
+
+            <com.rama.bohio.widgets.WdLabel
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:icon="@drawable/px_user"
+                android:text="@string/app_creator" />
+
+            <com.rama.bohio.widgets.WdLabel
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:icon="@drawable/px_github"
+                android:text="@string/app_creator_url" />
+
+            <View style="@style/Separator" />
+
+            <com.rama.bohio.widgets.WdLabel
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:icon="@drawable/px_user"
+                android:text="@string/contributor_isotjs" />
+
+            <com.rama.bohio.widgets.WdLabel
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:icon="@drawable/px_github"
+                android:text="@string/contributor_isotjs_url" />
+
+            <View style="@style/Separator" />
+
+            <com.rama.bohio.widgets.WdLabel
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:icon="@drawable/px_user"
+                android:text="@string/contributor_joerikaiser" />
+
+            <com.rama.bohio.widgets.WdLabel
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:icon="@drawable/px_github"
+                android:text="@string/contributor_joerikaiser_url" />
 
             <TextView
                 android:text="@string/h3_icons"

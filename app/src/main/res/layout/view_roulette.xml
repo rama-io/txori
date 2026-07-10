@@ -13,8 +13,7 @@
             <TextView
                 android:text="@string/h3_timer"
                 style="@style/H3" />
-
-
+            
             <LinearLayout style="@style/HorizontalList_BG2">
 
                 <EditText
@@ -77,21 +76,9 @@
             style="@style/BTN2" />
 
         <Button
-            android:id="@+id/play_pause_btn"
-            android:visibility="gone"
-            android:text="@string/altdescr_play_pause"
-            style="@style/BTN2" />
-
-        <Button
             android:id="@+id/next_task"
             android:visibility="gone"
             android:text="@string/btn_next"
-            style="@style/BTN2" />
-
-        <Button
-            android:id="@+id/finish_roulette"
-            android:visibility="gone"
-            android:text="@string/btn_finish"
             style="@style/BTN2" />
 
     </LinearLayout>

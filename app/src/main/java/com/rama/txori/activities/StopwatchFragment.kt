@@ -14,7 +14,6 @@ import com.rama.txori.R
 class StopwatchFragment : Fragment() {
 
     private lateinit var counterView: Button
-    private lateinit var counterStartButton: Button
     private lateinit var counterResetButton: Button
 
     private val handler = Handler(Looper.getMainLooper())
@@ -50,12 +49,10 @@ class StopwatchFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         counterView = view.findViewById(R.id.counter_btn)
-        counterStartButton = view.findViewById(R.id.start_stopwatch)
         counterResetButton = view.findViewById(R.id.reset_counter)
 
         counterView.setOnClickListener { toggleStopwatch() }
         counterView.setOnLongClickListener { resetStopwatch(); true }
-        counterStartButton.setOnClickListener { toggleStopwatch() }
         counterResetButton.setOnClickListener { resetStopwatch() }
 
         // Restore state after rotation
@@ -64,8 +61,6 @@ class StopwatchFragment : Fragment() {
             counterView.text = formatTime(pausedElapsed)
             if (savedInstanceState.getBoolean(KEY_IS_RUNNING, false)) {
                 startStopwatch()
-            } else {
-                counterStartButton.setText(getString(R.string.btn_stopwatch_start))
             }
         }
     }
@@ -77,14 +72,12 @@ class StopwatchFragment : Fragment() {
     private fun startStopwatch() {
         startTime = SystemClock.elapsedRealtime() - pausedElapsed
         isRunning = true
-        counterStartButton.setText(getString(R.string.btn_stopwatch_pause))
         handler.post(ticker)
     }
 
     private fun pauseStopwatch() {
         pausedElapsed = SystemClock.elapsedRealtime() - startTime
         isRunning = false
-        counterStartButton.setText(getString(R.string.btn_stopwatch_start))
         handler.removeCallbacks(ticker)
     }
 

@@ -25,7 +25,7 @@
             <com.rama.bohio.widgets.WdCollapsibleSection
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:key="SETTINGS_SECTION_THEMES"
+                app:key="settings:section:themes"
                 app:header="@string/h3_themes"
                 app:defaultExpanded="true">
 
@@ -194,7 +194,7 @@
             <com.rama.bohio.widgets.WdCollapsibleSection
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:key="SETTINGS_SECTION_FONTS"
+                app:key="settings:section:fonts"
                 app:header="@string/h3_fonts"
                 app:defaultExpanded="true">
 
@@ -245,7 +245,7 @@
             <com.rama.bohio.widgets.WdCollapsibleSection
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:key="SETTINGS_SECTION_SYSTEM"
+                app:key="settings:section:system"
                 app:header="@string/h3_system"
                 app:defaultExpanded="true">
 
@@ -277,7 +277,7 @@
             <com.rama.bohio.widgets.WdCollapsibleSection
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:key="SETTINGS_SECTION_LANGUAGE"
+                app:key="settings:section:language"
                 app:header="@string/h3_language"
                 app:defaultExpanded="true">
 

@@ -23,7 +23,7 @@ import com.rama.txori.Task
 import com.rama.txori.managers.PrefsManager
 import com.rama.txori.managers.SoundManager
 
-class RouletteFragment : Fragment() {
+class RouletteFragment : Fragment(), EditModeToggle {
 
     // Views
     private lateinit var chooseListSection: ScrollView
@@ -34,9 +34,7 @@ class RouletteFragment : Fragment() {
     private lateinit var counterBtn: Button
     private lateinit var currentTaskName: TextView
     private lateinit var startRouletteBtn: Button
-    private lateinit var playPauseBtn: Button
     private lateinit var skipTaskBtn: Button
-    private lateinit var finishBtn: Button
 
     // State
     private var isRunning = false
@@ -92,22 +90,29 @@ class RouletteFragment : Fragment() {
         counterBtn = view.findViewById(R.id.counter_btn)
         currentTaskName = view.findViewById(R.id.current_roulette_task_name)
         startRouletteBtn = view.findViewById(R.id.start_roulette)
-        playPauseBtn = view.findViewById(R.id.play_pause_btn)
         skipTaskBtn = view.findViewById(R.id.next_task)
-        finishBtn = view.findViewById(R.id.finish_roulette)
 
         loadPrefs()
         populateSessionList()
 
         saveTimerButton.setOnClickListener { saveTimer() }
         startRouletteBtn.setOnClickListener { startRoulette() }
-        playPauseBtn.setOnClickListener { togglePlayPause() }
-        skipTaskBtn.setOnClickListener { nextTask() }
-        finishBtn.setOnClickListener { finishRoulette() }
 
         counterBtn.setOnClickListener {
-            if (waitingForComplete) completeTask()
+            if (waitingForComplete) {
+                completeTask()
+            } else {
+                togglePlayPause()
+            }
         }
+        runningSection.setOnClickListener {
+            if (waitingForComplete) {
+                completeTask()
+            } else {
+                togglePlayPause()
+            }
+        }
+        skipTaskBtn.setOnClickListener { nextTask() }
 
         syncUiAfterRotation()
     }
@@ -292,7 +297,7 @@ class RouletteFragment : Fragment() {
     private fun showRunningSection() {
         chooseListSection.visibility = View.GONE
         runningSection.visibility = View.VISIBLE
-        finishBtn.visibility = View.VISIBLE
+        syncTopBar()
         updateRunningUI()
     }
 
@@ -300,26 +305,16 @@ class RouletteFragment : Fragment() {
         runningSection.visibility = View.GONE
         chooseListSection.visibility = View.VISIBLE
         startRouletteBtn.visibility = View.VISIBLE
-        playPauseBtn.visibility = View.GONE
         skipTaskBtn.visibility = View.GONE
-        finishBtn.visibility = View.GONE
+        syncTopBar()
     }
 
     private fun updateRunningUI() {
         startRouletteBtn.visibility = View.GONE
-        playPauseBtn.visibility = View.VISIBLE
         skipTaskBtn.visibility = View.VISIBLE
 
         if (waitingForComplete) {
-            playPauseBtn.text = getString(R.string.btn_timer_start)
             counterBtn.text = getString(R.string.h2_go)
-            playPauseBtn.visibility = View.GONE
-        } else {
-            playPauseBtn.visibility = View.VISIBLE
-            playPauseBtn.text = if (isRunning)
-                getString(R.string.btn_timer_pause)
-            else
-                getString(R.string.btn_timer_start)
         }
     }
 
@@ -339,5 +334,18 @@ class RouletteFragment : Fragment() {
     private fun formatMillis(ms: Long): String {
         val total = ms / 1000
         return "%02d:%02d:%02d".format(total / 3600, (total % 3600) / 60, total % 60)
+    }
+
+    override fun onCloseButtonClicked() {
+        finishRoulette()
+    }
+
+    override fun syncTopBarButtons(host: MainActivity) {
+        host.setEditButtonVisible(false)
+        host.setCloseButtonVisible(isStarted)
+    }
+
+    private fun syncTopBar() {
+        (activity as? MainActivity)?.let { syncTopBarButtons(it) }
     }
 }

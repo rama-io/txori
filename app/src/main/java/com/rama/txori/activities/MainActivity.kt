@@ -142,19 +142,20 @@ class MainActivity : CsActivity() {
         closeBtn.visibility = if (visible) View.VISIBLE else View.GONE
     }
 
+    private val flashHandler = android.os.Handler(android.os.Looper.getMainLooper())
+    private val hideFlashOverlay = Runnable { flashOverlay.visibility = View.GONE }
+
     /** Briefly flashes the screen white — used for the "Flash screen" notification setting. */
     fun flashScreen() {
-        flashOverlay.animate().cancel()
+        flashOverlay.bringToFront()
+        flashHandler.removeCallbacks(hideFlashOverlay)
+        flashOverlay.alpha = .5f
         flashOverlay.visibility = View.VISIBLE
-        flashOverlay.alpha = 0.85f
-        flashOverlay.animate()
-            .alpha(0f)
-            .setDuration(350)
-            .withEndAction { flashOverlay.visibility = View.GONE }
-            .start()
+        flashHandler.postDelayed(hideFlashOverlay, FLASH_DURATION_MS)
     }
 
     companion object {
         private const val KEY_PAGE = "current_page"
+        private const val FLASH_DURATION_MS = 200L
     }
 }

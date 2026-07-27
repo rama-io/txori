@@ -282,12 +282,12 @@
                 app:defaultExpanded="true">
 
                 <com.rama.bohio.widgets.WdCheckbox
-                    android:id="@+id/notification_sounds"
+                    android:id="@+id/notification_sound"
                     android:text="@string/notifications_play_sounds"
                     style="@style/Checkbox" />
 
                 <com.rama.bohio.widgets.WdCheckbox
-                    android:id="@+id/notification_vibrate"
+                    android:id="@+id/notification_vibration"
                     android:text="@string/notifications_vibrate"
                     style="@style/Checkbox" />
 

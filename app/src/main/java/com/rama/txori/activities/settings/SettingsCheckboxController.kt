@@ -14,9 +14,17 @@ class SettingsCheckboxController(private val activity: SettingsActivity) {
     fun setup() {
         bindWdCheckbox(R.id.show_system_bar, PrefKeys.SYSTEM_BAR_VISIBLE, false)
         bindWdCheckbox(R.id.keep_screen_awake, PrefKeys.SYSTEM_PREVENT_SLEEP, false)
-        bindWdCheckbox(R.id.notification_sounds, PrefsManager.FileKeys.NOTIFICATION_SOUNDS, true)
-        bindWdCheckbox(R.id.notification_flash, PrefsManager.FileKeys.NOTIFICATION_FLASH, true)
-        bindWdCheckbox(R.id.notification_vibrate, PrefsManager.FileKeys.NOTIFICATION_VIBRATE, false)
+        bindWdCheckbox(R.id.notification_sound, PrefsManager.FileKeys.NOTIFICATION_SOUNDS, true)
+        bindWdCheckbox(
+            R.id.notification_vibration,
+            PrefsManager.FileKeys.NOTIFICATION_VIBRATE,
+            false
+        )
+        bindWdCheckbox(
+            R.id.notification_flash,
+            PrefsManager.FileKeys.NOTIFICATION_FLASH,
+            false
+        )
         bindWdCheckbox(
             R.id.notification_camera_flash,
             PrefsManager.FileKeys.NOTIFICATION_FLASH_CAMERA,

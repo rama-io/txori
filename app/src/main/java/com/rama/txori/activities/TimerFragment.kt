@@ -15,8 +15,8 @@ import android.widget.EditText
 import android.widget.FrameLayout
 import android.widget.Toast
 import com.rama.txori.R
+import com.rama.txori.managers.NotifyManager
 import com.rama.txori.managers.PrefsManager
-import com.rama.txori.managers.SoundManager
 
 class TimerFragment : Fragment(), EditModeToggle {
 
@@ -44,7 +44,7 @@ class TimerFragment : Fragment(), EditModeToggle {
                 timerButton.text = getString(R.string.h1_timer_default)
                 isRunning = false
                 remainingMs = 0L
-                SoundManager.beepFinish()
+                NotifyManager.finish(activity) { (activity as? MainActivity)?.flashScreen() }
                 updateButtons()
                 return
             }

@@ -15,6 +15,7 @@ class MainActivity : CsActivity() {
     private lateinit var navbar: WdNavbar
     private lateinit var editBtn: FrameLayout
     private lateinit var closeBtn: FrameLayout
+    private lateinit var flashOverlay: View
     private var currentPage: WdNavbar.Page = WdNavbar.Page.HOME
 
     private fun fragmentForPage(page: WdNavbar.Page): Fragment =
@@ -36,6 +37,8 @@ class MainActivity : CsActivity() {
 
         navbar = findViewById(R.id.navbar)
         navbar.onNavigate = { page -> navigateTo(page) }
+
+        flashOverlay = findViewById(R.id.flash_overlay)
 
         val openSettingsBtn = findViewById<FrameLayout>(R.id.open_settings)
         openSettingsBtn.setOnClickListener {
@@ -137,6 +140,18 @@ class MainActivity : CsActivity() {
 
     fun setCloseButtonVisible(visible: Boolean) {
         closeBtn.visibility = if (visible) View.VISIBLE else View.GONE
+    }
+
+    /** Briefly flashes the screen white — used for the "Flash screen" notification setting. */
+    fun flashScreen() {
+        flashOverlay.animate().cancel()
+        flashOverlay.visibility = View.VISIBLE
+        flashOverlay.alpha = 0.85f
+        flashOverlay.animate()
+            .alpha(0f)
+            .setDuration(350)
+            .withEndAction { flashOverlay.visibility = View.GONE }
+            .start()
     }
 
     companion object {

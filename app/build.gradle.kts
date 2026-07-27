@@ -1,4 +1,5 @@
 import java.time.LocalDate
+import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 
 plugins {
     alias(libs.plugins.android.application)
@@ -14,7 +15,7 @@ android {
         applicationId = "com.rama.txori"
         minSdk = 21
         targetSdk = 37
-        versionCode = 13
+        versionCode = 14
         versionName = "$currentYear.$versionCode"
     }
 
@@ -58,7 +59,9 @@ android {
     }
 
     kotlin {
-        jvmToolchain(17)
+        compilerOptions {
+            jvmTarget.set(JvmTarget.JVM_17)
+        }
     }
 
     androidResources {

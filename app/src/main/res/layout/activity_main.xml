@@ -1,70 +1,87 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/root"
-    android:background="@color/bg_1"
-    android:layout_height="match_parent"
-    style="@style/VerticalListDivided">
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
 
-    <LinearLayout style="@style/HorizontalListDivided">
+    <LinearLayout
+        android:id="@+id/root"
+        android:background="@color/bg_1"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        style="@style/VerticalListDivided">
+
+        <LinearLayout style="@style/HorizontalListDivided">
+
+            <FrameLayout
+                android:id="@+id/close_btn"
+                android:visibility="gone"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@color/bg_1"
+                android:padding="12sp">
+
+                <ImageView
+                    android:src="@drawable/px_times"
+                    android:tint="@color/foreground"
+                    android:contentDescription="@string/altdescr_close"
+                    style="@style/Icon24" />
+            </FrameLayout>
+
+            <FrameLayout
+                android:id="@+id/edit_btn"
+                android:visibility="gone"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@color/bg_1"
+                android:padding="12sp">
+
+                <ImageView
+                    android:src="@drawable/px_edit"
+                    android:tint="@color/foreground"
+                    android:contentDescription="@string/altdescr_edit"
+                    style="@style/Icon24" />
+            </FrameLayout>
+
+            <FrameLayout
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_weight="1" />
+
+            <FrameLayout
+                android:id="@+id/open_settings"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@color/bg_1"
+                android:padding="12sp">
+
+                <ImageView
+                    android:src="@drawable/px_cog"
+                    android:tint="@color/foreground"
+                    android:contentDescription="@string/altdescr_open_settings"
+                    style="@style/Icon24" />
+            </FrameLayout>
+        </LinearLayout>
 
         <FrameLayout
-            android:id="@+id/close_btn"
-            android:visibility="gone"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@color/bg_1"
-            android:padding="12sp">
-
-            <ImageView
-                android:src="@drawable/px_times"
-                android:tint="@color/foreground"
-                android:contentDescription="@string/altdescr_close"
-                style="@style/Icon24" />
-        </FrameLayout>
-
-        <FrameLayout
-            android:id="@+id/edit_btn"
-            android:visibility="gone"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@color/bg_1"
-            android:padding="12sp">
-
-            <ImageView
-                android:src="@drawable/px_edit"
-                android:tint="@color/foreground"
-                android:contentDescription="@string/altdescr_edit"
-                style="@style/Icon24" />
-        </FrameLayout>
-
-        <FrameLayout
-            android:layout_width="0dp"
+            android:id="@+id/content_container"
+            android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1" />
 
-        <FrameLayout
-            android:id="@+id/open_settings"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@color/bg_1"
-            android:padding="12sp">
+        <com.rama.txori.widgets.WdNavbar
+            android:id="@+id/navbar"
+            style="@style/BlockFlow" />
 
-            <ImageView
-                android:src="@drawable/px_cog"
-                android:tint="@color/foreground"
-                android:contentDescription="@string/altdescr_open_settings"
-                style="@style/Icon24" />
-        </FrameLayout>
     </LinearLayout>
 
-    <FrameLayout
-        android:id="@+id/content_container"
+    <View
+        android:id="@+id/flash_overlay"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1" />
+        android:layout_height="match_parent"
+        android:background="@color/screen_flash"
+        android:alpha="0"
+        android:visibility="gone"
+        android:clickable="false"
+        android:focusable="false" />
 
-    <com.rama.txori.widgets.WdNavbar
-        android:id="@+id/navbar"
-        style="@style/BlockFlow" />
-
-</LinearLayout>
+</FrameLayout>

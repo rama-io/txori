@@ -1,5 +1,9 @@
 # Changelog
 
+## 14
+
+- New notifications modality
+
 ## 13
 
 - Fix settings section state

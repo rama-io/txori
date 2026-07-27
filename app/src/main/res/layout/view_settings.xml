@@ -273,6 +273,36 @@
                 </LinearLayout>
             </com.rama.bohio.widgets.WdCollapsibleSection>
 
+            <!--System-->
+            <com.rama.bohio.widgets.WdCollapsibleSection
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:key="settings:section:notifications"
+                app:header="@string/h3_notifications"
+                app:defaultExpanded="true">
+
+                <com.rama.bohio.widgets.WdCheckbox
+                    android:id="@+id/notification_sound"
+                    android:text="@string/notifications_play_sounds"
+                    style="@style/Checkbox" />
+
+                <com.rama.bohio.widgets.WdCheckbox
+                    android:id="@+id/notification_vibration"
+                    android:text="@string/notifications_vibrate"
+                    style="@style/Checkbox" />
+
+                <com.rama.bohio.widgets.WdCheckbox
+                    android:id="@+id/notification_flash"
+                    android:text="@string/notifications_flash_screen"
+                    style="@style/Checkbox" />
+
+                <com.rama.bohio.widgets.WdCheckbox
+                    android:id="@+id/notification_camera_flash"
+                    android:text="@string/notifications_use_camera_flash"
+                    style="@style/Checkbox" />
+
+            </com.rama.bohio.widgets.WdCollapsibleSection>
+
             <!--Language-->
             <com.rama.bohio.widgets.WdCollapsibleSection
                 android:layout_width="match_parent"

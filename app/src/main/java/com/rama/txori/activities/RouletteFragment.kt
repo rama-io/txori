@@ -20,8 +20,8 @@ import android.widget.Toast
 import com.rama.txori.DatabaseHelper
 import com.rama.txori.R
 import com.rama.txori.Task
+import com.rama.txori.managers.NotifyManager
 import com.rama.txori.managers.PrefsManager
-import com.rama.txori.managers.SoundManager
 
 class RouletteFragment : Fragment(), EditModeToggle {
 
@@ -59,7 +59,7 @@ class RouletteFragment : Fragment(), EditModeToggle {
                 isRunning = false
                 waitingForComplete = true
                 counterBtn.text = getString(R.string.h1_timer_default)
-                SoundManager.beepFinish()
+                NotifyManager.finish(activity) { (activity as? MainActivity)?.flashScreen() }
                 updateRunningUI()
                 return
             }

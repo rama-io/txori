@@ -3,7 +3,11 @@ package com.rama.txori.managers
 import android.os.CountDownTimer
 import com.rama.txori.SessionItem
 
-class WorkoutManager(private var listener: Listener) {
+class WorkoutManager(
+    private var listener: Listener,
+    private val onTick: () -> Unit = {},
+    private val onFinishNotify: () -> Unit = {}
+) {
 
     interface Listener {
         fun onTaskStarted(index: Int, label: String, remainingMs: Long)
@@ -193,14 +197,14 @@ class WorkoutManager(private var listener: Listener) {
                 val secondsLeft = millisUntilFinished / 1000
                 if (secondsLeft in 0..5 && secondsLeft != lastBeepSecond) {
                     lastBeepSecond = secondsLeft
-                    SoundManager.beepTick()
+                    onTick()
                 }
             }
 
             override fun onFinish() {
                 if (generation != taskGeneration) return
                 isRunning = false
-                SoundManager.beepFinish()
+                onFinishNotify()
                 listener.onTaskFinished(currentItemIndex)
                 val row = items.getOrNull(currentItemIndex) as? com.rama.txori.SessionItem.Row
                 val restMs = hhmmssToMs(row?.task?.restDuration ?: "000000")

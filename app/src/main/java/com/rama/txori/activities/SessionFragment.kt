@@ -17,6 +17,7 @@ import com.rama.txori.R
 import com.rama.bohio.R as BohioR
 import com.rama.txori.SessionItem
 import com.rama.txori.adapters.SessionAdapter
+import com.rama.txori.managers.NotifyManager
 import com.rama.txori.managers.SoundManager
 import com.rama.bohio.managers.ThemeManager
 import com.rama.txori.managers.WorkoutManager
@@ -71,7 +72,13 @@ class SessionFragment : Fragment(), WorkoutManager.Listener, EditModeToggle {
         // Only create WorkoutManager on first load; on rotation the retained
         // instance still holds the running workout, just reconnect the listener.
         if (!::workout.isInitialized) {
-            workout = WorkoutManager(this)
+            workout = WorkoutManager(
+                listener = this,
+                onTick = { NotifyManager.tick(activity) },
+                onFinishNotify = {
+                    NotifyManager.finish(activity) { (activity as? MainActivity)?.flashScreen() }
+                }
+            )
         } else {
             workout.reconnectListener(this)
         }

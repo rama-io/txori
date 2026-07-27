@@ -79,5 +79,10 @@
     <!-- APP -->
     <string name="app_name" translatable="false">@string/product_txori</string>
     <string name="app_desc">A minimal, privacy-first focus session app designed to help you stay present and intentional with your time.</string>
+    <string name="h3_notifications">Notifications</string>
+    <string name="notifications_play_sounds">Play sounds</string>
+    <string name="notifications_vibrate">Vibrate</string>
+    <string name="notifications_flash_screen">Flash screen</string>
+    <string name="notifications_use_camera_flash">Use camera flash</string>
 </resources>
 

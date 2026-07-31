@@ -190,6 +190,13 @@ class DatabaseHelper(context: Context) :
         db.delete("sessions", "id = ?", arrayOf(sessionId.toString()))
     }
 
+    /** Remove every session, step and task. Used by backup restore before re-seeding. */
+    fun clearAllUserData(db: SQLiteDatabase) {
+        db.delete("session_steps", null, null)
+        db.delete("sessions", null, null)
+        db.delete("tasks", null, null)
+    }
+
     fun addTaskToSession(
         db: SQLiteDatabase,
         sessionId: Long,

@@ -84,5 +84,17 @@
     <string name="notifications_vibrate">Vibrate</string>
     <string name="notifications_flash_screen">Flash screen</string>
     <string name="notifications_use_camera_flash">Use camera flash</string>
+
+    <!-- Data / Backup -->
+    <string name="h3_data">Data</string>
+    <string name="btn_export_data">Export backup</string>
+    <string name="btn_import_data">Import backup</string>
+    <string name="dialog_import_title">Import backup?</string>
+    <string name="dialog_import_message">This replaces all your current lists and settings with the contents of the backup file, then restarts Txori.</string>
+    <string name="dialog_import_confirm">Import</string>
+    <string name="dialog_cancel">Cancel</string>
+    <string name="toast_backup_exported">Exported %1$d lists and %2$d items</string>
+    <string name="toast_backup_imported">Imported %1$d lists and %2$d items</string>
+    <string name="toast_backup_failed">Backup failed</string>
 </resources>
 

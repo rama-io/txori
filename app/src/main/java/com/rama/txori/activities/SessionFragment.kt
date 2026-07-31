@@ -36,6 +36,10 @@ class SessionFragment : Fragment(), WorkoutManager.Listener, EditModeToggle {
     private lateinit var addGroupButton: Button
     private lateinit var timeContainer: View
     private lateinit var playPauseIcon: ImageView
+    private lateinit var activeGroupHeader: View
+    private lateinit var activeGroupLabel: TextView
+    private lateinit var activePlayPauseIcon: ImageView
+    private var activeGroupName: String = ""
 
     private var isEditMode = false
 
@@ -66,6 +70,14 @@ class SessionFragment : Fragment(), WorkoutManager.Listener, EditModeToggle {
         addGroupButton = view.findViewById(R.id.add_group_button)
         timeContainer = view.findViewById(R.id.time_container)
         playPauseIcon = view.findViewById(R.id.play_pause_icon)
+        activeGroupHeader = view.findViewById(R.id.active_group_header)
+        activeGroupLabel = view.findViewById(R.id.active_group_label)
+        activePlayPauseIcon = view.findViewById(R.id.active_play_pause_icon)
+
+        view.findViewById<View>(R.id.active_reset_group)
+            .setOnClickListener { workout.resetGroup(workout.activeSessionId) }
+        view.findViewById<View>(R.id.active_start_group)
+            .setOnClickListener { workout.togglePlayPause() }
 
         SoundManager.init()
 
@@ -123,6 +135,7 @@ class SessionFragment : Fragment(), WorkoutManager.Listener, EditModeToggle {
         adapter.stopAllPlaying()
         adapter.setEditMode(true)
         workout.stopAndClear()
+        hideActiveGroupHeader()
         isEditMode = true
         syncEditButtons()
     }
@@ -145,6 +158,30 @@ class SessionFragment : Fragment(), WorkoutManager.Listener, EditModeToggle {
         (activity as? MainActivity)?.let { syncTopBarButtons(it) }
     }
 
+    private fun showActiveGroupHeader() {
+        val header = items.firstOrNull {
+            it is SessionItem.Header && it.sessionId == workout.activeSessionId
+        } as? SessionItem.Header ?: return
+        activeGroupName = header.name
+        activeGroupHeader.visibility = View.VISIBLE
+        updateActiveGroupHeaderLabel(workout.globalRemainingMs)
+        activePlayPauseIcon.setImageResource(
+            if (workout.isRunning) BohioR.drawable.px_pause else BohioR.drawable.px_play
+        )
+        ThemeManager.applyTheme(activity, activeGroupHeader)
+    }
+
+    private fun hideActiveGroupHeader() {
+        activeGroupHeader.visibility = View.GONE
+        activeGroupName = ""
+    }
+
+    private fun updateActiveGroupHeaderLabel(remainingMs: Long) {
+        val secs = (remainingMs / 1000).coerceAtLeast(0)
+        val time = String.format("%02d:%02d:%02d", secs / 3600, (secs % 3600) / 60, secs % 60)
+        activeGroupLabel.text = "$activeGroupName :: $time"
+    }
+
     private fun syncUiToWorkoutState() {
         val idx = workout.currentItemIndex
         if (idx < 0) return
@@ -155,8 +192,10 @@ class SessionFragment : Fragment(), WorkoutManager.Listener, EditModeToggle {
         updateTimerDisplay(workout.remainingMs)
         updateNextTaskDisplay(idx, workout.activeSessionId)
         adapter.setActiveItemIndex(idx)
+        adapter.setHeaderLiveTotal(workout.activeSessionId, workout.globalRemainingMs)
         adapter.setGroupPlayingState(workout.activeSessionId, workout.isRunning)
         globalControllers.visibility = View.VISIBLE
+        showActiveGroupHeader()
         syncEditButtons()
         playPauseIcon.setImageResource(
             if (workout.isRunning) BohioR.drawable.px_pause else BohioR.drawable.px_play
@@ -171,6 +210,7 @@ class SessionFragment : Fragment(), WorkoutManager.Listener, EditModeToggle {
         adapter.setActiveItemIndex(index)
         updateNextTaskDisplay(index, workout.activeSessionId)
         globalControllers.visibility = View.VISIBLE
+        showActiveGroupHeader()
         listView.post {
             val visiblePos = adapter.rawIndexToVisiblePosition(index)
             if (visiblePos >= 0) listView.setSelectionFromTop(visiblePos, 0)
@@ -203,11 +243,28 @@ class SessionFragment : Fragment(), WorkoutManager.Listener, EditModeToggle {
 
     override fun onSessionTick(sessionId: Long, remainingMs: Long) {
         adapter.updateActiveHeaderTimer(sessionId, remainingMs)
+        updateActiveGroupHeaderLabel(remainingMs)
     }
 
-    override fun onPlayingStateChanged(sessionId: Long, playing: Boolean) {
+    override fun onPlayingStateChanged(
+        sessionId: Long,
+        playing: Boolean,
+        headerRemainingMs: Long?
+    ) {
+        // Mutate the header-total model before the rebind so a single
+        // notifyDataSetChanged renders both the play/pause icon and the total.
+        // null means a real stop/switch -> revert the header to its static sum;
+        // a non-null value (pause/seed) freezes or seeds the live total.
+        if (headerRemainingMs != null) {
+            adapter.setHeaderLiveTotal(sessionId, headerRemainingMs)
+        } else {
+            adapter.clearHeaderLiveTotal(sessionId)
+        }
         adapter.setGroupPlayingState(sessionId, playing)
         playPauseIcon.setImageResource(
+            if (playing) BohioR.drawable.px_pause else BohioR.drawable.px_play
+        )
+        activePlayPauseIcon.setImageResource(
             if (playing) BohioR.drawable.px_pause else BohioR.drawable.px_play
         )
         syncEditButtons()
@@ -217,10 +274,12 @@ class SessionFragment : Fragment(), WorkoutManager.Listener, EditModeToggle {
         taskNameView.text = getString(R.string.h2_done)
         timerView.text = getString(R.string.h1_timer_zero)
         nextTaskView.text = getString(R.string.h2_next_placeholder)
+        adapter.clearHeaderLiveTotal(sessionId)
         adapter.setActiveItemIndex(-1)
         adapter.setGroupPlayingState(sessionId, false)
         playPauseIcon.setImageResource(BohioR.drawable.px_play)
         globalControllers.visibility = View.GONE
+        hideActiveGroupHeader()
         syncEditButtons()
     }
 
@@ -228,10 +287,12 @@ class SessionFragment : Fragment(), WorkoutManager.Listener, EditModeToggle {
         taskNameView.text = getString(R.string.h2_greeting)
         timerView.text = getString(R.string.h1_timer_zero)
         nextTaskView.text = getString(R.string.h2_next_placeholder)
+        adapter.clearHeaderLiveTotal(sessionId)
         adapter.setActiveItemIndex(-1)
         adapter.setGroupPlayingState(sessionId, false)
         playPauseIcon.setImageResource(BohioR.drawable.px_play)
         globalControllers.visibility = View.GONE
+        hideActiveGroupHeader()
     }
 
     // Helpers

@@ -2,6 +2,9 @@
 
 ## 15
 
+- Fix sticky timer
+- Add export/import data
+
 ## 14
 
 - New notifications modality

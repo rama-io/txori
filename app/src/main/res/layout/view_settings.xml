@@ -315,6 +315,26 @@
                     android:id="@+id/language_group"
                     style="@style/RadioGroup" />
             </com.rama.bohio.widgets.WdCollapsibleSection>
+
+            <!--Data-->
+            <com.rama.bohio.widgets.WdCollapsibleSection
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:key="settings:section:data"
+                app:header="@string/h3_data"
+                app:defaultExpanded="true">
+
+                <Button
+                    android:id="@+id/export_data_button"
+                    android:text="@string/btn_export_data"
+                    style="@style/BTN1" />
+
+                <Button
+                    android:id="@+id/import_data_button"
+                    android:text="@string/btn_import_data"
+                    style="@style/BTN1" />
+
+            </com.rama.bohio.widgets.WdCollapsibleSection>
         </LinearLayout>
     </ScrollView>
 

@@ -10,6 +10,7 @@ import com.rama.txori.R
 import com.rama.txori.activities.settings.SettingsAppearanceController
 import com.rama.txori.activities.settings.SettingsBasicController
 import com.rama.txori.activities.settings.SettingsCheckboxController
+import com.rama.txori.activities.settings.SettingsDataController
 import com.rama.txori.activities.settings.SettingsLanguageController
 import com.rama.txori.managers.PrefsManager
 
@@ -30,6 +31,7 @@ class SettingsActivity : CsActivity() {
         appearanceController = SettingsAppearanceController(this).also { it.setup() }
         SettingsLanguageController(this).setup()
         SettingsCheckboxController(this).setup()
+        SettingsDataController(this).setup()
     }
 
     override fun onResume() {

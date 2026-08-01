@@ -34,6 +34,7 @@ class SessionAdapter(
     private var activeItemIndex: Int = -1
     private var activeProgress: Float = 0f
     private var activeRestProgress: Float = 0f
+    private val liveHeaderRemainingSec: MutableMap<Long, Int> = mutableMapOf()
     private val collapsedSessions: MutableSet<Long> = loadCollapsedFromPrefs()
     private var isEditMode: Boolean = false
     private val playingSessions: MutableSet<Long> = mutableSetOf()
@@ -97,20 +98,8 @@ class SessionAdapter(
         applyRestProgress(progress, itemView)
     }
 
-    fun rawIndexToVisiblePosition(rawIndex: Int): Int {
-        val item = items.getOrNull(rawIndex) ?: return -1
-        if (item is SessionItem.Row && collapsedSessions.contains(item.sessionId)) return -1
-        var visible = 0
-        for (i in items.indices) {
-            val current = items[i]
-            val skip = current is SessionItem.Row && collapsedSessions.contains(current.sessionId)
-            if (!skip) {
-                if (i == rawIndex) return visible
-                visible++
-            }
-        }
-        return -1
-    }
+    fun rawIndexToVisiblePosition(rawIndex: Int): Int =
+        computeVisiblePosition(items, collapsedSessions, rawIndex)
 
     override fun getCount(): Int {
         var count = 0
@@ -123,18 +112,8 @@ class SessionAdapter(
         return count
     }
 
-    private fun getActualPosition(visiblePosition: Int): Int {
-        var visible = 0
-        for (i in items.indices) {
-            val item = items[i]
-            val skip = item is SessionItem.Row && collapsedSessions.contains(item.sessionId)
-            if (!skip) {
-                if (visible == visiblePosition) return i
-                visible++
-            }
-        }
-        return visiblePosition
-    }
+    private fun getActualPosition(visiblePosition: Int): Int =
+        computeRawIndex(items, collapsedSessions, visiblePosition)
 
     override fun getItem(position: Int) = items[getActualPosition(position)]
     override fun getItemId(position: Int) = position.toLong()
@@ -154,20 +133,26 @@ class SessionAdapter(
     }
 
     fun updateActiveHeaderTimer(sessionId: Long, remainingMs: Long) {
+        // Update the model first so a rebind (e.g. collapse/uncollapse) always
+        // renders a fresh value, even if the list view is not currently reachable.
+        val secs = setHeaderLiveTotal(sessionId, remainingMs)
+
         val listView = (context as? android.app.Activity)
             ?.findViewById<ListView>(R.id.task_list) ?: return
-        val firstVisible = listView.firstVisiblePosition
 
         for (i in items.indices) {
             val item = items[i]
             if (item is SessionItem.Header && item.sessionId == sessionId) {
-                val local = i - firstVisible
-                if (local >= 0 && local < listView.childCount) {
+                val visiblePosition = rawIndexToVisiblePosition(i)
+                if (visiblePosition < 0) break
+                val firstVisible = listView.firstVisiblePosition
+                val local = visiblePosition - firstVisible
+                if (local in 0 until listView.childCount) {
                     val headerView = listView.getChildAt(local) ?: break
                     val label = headerView.findViewById<TextView>(R.id.group_label) ?: break
                     val isCollapsed = collapsedSessions.contains(item.sessionId)
                     val indicator = if (isCollapsed) "[-]" else "[+]"
-                    val timeStr = formatGroupTime((remainingMs / 1000).toInt())
+                    val timeStr = formatGroupTime(secs)
                     label.text = "$indicator ${item.name} :: $timeStr"
                 }
                 break
@@ -185,7 +170,7 @@ class SessionAdapter(
             .inflate(R.layout.list_item_header, parent, false)
 
         val totalSec = header.tasks.sumOf { hhmmssToSeconds(it.duration) }
-        val timeStr = formatGroupTime(totalSec)
+        val timeStr = formatGroupTime(liveHeaderRemainingSec[header.sessionId] ?: totalSec)
         val isCollapsed = collapsedSessions.contains(header.sessionId)
         val collapseIndicator = if (isCollapsed) "[-]" else "[+]"
 
@@ -415,6 +400,16 @@ class SessionAdapter(
                 restProgressView.requestLayout()
             }
         }
+    }
+
+    fun setHeaderLiveTotal(sessionId: Long, remainingMs: Long): Int {
+        val secs = (remainingMs / 1000).toInt()
+        liveHeaderRemainingSec[sessionId] = secs
+        return secs
+    }
+
+    fun clearHeaderLiveTotal(sessionId: Long) {
+        liveHeaderRemainingSec.remove(sessionId)
     }
 
     fun setGroupPlayingState(sessionId: Long, playing: Boolean) {

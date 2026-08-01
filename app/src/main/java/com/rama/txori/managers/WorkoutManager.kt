@@ -17,7 +17,10 @@ class WorkoutManager(
         fun onRestTick(index: Int, remainingMs: Long, progress: Float)
         fun onRestFinished(index: Int)
         fun onSessionTick(sessionId: Long, remainingMs: Long)
-        fun onPlayingStateChanged(sessionId: Long, playing: Boolean)
+        // headerRemainingMs: value the group header total should show, or null
+        // to revert it to the static (full) sum. Pause freezes a value; a real
+        // stop/switch passes null. Only the manager knows which, so it declares it.
+        fun onPlayingStateChanged(sessionId: Long, playing: Boolean, headerRemainingMs: Long?)
         fun onGroupFinished(sessionId: Long)
         fun onGroupReset(sessionId: Long)
     }
@@ -61,7 +64,7 @@ class WorkoutManager(
                 stopTask()
                 cancelGlobalTimer()
                 if (activeSessionId != -1L && activeSessionId != sessionId) {
-                    listener.onPlayingStateChanged(activeSessionId, false)
+                    listener.onPlayingStateChanged(activeSessionId, false, null)
                 }
                 activeSessionId = sessionId
                 globalRemainingMs = calcSessionMs(sessionId, startIndex)
@@ -117,7 +120,7 @@ class WorkoutManager(
         activeSessionId = -1
         currentItemIndex = -1
         globalRemainingMs = 0
-        if (prevSession != -1L) listener.onPlayingStateChanged(prevSession, false)
+        if (prevSession != -1L) listener.onPlayingStateChanged(prevSession, false, null)
     }
 
     fun release() {
@@ -132,12 +135,12 @@ class WorkoutManager(
         cancelRestTimer()
         cancelGlobalTimer()
         isRunning = false
-        listener.onPlayingStateChanged(activeSessionId, false)
+        listener.onPlayingStateChanged(activeSessionId, false, globalRemainingMs)
     }
 
     private fun resume() {
         isRunning = true
-        listener.onPlayingStateChanged(activeSessionId, true)
+        listener.onPlayingStateChanged(activeSessionId, true, globalRemainingMs)
         launchTaskTimer(remainingMs)
         if (globalRemainingMs > 0) launchGlobalTimer(globalRemainingMs)
     }
@@ -163,7 +166,7 @@ class WorkoutManager(
         lastBeepSecond = -1
         isRunning = true
         listener.onTaskStarted(index, row.task.label, remainingMs)
-        listener.onPlayingStateChanged(activeSessionId, true)
+        listener.onPlayingStateChanged(activeSessionId, true, globalRemainingMs)
         launchTaskTimer(remainingMs)
     }
 

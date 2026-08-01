@@ -82,11 +82,59 @@
         </LinearLayout>
     </LinearLayout>
 
-    <ListView
-        android:id="@+id/task_list"
+    <FrameLayout
+        android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1"
-        style="@style/VerticalListDivided" />
+        android:layout_weight="1">
+
+        <ListView
+            android:id="@+id/task_list"
+            android:layout_height="match_parent"
+            style="@style/VerticalListDivided" />
+
+        <LinearLayout
+            android:id="@+id/active_group_header"
+            android:layout_gravity="top"
+            android:background="@color/bg_1"
+            android:visibility="gone"
+            style="@style/HorizontalListDivided">
+
+            <TextView
+                android:id="@+id/active_group_label"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:paddingTop="12sp"
+                android:paddingBottom="12sp"
+                style="@style/H3" />
+
+            <FrameLayout
+                android:id="@+id/active_reset_group"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="12sp">
+
+                <ImageView
+                    android:src="@drawable/px_refresh"
+                    android:contentDescription="@string/altdescr_reset_group"
+                    android:tint="@color/accent_2"
+                    style="@style/Icon18" />
+            </FrameLayout>
+
+            <FrameLayout
+                android:id="@+id/active_start_group"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="12sp">
+
+                <ImageView
+                    android:id="@+id/active_play_pause_icon"
+                    android:src="@drawable/px_play"
+                    android:contentDescription="@string/altdescr_start_group"
+                    android:tint="@color/accent_2"
+                    style="@style/Icon18" />
+            </FrameLayout>
+        </LinearLayout>
+    </FrameLayout>
 
     <Button
         android:id="@+id/add_group_button"

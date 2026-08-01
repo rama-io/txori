@@ -15,7 +15,7 @@ android {
         applicationId = "com.rama.txori"
         minSdk = 21
         targetSdk = 37
-        versionCode = 15
+        versionCode = 16
         versionName = "$currentYear.$versionCode"
     }
 

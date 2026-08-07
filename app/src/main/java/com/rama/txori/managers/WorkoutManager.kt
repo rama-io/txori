@@ -251,6 +251,7 @@ class WorkoutManager(
             }
 
             override fun onFinish() {
+                onFinishNotify()
                 listener.onRestFinished(index)
                 startFromIndex(index + 1)
             }
@@ -277,6 +278,7 @@ class WorkoutManager(
             val item = items[i]
             if (item is SessionItem.Row && item.sessionId == sessionId) {
                 total += hhmmssToMs(item.task.duration)
+                total += hhmmssToMs(item.task.restDuration)
             }
         }
         return total

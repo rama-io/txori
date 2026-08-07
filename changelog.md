@@ -2,6 +2,9 @@
 
 ## 16
 
+- Fix global timer not taking rest time into consideration
+- Fix rest timer not triggering a notification when finish
+
 ## 15
 
 - Fix sticky timer

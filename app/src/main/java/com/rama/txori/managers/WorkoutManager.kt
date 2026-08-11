@@ -46,6 +46,8 @@ class WorkoutManager(
     private var taskDurationMs: Long = 0L
     private var restTimer: CountDownTimer? = null
     private var restDurationMs: Long = 0L
+    private var restRemainingMs: Long = 0L
+    private var isResting: Boolean = false
 
     //  Public actions
 
@@ -92,18 +94,32 @@ class WorkoutManager(
 
     fun addTime(ms: Long) {
         if (!isRunning) return
-        cancelTaskTimer()
-        remainingMs += ms
-        taskDurationMs += ms
         cancelGlobalTimer()
         globalRemainingMs += ms
         launchGlobalTimer(globalRemainingMs)
-        launchTaskTimer(remainingMs)
+        if (isResting) {
+            restRemainingMs += ms
+            restDurationMs += ms
+            launchRestTimer(currentItemIndex, restRemainingMs, isResume = true)
+        } else {
+            cancelTaskTimer()
+            remainingMs += ms
+            taskDurationMs += ms
+            launchTaskTimer(remainingMs)
+        }
     }
 
     fun repeatCurrentTask() {
         if (currentItemIndex < 0) return
-        interruptRest()
+        val row = items.getOrNull(currentItemIndex) as? SessionItem.Row ?: return
+        if (isResting) {
+            val restMs = hhmmssToMs(row.task.restDuration)
+            if (restRemainingMs > restMs) return
+            if (restMs > 0) launchRestTimer(currentItemIndex, restMs)
+            return
+        }
+        val originalMs = hhmmssToMs(row.task.duration)
+        if (remainingMs > originalMs) return
         loadTask(currentItemIndex)
     }
 
@@ -141,7 +157,11 @@ class WorkoutManager(
     private fun resume() {
         isRunning = true
         listener.onPlayingStateChanged(activeSessionId, true, globalRemainingMs)
-        launchTaskTimer(remainingMs)
+        if (isResting) {
+            launchRestTimer(currentItemIndex, restRemainingMs, isResume = true)
+        } else {
+            launchTaskTimer(remainingMs)
+        }
         if (globalRemainingMs > 0) launchGlobalTimer(globalRemainingMs)
     }
 
@@ -160,6 +180,8 @@ class WorkoutManager(
     private fun loadTask(index: Int) {
         val row = items.getOrNull(index) as? SessionItem.Row ?: return
         cancelTaskTimer()
+        isResting = false
+        restRemainingMs = 0L
         currentItemIndex = index
         remainingMs = hhmmssToMs(row.task.duration)
         taskDurationMs = remainingMs
@@ -183,6 +205,8 @@ class WorkoutManager(
     private fun stopTask() {
         cancelTaskTimer()
         cancelRestTimer()
+        isResting = false
+        restRemainingMs = 0L
         isRunning = false
     }
 
@@ -206,7 +230,6 @@ class WorkoutManager(
 
             override fun onFinish() {
                 if (generation != taskGeneration) return
-                isRunning = false
                 onFinishNotify()
                 listener.onTaskFinished(currentItemIndex)
                 val row = items.getOrNull(currentItemIndex) as? com.rama.txori.SessionItem.Row
@@ -239,18 +262,25 @@ class WorkoutManager(
         taskTimer?.cancel(); taskTimer = null
     }
 
-    private fun launchRestTimer(index: Int, durationMs: Long) {
+    private fun launchRestTimer(index: Int, durationMs: Long, isResume: Boolean = false) {
         cancelRestTimer()
-        restDurationMs = durationMs
-        listener.onRestStarted(index, durationMs)
+        isResting = true
+        restRemainingMs = durationMs
+        if (!isResume) {
+            restDurationMs = durationMs
+            listener.onRestStarted(index, durationMs)
+        }
         restTimer = object : CountDownTimer(durationMs, 100) {
             override fun onTick(millisUntilFinished: Long) {
+                restRemainingMs = millisUntilFinished
                 val progress =
                     (1f - millisUntilFinished.toFloat() / restDurationMs).coerceIn(0f, 1f)
                 listener.onRestTick(index, millisUntilFinished, progress)
             }
 
             override fun onFinish() {
+                isResting = false
+                restRemainingMs = 0L
                 onFinishNotify()
                 listener.onRestFinished(index)
                 startFromIndex(index + 1)
@@ -263,8 +293,10 @@ class WorkoutManager(
     }
 
     private fun interruptRest() {
-        if (restTimer == null) return
+        if (!isResting) return
         cancelRestTimer()
+        isResting = false
+        restRemainingMs = 0L
         listener.onRestFinished(currentItemIndex)
     }
 

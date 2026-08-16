@@ -4,6 +4,7 @@
 
 - Fix global timer not taking rest time into consideration
 - Fix rest timer not triggering a notification when finish
+- Add catalogue
 
 ## 15
 
@@ -50,7 +51,8 @@
 ## 7
 
 - Add roulette view
-- Integrate rest duration into the task so the list get smaller and can be easily used with the roulette
+- Integrate rest duration into the task so the list get smaller and can be easily used with the
+  roulette
 - Time is now globally using the HHMMSS format instead of seconds
 - Timer sounds a beep when finish
 - Add zoom control [0.7 .. 1.5]

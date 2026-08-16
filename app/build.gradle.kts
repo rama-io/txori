@@ -1,11 +1,10 @@
-import java.time.LocalDate
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 
 plugins {
     alias(libs.plugins.android.application)
 }
 
-val currentYear = LocalDate.now().year
+val currentYear = 2026
 
 android {
     namespace = "com.rama.txori"
@@ -15,7 +14,7 @@ android {
         applicationId = "com.rama.txori"
         minSdk = 21
         targetSdk = 37
-        versionCode = 15
+        versionCode = 16
         versionName = "$currentYear.$versionCode"
     }
 

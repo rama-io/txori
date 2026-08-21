@@ -1,5 +1,9 @@
 # Changelog
 
+## 17
+
+- Reworking about page
+
 ## 16
 
 - Fix global timer not taking rest time into consideration

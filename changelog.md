@@ -1,5 +1,10 @@
 # Changelog
 
+## 18
+
+- Fix timer freeze on skip
+- Fix dimension scaling on zoom
+
 ## 17
 
 - Reworking about page

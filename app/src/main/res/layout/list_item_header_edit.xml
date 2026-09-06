@@ -1,18 +1,16 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/app_row_header"
     android:background="@color/bg_3"
-    android:padding="@dimen/space_between_elements"
-    style="@style/VerticalList">
+    android:padding="@dimen/small"
+    style="@style/VerticalListDivided">
 
     <LinearLayout style="@style/HorizontalListDivided">
 
         <FrameLayout
             android:id="@+id/edit_session_button"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:padding="12sp"
-            android:paddingStart="22sp">
+            android:layout_weight="1">
 
             <ImageView
                 android:src="@drawable/px_edit"
@@ -23,10 +21,9 @@
 
         <FrameLayout
             android:id="@+id/ascend_button"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:padding="12sp">
+            android:layout_weight="1">
 
             <ImageView
                 android:src="@drawable/px_chevron_up"
@@ -37,10 +34,9 @@
 
         <FrameLayout
             android:id="@+id/descend_button"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:padding="12sp">
+            android:layout_weight="1">
 
             <ImageView
                 android:src="@drawable/px_chevron_down"
@@ -51,10 +47,9 @@
 
         <FrameLayout
             android:id="@+id/add_task"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:padding="12sp">
+            android:layout_weight="1">
 
             <ImageView
                 android:src="@drawable/px_plus"
@@ -70,7 +65,7 @@
             android:id="@+id/group_label"
             android:layout_width="0dp"
             android:layout_weight="1"
-            android:background="@color/bg_2"
+            android:background="@color/bg_4"
             android:padding="@dimen/space_between_elements"
             style="@style/H3" />
     </LinearLayout>

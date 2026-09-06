@@ -5,19 +5,17 @@
 
     <LinearLayout
         android:id="@+id/app_row"
-        android:padding="12sp"
-        style="@style/HorizontalListDivided">
+        android:background="@color/bg_2"
+        android:padding="@dimen/small"
+        style="@style/VerticalListDivided">
 
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            style="@style/HorizontalListDivided">
+        <LinearLayout style="@style/HorizontalListDivided">
 
             <FrameLayout
                 android:id="@+id/edit_task_button"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:padding="12sp">
+                android:layout_weight="1">
 
                 <ImageView
                     android:src="@drawable/px_edit"
@@ -28,9 +26,9 @@
 
             <FrameLayout
                 android:id="@+id/ascend_button"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:padding="12sp">
+                android:layout_weight="1">
 
                 <ImageView
                     android:src="@drawable/px_chevron_up"
@@ -41,9 +39,9 @@
 
             <FrameLayout
                 android:id="@+id/descend_button"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:padding="12sp">
+                android:layout_weight="1">
 
                 <ImageView
                     android:src="@drawable/px_chevron_down"
@@ -52,29 +50,35 @@
                     style="@style/Icon18" />
             </FrameLayout>
 
+            <FrameLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:background="@color/bg_1"
+            android:padding="@dimen/small"
+            style="@style/HorizontalListDivided">
+
             <TextView
                 android:id="@+id/task_label"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:paddingEnd="16sp"
-                android:textSize="16sp"
+                android:layout_weight="1"
                 android:textColor="@color/foreground" />
 
             <TextView
                 android:id="@+id/task_frequency"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="16sp"
                 android:textColor="@color/suggestion" />
 
+            <TextView
+                android:id="@+id/task_duration"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/disabled" />
         </LinearLayout>
-
-        <TextView
-            android:id="@+id/task_duration"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="16sp"
-            android:textColor="@color/disabled" />
     </LinearLayout>
-
 </FrameLayout>

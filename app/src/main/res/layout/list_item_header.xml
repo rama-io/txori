@@ -6,8 +6,8 @@
         android:id="@+id/edit_session_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:padding="12sp"
-        android:paddingStart="22sp">
+        android:padding="12dp"
+        android:paddingStart="22dp">
 
         <ImageView
             android:src="@drawable/px_edit"
@@ -20,7 +20,7 @@
         android:id="@+id/ascend_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:padding="12sp">
+        android:padding="12dp">
 
         <ImageView
             android:src="@drawable/px_chevron_up"
@@ -33,7 +33,7 @@
         android:id="@+id/descend_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:padding="12sp">
+        android:padding="12dp">
 
         <ImageView
             android:src="@drawable/px_chevron_down"
@@ -47,15 +47,15 @@
         android:layout_width="0dp"
         android:layout_weight="1"
         android:text="[-] Workout :: 44:00"
-        android:paddingTop="12sp"
-        android:paddingBottom="12sp"
+        android:paddingTop="12dp"
+        android:paddingBottom="12dp"
         style="@style/H3" />
 
     <FrameLayout
         android:id="@+id/add_task"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:padding="12sp">
+        android:padding="12dp">
 
         <ImageView
             android:src="@drawable/px_plus"
@@ -68,7 +68,7 @@
         android:id="@+id/reset_group"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:padding="12sp">
+        android:padding="12dp">
 
         <ImageView
             android:src="@drawable/px_refresh"
@@ -81,7 +81,7 @@
         android:id="@+id/start_group"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:padding="12sp">
+        android:padding="12dp">
 
         <ImageView
             android:id="@+id/start_group_icon"

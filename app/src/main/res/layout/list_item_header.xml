@@ -6,15 +6,15 @@
         android:id="@+id/group_label"
         android:layout_width="0dp"
         android:layout_weight="1"
-        android:paddingTop="12sp"
-        android:paddingBottom="12sp"
+        android:paddingTop="@dimen/small"
+        android:paddingBottom="@dimen/small"
         style="@style/H3" />
 
     <FrameLayout
         android:id="@+id/reset_group"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:padding="12sp">
+        android:padding="@dimen/small">
 
         <ImageView
             android:src="@drawable/px_refresh"
@@ -27,7 +27,7 @@
         android:id="@+id/start_group"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:padding="12sp">
+        android:padding="@dimen/small">
 
         <ImageView
             android:id="@+id/start_group_icon"

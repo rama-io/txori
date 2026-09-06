@@ -64,21 +64,20 @@
             <TextView
                 android:id="@+id/task_label"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:textColor="@color/foreground" />
+                style="@style/Text" />
 
             <TextView
                 android:id="@+id/task_frequency"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="@color/suggestion" />
+                android:textColor="@color/suggestion"
+                style="@style/Text" />
 
             <TextView
                 android:id="@+id/task_duration"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="@color/disabled" />
+                android:textColor="@color/disabled"
+                style="@style/Text" />
         </LinearLayout>
     </LinearLayout>
 </FrameLayout>

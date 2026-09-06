@@ -4,6 +4,7 @@
 
 - Fix timer freeze on skip
 - Fix dimension scaling on zoom
+- Fix groups list to perform better on big zooms
 
 ## 17
 

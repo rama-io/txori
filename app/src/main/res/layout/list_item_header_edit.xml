@@ -1,0 +1,77 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/app_row_header"
+    android:background="@color/bg_3"
+    android:padding="@dimen/space_between_elements"
+    style="@style/VerticalList">
+
+    <LinearLayout style="@style/HorizontalListDivided">
+
+        <FrameLayout
+            android:id="@+id/edit_session_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:padding="12sp"
+            android:paddingStart="22sp">
+
+            <ImageView
+                android:src="@drawable/px_edit"
+                android:contentDescription="@string/altdescr_edit"
+                android:tint="@color/accent_2"
+                style="@style/Icon18" />
+        </FrameLayout>
+
+        <FrameLayout
+            android:id="@+id/ascend_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:padding="12sp">
+
+            <ImageView
+                android:src="@drawable/px_chevron_up"
+                android:contentDescription="@string/altdescr_ascend"
+                android:tint="@color/accent_1"
+                style="@style/Icon18" />
+        </FrameLayout>
+
+        <FrameLayout
+            android:id="@+id/descend_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:padding="12sp">
+
+            <ImageView
+                android:src="@drawable/px_chevron_down"
+                android:contentDescription="@string/altdescr_descend"
+                android:tint="@color/accent_1"
+                style="@style/Icon18" />
+        </FrameLayout>
+
+        <FrameLayout
+            android:id="@+id/add_task"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:padding="12sp">
+
+            <ImageView
+                android:src="@drawable/px_plus"
+                android:contentDescription="@string/altdescr_add_task"
+                android:tint="@color/accent_2"
+                style="@style/Icon18" />
+        </FrameLayout>
+    </LinearLayout>
+
+    <LinearLayout style="@style/HorizontalListDivided">
+
+        <TextView
+            android:id="@+id/group_label"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:background="@color/bg_2"
+            android:padding="@dimen/space_between_elements"
+            style="@style/H3" />
+    </LinearLayout>
+</LinearLayout>

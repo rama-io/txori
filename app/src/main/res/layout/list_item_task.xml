@@ -30,71 +30,24 @@
             android:layout_weight="1"
             style="@style/HorizontalListDivided">
 
-            <FrameLayout
-                android:id="@+id/edit_task_button"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:padding="12sp">
-
-                <ImageView
-                    android:src="@drawable/px_edit"
-                    android:contentDescription="@string/altdescr_edit"
-                    android:tint="@color/accent_2"
-                    style="@style/Icon18" />
-            </FrameLayout>
-
-            <FrameLayout
-                android:id="@+id/ascend_button"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:padding="12sp">
-
-                <ImageView
-                    android:src="@drawable/px_chevron_up"
-                    android:contentDescription="@string/altdescr_ascend"
-                    android:tint="@color/accent_1"
-                    style="@style/Icon18" />
-            </FrameLayout>
-
-            <FrameLayout
-                android:id="@+id/descend_button"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:padding="12sp">
-
-                <ImageView
-                    android:src="@drawable/px_chevron_down"
-                    android:contentDescription="@string/altdescr_descend"
-                    android:tint="@color/accent_1"
-                    style="@style/Icon18" />
-            </FrameLayout>
-
             <TextView
                 android:id="@+id/task_label"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:paddingEnd="16sp"
-                android:text="Tarea"
-                android:textSize="16sp"
-                android:textColor="@color/foreground" />
+                style="@style/Text" />
 
             <TextView
                 android:id="@+id/task_frequency"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="1 / 1"
-                android:textSize="16sp"
-                android:textColor="@color/suggestion" />
+                android:textColor="@color/suggestion"
+                style="@style/Text" />
 
         </LinearLayout>
 
         <TextView
             android:id="@+id/task_duration"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="0:00"
-            android:textSize="16sp"
-            android:textColor="@color/disabled" />
+            android:textColor="@color/disabled"
+            style="@style/Text" />
     </LinearLayout>
 
 </FrameLayout>

@@ -69,9 +69,7 @@ class WorkoutManager(
                     listener.onPlayingStateChanged(activeSessionId, false, null)
                 }
                 activeSessionId = sessionId
-                globalRemainingMs = calcSessionMs(sessionId, startIndex)
                 startFromIndex(startIndex)
-                launchGlobalTimer(globalRemainingMs)
             }
         }
     }
@@ -120,6 +118,9 @@ class WorkoutManager(
         }
         val originalMs = hhmmssToMs(row.task.duration)
         if (remainingMs > originalMs) return
+        globalRemainingMs = calcSessionMs(activeSessionId, currentItemIndex)
+        launchGlobalTimer(globalRemainingMs)
+        listener.onSessionTick(activeSessionId, globalRemainingMs)
         loadTask(currentItemIndex)
     }
 
@@ -173,6 +174,9 @@ class WorkoutManager(
         if (target == null) {
             finishGroup()
         } else {
+            globalRemainingMs = calcSessionMs(activeSessionId, target)
+            launchGlobalTimer(globalRemainingMs)
+            listener.onSessionTick(activeSessionId, globalRemainingMs)
             loadTask(target)
         }
     }

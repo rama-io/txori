@@ -27,8 +27,10 @@ class SessionAdapter(
 ) : BaseAdapter() {
 
     companion object {
-        private const val TYPE_HEADER = 0
-        private const val TYPE_TASK = 1
+        private const val TYPE_HEADER_SHOW = 0
+        private const val TYPE_HEADER_EDIT = 1
+        private const val TYPE_TASK_SHOW = 2
+        private const val TYPE_TASK_EDIT = 3
     }
 
     private var activeItemIndex: Int = -1
@@ -117,11 +119,11 @@ class SessionAdapter(
 
     override fun getItem(position: Int) = items[getActualPosition(position)]
     override fun getItemId(position: Int) = position.toLong()
-    override fun getViewTypeCount() = 2
+    override fun getViewTypeCount() = 4
 
     override fun getItemViewType(position: Int) = when (items[getActualPosition(position)]) {
-        is SessionItem.Header -> TYPE_HEADER
-        is SessionItem.Row -> TYPE_TASK
+        is SessionItem.Header -> if (isEditMode) TYPE_HEADER_EDIT else TYPE_HEADER_SHOW
+        is SessionItem.Row -> if (isEditMode) TYPE_TASK_EDIT else TYPE_TASK_SHOW
     }
 
     override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
@@ -166,8 +168,9 @@ class SessionAdapter(
         convertView: View?,
         parent: ViewGroup
     ): View {
-        val view = convertView ?: LayoutInflater.from(context)
-            .inflate(R.layout.list_item_header, parent, false)
+        val layoutRes =
+            if (isEditMode) R.layout.list_item_header_edit else R.layout.list_item_header
+        val view = convertView ?: LayoutInflater.from(context).inflate(layoutRes, parent, false)
 
         val totalSec = header.tasks.sumOf { hhmmssToSeconds(it.duration) }
         val timeStr = formatGroupTime(liveHeaderRemainingSec[header.sessionId] ?: totalSec)
@@ -187,9 +190,37 @@ class SessionAdapter(
             notifyDataSetChanged()
         }
 
+        if (isEditMode) {
+            bindHeaderEditControls(view, header, position)
+        } else {
+            bindHeaderShowControls(view, header, position)
+        }
+
+        ThemeManager.applyTheme(context, view)
+        return view
+    }
+
+    private fun bindHeaderShowControls(view: View, header: SessionItem.Header, position: Int) {
+        val startGroupButton = view.findViewById<FrameLayout>(R.id.start_group)
+        startGroupButton.setOnClickListener {
+            onStartGroup(header.sessionId, position + 1)
+        }
+
+        view.findViewById<ImageView>(R.id.start_group_icon)
+            .setImageResource(
+                if (playingSessions.contains(header.sessionId))
+                    BohioR.drawable.px_pause
+                else
+                    BohioR.drawable.px_play
+            )
+
+        val resetGroupButton = view.findViewById<FrameLayout>(R.id.reset_group)
+        resetGroupButton.setOnClickListener { onResetGroup(header.sessionId) }
+    }
+
+    private fun bindHeaderEditControls(view: View, header: SessionItem.Header, position: Int) {
         // --- Ascend (move session up) ---
         val ascendButton = view.findViewById<FrameLayout>(R.id.ascend_button)
-        ascendButton.visibility = if (!isEditMode) View.GONE else View.VISIBLE
         ascendButton.setOnClickListener {
             val idx = items.indexOf(header)
             // Find the header immediately above this one
@@ -216,7 +247,6 @@ class SessionAdapter(
 
         // --- Descend (move session down) ---
         val descendButton = view.findViewById<FrameLayout>(R.id.descend_button)
-        descendButton.visibility = if (!isEditMode) View.GONE else View.VISIBLE
         descendButton.setOnClickListener {
             val idx = items.indexOf(header)
             // Find the header immediately below this one
@@ -242,38 +272,15 @@ class SessionAdapter(
         }
 
         val editSessionButton = view.findViewById<FrameLayout>(R.id.edit_session_button)
-        editSessionButton.visibility = if (!isEditMode) View.GONE else View.VISIBLE
         editSessionButton.setOnClickListener {
             showEditSessionDialog(header, position)
             true
         }
 
         val addTaskButton = view.findViewById<FrameLayout>(R.id.add_task)
-        addTaskButton.visibility = if (!isEditMode) View.GONE else View.VISIBLE
         addTaskButton.setOnClickListener {
             showAddTaskDialog(header, position)
         }
-
-        val startGroupButton = view.findViewById<FrameLayout>(R.id.start_group)
-        startGroupButton.setOnClickListener {
-            onStartGroup(header.sessionId, position + 1)
-        }
-        startGroupButton.visibility = if (isEditMode) View.GONE else View.VISIBLE
-
-        view.findViewById<ImageView>(R.id.start_group_icon)
-            .setImageResource(
-                if (playingSessions.contains(header.sessionId))
-                    BohioR.drawable.px_pause
-                else
-                    BohioR.drawable.px_play
-            )
-
-        val resetGroupButton = view.findViewById<FrameLayout>(R.id.reset_group)
-        resetGroupButton.setOnClickListener { onResetGroup(header.sessionId) }
-        resetGroupButton.visibility = if (isEditMode) View.GONE else View.VISIBLE
-
-        ThemeManager.applyTheme(context, view)
-        return view
     }
 
     fun stopAllPlaying() {
@@ -287,8 +294,8 @@ class SessionAdapter(
         convertView: View?,
         parent: ViewGroup
     ): View {
-        val view = convertView ?: LayoutInflater.from(context)
-            .inflate(R.layout.list_item_task, parent, false)
+        val layoutRes = if (isEditMode) R.layout.list_item_task_edit else R.layout.list_item_task
+        val view = convertView ?: LayoutInflater.from(context).inflate(layoutRes, parent, false)
 
         view.findViewById<TextView>(R.id.task_label).text = row.task.label
         view.findViewById<TextView>(R.id.task_duration).text = hhmmssToDisplay(row.task.duration)
@@ -320,14 +327,26 @@ class SessionAdapter(
             freqView.visibility = View.GONE
         }
 
+        if (isEditMode) {
+            bindTaskEditControls(view, row, position)
+        } else {
+            bindTaskShowControls(view, position)
+        }
+
+        ThemeManager.applyTheme(context, view)
+        return view
+    }
+
+    private fun bindTaskShowControls(view: View, position: Int) {
         val p = if (position == activeItemIndex) activeProgress else 0f
         applyProgress(p, view)
         val rp = if (position == activeItemIndex) activeRestProgress else 0f
         applyRestProgress(rp, view)
+    }
 
+    private fun bindTaskEditControls(view: View, row: SessionItem.Row, position: Int) {
         // --- Ascend (move task up within its session) ---
         val ascendButton = view.findViewById<FrameLayout>(R.id.ascend_button)
-        ascendButton.visibility = if (!isEditMode) View.GONE else View.VISIBLE
         ascendButton.setOnClickListener {
             val idx = items.indexOf(row)
             // Previous item must be a Row in the same session
@@ -346,7 +365,6 @@ class SessionAdapter(
 
         // --- Descend (move task down within its session) ---
         val descendButton = view.findViewById<FrameLayout>(R.id.descend_button)
-        descendButton.visibility = if (!isEditMode) View.GONE else View.VISIBLE
         descendButton.setOnClickListener {
             val idx = items.indexOf(row)
             // Next item must be a Row in the same session
@@ -368,10 +386,6 @@ class SessionAdapter(
             showEditTaskDialog(row, position)
             true
         }
-        editTaskButton.visibility = if (!isEditMode) View.GONE else View.VISIBLE
-
-        ThemeManager.applyTheme(context, view)
-        return view
     }
 
     //  Progress

@@ -1,0 +1,83 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/app_row_container"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:id="@+id/app_row"
+        android:background="@color/bg_2"
+        android:padding="@dimen/small"
+        style="@style/VerticalListDivided">
+
+        <LinearLayout style="@style/HorizontalListDivided">
+
+            <FrameLayout
+                android:id="@+id/edit_task_button"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1">
+
+                <ImageView
+                    android:src="@drawable/px_edit"
+                    android:contentDescription="@string/altdescr_edit"
+                    android:tint="@color/accent_2"
+                    style="@style/Icon18" />
+            </FrameLayout>
+
+            <FrameLayout
+                android:id="@+id/ascend_button"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1">
+
+                <ImageView
+                    android:src="@drawable/px_chevron_up"
+                    android:contentDescription="@string/altdescr_ascend"
+                    android:tint="@color/accent_1"
+                    style="@style/Icon18" />
+            </FrameLayout>
+
+            <FrameLayout
+                android:id="@+id/descend_button"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1">
+
+                <ImageView
+                    android:src="@drawable/px_chevron_down"
+                    android:contentDescription="@string/altdescr_descend"
+                    android:tint="@color/accent_1"
+                    style="@style/Icon18" />
+            </FrameLayout>
+
+            <FrameLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:background="@color/bg_1"
+            android:padding="@dimen/small"
+            style="@style/HorizontalListDivided">
+
+            <TextView
+                android:id="@+id/task_label"
+                android:layout_width="wrap_content"
+                android:layout_weight="1"
+                style="@style/Text" />
+
+            <TextView
+                android:id="@+id/task_frequency"
+                android:layout_width="wrap_content"
+                android:textColor="@color/suggestion"
+                style="@style/Text" />
+
+            <TextView
+                android:id="@+id/task_duration"
+                android:layout_width="wrap_content"
+                android:textColor="@color/disabled"
+                style="@style/Text" />
+        </LinearLayout>
+    </LinearLayout>
+</FrameLayout>

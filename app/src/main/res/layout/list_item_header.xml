@@ -2,73 +2,19 @@
     android:id="@+id/app_row_header"
     style="@style/HorizontalListDivided">
 
-    <FrameLayout
-        android:id="@+id/edit_session_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:padding="12sp"
-        android:paddingStart="22sp">
-
-        <ImageView
-            android:src="@drawable/px_edit"
-            android:contentDescription="@string/altdescr_edit"
-            android:tint="@color/accent_2"
-            style="@style/Icon18" />
-    </FrameLayout>
-
-    <FrameLayout
-        android:id="@+id/ascend_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:padding="12sp">
-
-        <ImageView
-            android:src="@drawable/px_chevron_up"
-            android:contentDescription="@string/altdescr_ascend"
-            android:tint="@color/accent_1"
-            style="@style/Icon18" />
-    </FrameLayout>
-
-    <FrameLayout
-        android:id="@+id/descend_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:padding="12sp">
-
-        <ImageView
-            android:src="@drawable/px_chevron_down"
-            android:contentDescription="@string/altdescr_descend"
-            android:tint="@color/accent_1"
-            style="@style/Icon18" />
-    </FrameLayout>
-
     <TextView
         android:id="@+id/group_label"
         android:layout_width="0dp"
         android:layout_weight="1"
-        android:text="[-] Workout :: 44:00"
-        android:paddingTop="12sp"
-        android:paddingBottom="12sp"
+        android:paddingTop="@dimen/small"
+        android:paddingBottom="@dimen/small"
         style="@style/H3" />
-
-    <FrameLayout
-        android:id="@+id/add_task"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:padding="12sp">
-
-        <ImageView
-            android:src="@drawable/px_plus"
-            android:contentDescription="@string/altdescr_add_task"
-            android:tint="@color/accent_2"
-            style="@style/Icon18" />
-    </FrameLayout>
 
     <FrameLayout
         android:id="@+id/reset_group"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:padding="12sp">
+        android:padding="@dimen/small">
 
         <ImageView
             android:src="@drawable/px_refresh"
@@ -81,7 +27,7 @@
         android:id="@+id/start_group"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:padding="12sp">
+        android:padding="@dimen/small">
 
         <ImageView
             android:id="@+id/start_group_icon"
